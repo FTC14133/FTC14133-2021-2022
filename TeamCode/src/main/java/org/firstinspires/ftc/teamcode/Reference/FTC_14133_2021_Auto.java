@@ -123,8 +123,6 @@ public class FTC_14133_2021_Auto extends LinearOpMode {
         lf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        //Rotate(1, 0.5);
-
         while (lf.isBusy() || rf.isBusy() /*|| lb.isBusy() || rb.isBusy()*/) {
 
         }

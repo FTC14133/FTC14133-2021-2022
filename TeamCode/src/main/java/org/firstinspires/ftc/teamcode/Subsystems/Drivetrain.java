@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 // Mecanum Drivetrain
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -26,6 +27,88 @@ public class Drivetrain  {
     rf.setDirection(DcMotorEx.Direction.REVERSE);
     lb.setDirection(DcMotorEx.Direction.FORWARD);
     rb.setDirection(DcMotorEx.Direction.REVERSE);
+    }
+
+    public void ForwardorBackwards(double distance, double speed) {
+        lf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //Driving forward/backwards
+        double encodercounts = distance * 60.3686819388;//(1/(75*(1/25.4)))*560;
+        int encodercountsint = (int) encodercounts;
+        lf.setTargetPosition(encodercountsint);
+        lf.setPower(speed);        //Sets the power for the left front wheel
+        rf.setTargetPosition(encodercountsint);
+        rf.setPower(speed);        //Sets the power for the right front wheel
+        lb.setTargetPosition(encodercountsint);
+        lb.setPower(speed);        //Sets the power for the left back wheel
+        rb.setTargetPosition(encodercountsint);
+        rb.setPower(speed);        //Sets the power for the right back wheel
+        lb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        lf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        while (lf.isBusy() || rf.isBusy() /*|| lb.isBusy() || rb.isBusy()*/) {
+
+        }
+    }
+
+    public void Rotate(double turn, double speed) {
+        lf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //Driving left/right
+        //NOT DONE
+        double encodercounts = turn * 13.18; // test iteratively
+        int encodercountsint = (int) encodercounts;
+        lf.setTargetPosition(-encodercountsint);
+        lf.setPower(speed);        //
+        rf.setTargetPosition(encodercountsint);
+        rf.setPower(speed);        //Sets the power for the Long arm
+        lb.setTargetPosition(-encodercountsint);
+        lb.setPower(speed);        //Sets the power for the Long arm
+        rb.setTargetPosition(encodercountsint);
+        rb.setPower(speed);        //Sets the power for the Long arm
+        lb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        lf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        //noinspection StatementWithEmptyBody
+        while (lf.isBusy() || rf.isBusy() /*|| lb.isBusy() || rb.isBusy()*/) {
+            //run until motors arrive at position
+        }
+    }
+
+    public void Strafing(double Strafe, double speed) {
+        lf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //Driving left/right
+        //Positive is Strafing left negative is Strafing right
+        double encodercounts = Strafe * 60.3686819388 * 1.4142135623730950488016887242097;
+        int encodercountsint = (int) encodercounts;
+        lf.setTargetPosition(-encodercountsint);
+        lf.setPower(speed);        //
+        rf.setTargetPosition(encodercountsint);
+        rf.setPower(speed);        //Sets the power for the Long arm
+        lb.setTargetPosition(encodercountsint);
+        lb.setPower(speed);        //Sets the power for the Long arm
+        rb.setTargetPosition(-encodercountsint);
+        rb.setPower(speed);        //Sets the power for the Long arm
+        lb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        lf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        while (lf.isBusy() || rf.isBusy() /*|| lb.isBusy() || rb.isBusy()*/) {
+            //run until motors arrive at position
+        }
+
+
     }
 
     public void Update(Gamepad gamepad1){ //Code to be run in Op Mode void Loop at top level

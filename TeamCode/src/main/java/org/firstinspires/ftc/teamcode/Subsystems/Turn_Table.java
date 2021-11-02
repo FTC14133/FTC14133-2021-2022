@@ -14,6 +14,7 @@ public class Turn_Table {
     private DcMotorEx spin_table;
 
 
+
     public Turn_Table(HardwareMap hardwareMap){                 // Motor Mapping
         spin_table = hardwareMap.get(DcMotorEx.class, "spin_table");      //Sets the names of the hardware on the hardware map
 // "DeviceName" must match the Config EXACTLY
@@ -23,7 +24,11 @@ public class Turn_Table {
 
     }
 
-    public void Update(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
+    public void Update_a(Gamepad gamepad2){
+
+    }
+
+    public void Update_t(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
         if (gamepad2.x) {        //runs the intake backwards for the BLUE side
             spin_table.setPower(-0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
         }
