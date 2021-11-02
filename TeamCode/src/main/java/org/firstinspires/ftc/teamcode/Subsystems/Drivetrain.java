@@ -36,7 +36,7 @@ public class Drivetrain  {
         lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         //Driving forward/backwards
-        double encodercounts = distance * 60.3686819388;//(1/(75*(1/25.4)))*560;
+        double encodercounts = distance * 60.3686819388;//(1/(75*(1/25.4)))*560; //ToDo This math too
         int encodercountsint = (int) encodercounts;
         lf.setTargetPosition(encodercountsint);
         lf.setPower(speed);        //Sets the power for the left front wheel
@@ -63,7 +63,7 @@ public class Drivetrain  {
         rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         //Driving left/right
         //NOT DONE
-        double encodercounts = turn * 13.18; // test iteratively
+        double encodercounts = turn * 13.18; // test iteratively //ToDo This math needs to be redone as well
         int encodercountsint = (int) encodercounts;
         lf.setTargetPosition(-encodercountsint);
         lf.setPower(speed);        //
@@ -91,7 +91,7 @@ public class Drivetrain  {
         rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         //Driving left/right
         //Positive is Strafing left negative is Strafing right
-        double encodercounts = Strafe * 60.3686819388 * 1.4142135623730950488016887242097;
+        double encodercounts = Strafe * 60.3686819388 * 1.4142135623730950488016887242097; //ToDo This math needs to be redone for new drivetrain
         int encodercountsint = (int) encodercounts;
         lf.setTargetPosition(-encodercountsint);
         lf.setPower(speed);        //
