@@ -42,7 +42,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         drivetrain.ForwardorBackwards(10, 1);
         drivetrain.Rotate(360, 1);
         drivetrain.Strafing(10, 1);
-        Intake.Update(gamepad2);
+        Intake.Update(gamepad2, 2);
         Turn_Table.Update_a(gamepad2);
         Generic_Lift.Update(gamepad2);
 
