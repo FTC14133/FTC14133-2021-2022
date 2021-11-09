@@ -28,12 +28,17 @@ public class Turn_Table {
 
     }
 
-    public void Update_t(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
-        if (gamepad2.x) {        //runs the intake backwards for the BLUE side
-            spin_table.setPower(-0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
+    public void Update_t(Gamepad gamepad2, int RED_BlUE){ //Code to be run in Op Mode void Loop at top level
+        if (RED_BlUE == 1) {
+            if (gamepad2.x) {        //runs the intake backwards for the BLUE side
+                spin_table.setPower(-0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
+            }
         }
-        if (gamepad2.b) {        //runs the intake backwards for the RED side
-            spin_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
+
+        if (RED_BlUE == 0) {
+            if (gamepad2.x) {        //runs the intake backwards for the BLUE side
+                spin_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
+            }
         }
     }
 }

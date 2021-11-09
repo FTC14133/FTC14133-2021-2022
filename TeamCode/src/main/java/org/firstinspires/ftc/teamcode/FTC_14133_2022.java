@@ -29,8 +29,9 @@ public class  FTC_14133_2022 extends OpMode {
  private Intake Intake=null;
  private Turn_Table Turn_Table=null;
  private Generic_Lift Generic_Lift=null;
+    private int RED_BlUE;
 
- public void init() {
+    public void init() {
      drivetrain = new Drivetrain(hardwareMap);
      Intake = new Intake(hardwareMap);
      Turn_Table = new Turn_Table(hardwareMap);
@@ -42,7 +43,14 @@ public class  FTC_14133_2022 extends OpMode {
  }
 
  public void start() {
- }
+     if (gamepad2.x) {
+         RED_BlUE = 1;
+     }
+
+     if (gamepad2.b) {
+         RED_BlUE = 0;
+     }
+     }
 
     public double tbegin = getRuntime();
 
@@ -54,7 +62,7 @@ public class  FTC_14133_2022 extends OpMode {
 
     // getArmPosition here so that we can pass the minimal amount of data
     Intake.Update(gamepad2, Generic_Lift.getArmPosition());
-    Turn_Table.Update_t(gamepad2);
+    Turn_Table.Update_t(gamepad2, RED_BlUE);
 
 
 
