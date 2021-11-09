@@ -60,6 +60,10 @@ public class FTC_14133_2021 extends OpMode {
      rf.setDirection(DcMotorEx.Direction.REVERSE);
      lb.setDirection(DcMotorEx.Direction.FORWARD);
      rb.setDirection(DcMotorEx.Direction.REVERSE);
+     arm.setDirection(DcMotor.Direction.FORWARD);
+     intake.setDirection(DcMotor.Direction.FORWARD);
+     conveyor.setDirection(DcMotor.Direction.FORWARD);
+
      beambreak.setMode(DigitalChannel.Mode.INPUT); // set the digital channel to input.
      leftclaw.setPosition(1);
      rightclaw.setPosition(0);
@@ -72,9 +76,7 @@ public class FTC_14133_2021 extends OpMode {
   //Since this is the first time using the encoder we start it up
      shooter.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
      shooter.setVelocity(shooterpower);
-     arm.setDirection(DcMotor.Direction.FORWARD);
-     intake.setDirection(DcMotor.Direction.FORWARD);
-     conveyor.setDirection(DcMotor.Direction.FORWARD);
+
  }
 
  public void init_loop() {
