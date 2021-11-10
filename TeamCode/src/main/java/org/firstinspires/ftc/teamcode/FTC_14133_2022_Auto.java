@@ -51,7 +51,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         drivetrain.Strafing(10, 1);
         Intake.Update_auto(1);
         Turn_Table.Update_auto();
-        Generic_Lift.Update(gamepad2);      //Fixme     See above, will not work in auto. Needs a different method for auto.
+        Generic_Lift.Update(gamepad2);      //Fixme See above, will not work in auto. Needs a different method for auto.
 
 
     }
