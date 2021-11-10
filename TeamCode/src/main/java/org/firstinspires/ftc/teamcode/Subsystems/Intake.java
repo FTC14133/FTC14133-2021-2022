@@ -33,8 +33,11 @@ public class Intake {
 
     if you need to access logic from an object ie a method that raises the arm
     */
+    public void Update_auto(int speed){
+        intake.setPower(speed);
+    }
 
-    public void Update(Gamepad gamepad2, int liftPosition){ //Code to be run in Op Mode void Loop at top level
+    public void Update_telop(Gamepad gamepad2, int liftPosition){ //Code to be run in Op Mode void Loop at top level
                             // gets the current arm position
         if (gamepad2.right_trigger > 0 && liftPosition>0 ) {       //runs the intake forward based on arm position
             intake.setPower(1);
