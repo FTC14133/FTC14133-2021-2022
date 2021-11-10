@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.Subsystems.Sensors;
 
 //ToDo: May need multiple turntable spinners
+//todo: turntable may be powered by servos instead of a full-on motor, just for sizing and power usage reasons.
 //ToDo: Make pre-set program that auto goes the right distance, stops to place a new one, and then starts again (faster than a human can)
 
 public class Turn_Table {
@@ -28,7 +29,7 @@ public class Turn_Table {
     }
 
     public void Update_auto(){
-        int Red_Blue = Sensors.Update_Red_Blue(); //will get if the robot is on the red or blue side.
+        int Red_Blue = Sensors.Update_Red_Blue(); //will get if the robot is on the red or blue side. //fixme: call this alliance
         if (Red_Blue == 1) { //Does an outcome is the robot is on the blue side
             spin_table.setPower(-0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the BLUE side
         }
