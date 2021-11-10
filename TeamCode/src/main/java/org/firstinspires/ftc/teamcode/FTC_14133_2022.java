@@ -22,7 +22,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Turn_Table;
 //My favorite shape is a nonagon
 //I like to ride dirt bikes RS
 
-//ToDo: Add light subsystem for Blinkin' which will run primarily with while loops likely
+//ToDo: Add light subsystem for Blinkin' which will run primarily with while loops likely, maybe include this in sensors?
 
 public class  FTC_14133_2022 extends OpMode {
  private Drivetrain drivetrain=null;
@@ -43,6 +43,8 @@ public class  FTC_14133_2022 extends OpMode {
  }
 
  public void start() {
+
+     //todo: the code to set the direction of the turntable motor based on the setup switches needs to be placed here, or in init()
  }
 
     public double tbegin = getRuntime();
