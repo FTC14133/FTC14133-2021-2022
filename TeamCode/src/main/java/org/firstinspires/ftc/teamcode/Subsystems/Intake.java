@@ -3,10 +3,10 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 // Intake
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-//ToDo: Add some kind of sensor (maybe beam break) to confirm only 1 game piece at any time
 //ToDo: May use servo to open/close or drop the team element
 //ToDo: May enable/disable electromagnet?
 //ToDo: May need to run in different directions depending where the arm is, i.e. when arm is on front of robot the intake will be reversed compared to when it is by the back of the robot
@@ -15,6 +15,9 @@ public class Intake {
     // Instantiate the motor variables
     private DcMotorEx intake;
     int pos= 0 ;
+    boolean toggle = true;
+    int count = 0;
+    DigitalChannel beambreak; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
 
     public Intake(HardwareMap hardwareMap){                 // Motor Mapping
         intake = hardwareMap.get(DcMotorEx.class, "intake_m");      //Sets the names of the hardware on the hardware map
@@ -34,7 +37,24 @@ public class Intake {
     if you need to access logic from an object ie a method that raises the arm
     */
     public void Update_auto(int speed){
+
         intake.setPower(speed);
+        if(!beambreak.getState()) { //if beam is broken
+            intake.setPower(1);//Run intake
+
+            if (toggle){ //if toggle is true, or there was no fright in last loop
+                count = count + 1;
+                toggle=false; //set to false to stop count
+            }
+            if (count > 1){
+                intake.setPower(-1);
+            }
+        }
+        else{ // if beam break not broken
+            toggle=true; //set to false to allow for count next time fright breaks beam
+            intake.setPower(0); // stop intake
+        }
+
     }
 
     public void Update_telop(Gamepad gamepad2, int liftPosition){ //Code to be run in Op Mode void Loop at top level

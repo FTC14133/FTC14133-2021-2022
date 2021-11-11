@@ -44,7 +44,6 @@ public class  FTC_14133_2022 extends OpMode {
 
  public void start() {
 
-     //todo: the code to set the direction of the turntable motor based on the setup switches needs to be placed here, or in init()
  }
 
     public double tbegin = getRuntime();
