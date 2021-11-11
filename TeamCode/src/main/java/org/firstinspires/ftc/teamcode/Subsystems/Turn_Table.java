@@ -28,7 +28,7 @@ public class Turn_Table {
     // Set motor direction based on which side of the robot the motors are on
         spin_table.setDirection(DcMotorEx.Direction.FORWARD);
         Sensors = new Sensors(hardwareMap);
-        drivetrain = new Drivetrain(hardwareMap);
+        drivetrain = new Drivetrain(hardwareMap); //fixme: why are we using the drivetrain in here? This should be specifically for turntable program.
 
     }
 
@@ -37,7 +37,7 @@ public class Turn_Table {
         WT = switches[0];
         A = switches[1];
         if (stop == true){
-            spin_table.setPower(0);
+            spin_table.setPower(0); //fixme: we need to slow down here. Why not just have a "run turntable" method that inputs the desired speed? Then we can set it to 0 if we want and don't need this true/false input.
         }
         else if (A == true) { //Does an outcome is the robot is on the blue side
             spin_table.setPower(-0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the BLUE side

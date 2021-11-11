@@ -20,7 +20,7 @@ public class Intake {
     DigitalChannel beambreak; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
 
     public Intake(HardwareMap hardwareMap){                 // Motor Mapping
-        intake = hardwareMap.get(DcMotorEx.class, "intake_m");      //Sets the names of the hardware on the hardware map
+        intake = hardwareMap.get(DcMotorEx.class, "intake_m");      //Sets the names of the hardware on the hardware map todo: make this name some more descriptive
         // "DeviceName" must match the Config EXACTLY
 
         // Set motor direction based on which side of the robot the motors are on
@@ -36,14 +36,14 @@ public class Intake {
 
     if you need to access logic from an object ie a method that raises the arm
     */
-    public void Update_auto(int speed){
+    public void Update_auto(int speed){ //todo: rather than having one method try to do everything in auto, make multiple methods like we did last year that each do something individually. Much easier to keep track of.
 
         intake.setPower(speed);
         if(!beambreak.getState()) { //if beam is broken
             intake.setPower(1);//Run intake
 
             if (toggle){ //if toggle is true, or there was no fright in last loop
-                count = count + 1;
+                count = count + 1; //fixme: we don't really need ot count in this game, do we? Also don't need a toggle function, just hold to run.
                 toggle=false; //set to false to stop count
             }
             if (count > 1){

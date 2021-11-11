@@ -44,13 +44,11 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         Generic_Lift = new Generic_Lift(hardwareMap);
         Sensors = new Sensors(hardwareMap);
 
-
-
         drivetrain.ForwardorBackwards(10, 1);
         drivetrain.Rotate(360, 1);
         drivetrain.Strafing(10, 1);
         Intake.Update_auto(1);
-        Turn_Table.Update_auto(false);
+        Turn_Table.Update_auto(false); //Fixme: what does the booleen input do?
         Generic_Lift.Update(gamepad2);      //Fixme See above, will not work in auto. Needs a different method for auto.
 
 

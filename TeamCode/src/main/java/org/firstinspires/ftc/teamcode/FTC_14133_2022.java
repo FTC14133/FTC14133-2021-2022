@@ -16,13 +16,15 @@ import org.firstinspires.ftc.teamcode.Subsystems.Generic_Lift;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
 import org.firstinspires.ftc.teamcode.Subsystems.Turn_Table;
 
-@TeleOp(name="FTC_14133_2022", group="Iterative Opmode")
+@TeleOp(name="FTC_14133_2022", group="Iterative Opmode") // Labels program in Driver station Selection
 
 
 //My favorite shape is a nonagon
 //I like to ride dirt bikes RS
 
 //ToDo: Add light subsystem for Blinkin' which will run primarily with while loops likely, maybe include this in sensors?
+
+//fixme: COMMENT YOUR CODE VIHAAN! We're adding a lot of automation, which is nice, but it is going to be REAALLY difficult to troubleshoot.
 
 public class  FTC_14133_2022 extends OpMode {
  private Drivetrain drivetrain=null;
@@ -36,13 +38,14 @@ public class  FTC_14133_2022 extends OpMode {
      Intake = new Intake(hardwareMap);
      Turn_Table = new Turn_Table(hardwareMap);
      Generic_Lift = new Generic_Lift(hardwareMap);
+     //Todo: run code determining which alliance we are on and which side of the field we are starting. This should only need to be run once and work for the entire match.
  }
 
  public void init_loop() {
 
  }
 
- public void start() {
+ public void start() { // ToDo: This won't do anything in teleop. Use in Auto with (maybe) a switch box.
 
  }
 
