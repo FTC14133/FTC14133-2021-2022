@@ -6,7 +6,6 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.Subsystems.Sensors;
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 
 //ToDo: May need multiple turntable spinners
@@ -15,10 +14,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 public class Turn_Table {
     // Instantiate the  motor variables
     private DcMotorEx spin_table;
-    private Sensors Sensors=null;
     private Drivetrain drivetrain=null;
-    boolean WT;
-    boolean A;
 
 
     public Turn_Table(HardwareMap hardwareMap){                 // Motor Mapping
@@ -27,47 +23,41 @@ public class Turn_Table {
 
     // Set motor direction based on which side of the robot the motors are on
         spin_table.setDirection(DcMotorEx.Direction.FORWARD);
-        Sensors = new Sensors(hardwareMap);
-        drivetrain = new Drivetrain(hardwareMap); //fixme: why are we using the drivetrain in here? This should be specifically for turntable program.
+        drivetrain = new Drivetrain(hardwareMap); //THE DRIVETRAIN IS USED FOR THE PRESET PROGRAM IN TELOP
 
     }
 
-    public void Update_auto(boolean stop){
-        boolean[] switches = Sensors.Update_Red_Blue();
-        WT = switches[0];
-        A = switches[1];
-        if (stop == true){
-            spin_table.setPower(0); //fixme: we need to slow down here. Why not just have a "run turntable" method that inputs the desired speed? Then we can set it to 0 if we want and don't need this true/false input.
+    public void Update_auto(boolean A){
+        if (A == true) { //Does an outcome is the robot is on the RED side
+            spin_table.setPower(-0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the RED side
         }
-        else if (A == true) { //Does an outcome is the robot is on the blue side
-            spin_table.setPower(-0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the BLUE side
-        }
-        else { //Does an outcome is the robot is on the red side
-            spin_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the RED side
+        else { //Does an outcome is the robot is on the BLUE side
+            spin_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the BLUE side
         }
     }
 
-    public void Update_telop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
-        boolean[] switches = Sensors.Update_Red_Blue();
-        WT = switches[0];
-        A = switches[1];
-
-        if (A == true) { //Does an outcome is the robot is on the blue side
-            if (gamepad2.x) {        //runs the intake backwards for the BLUE side
+    public void Update_telop(Gamepad gamepad2, boolean A){ //Code to be run in Op Mode void Loop at top level
+        if (A == true) { //Does an outcome is the robot is on the RED side
+            if (gamepad2.x) {        //runs the intake backwards for the RED side
                 spin_table.setPower(-0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
             }
         }
-        else { //Does an outcome is the robot is on the red side
-            if (gamepad2.x) {        //runs the intake backwards for the RED side
+        else { //Does an outcome is the robot is on the BLUE side
+            if (gamepad2.x) {        //runs the intake backwards for the BLUE side
                 spin_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
             }
         }
     }
 
-    public void Preset_TurnTable(Gamepad gamepad1){
-        if (gamepad1.a){
-            drivetrain.Strafing(30, 1);
-            spin_table.setPower(-0.25);
+    public void Preset_TurnTable(Gamepad gamepad2, boolean A){
+        if (gamepad2.a && A == true) { //This code will check if the driver presses the a button and that the robot is on the RED side
+            drivetrain.Strafing(-30, 1); //Will go to to the left approaching the turn table
+            spin_table.setPower(-0.25); //Will turn on the motor that spins the turn table
         }
+        else if (gamepad2.a) { //This is a different instance where if we are starting on the BLUE side
+            drivetrain.Strafing(30, 1); //We will go to the right approaching the turn table
+            spin_table.setPower(0.25); //We will spin the turn table
+        }
+
     }
 }

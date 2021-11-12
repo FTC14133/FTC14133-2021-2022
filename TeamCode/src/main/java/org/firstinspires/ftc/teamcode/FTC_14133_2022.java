@@ -14,6 +14,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.Subsystems.Generic_Lift;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
+import org.firstinspires.ftc.teamcode.Subsystems.Sensors;
 import org.firstinspires.ftc.teamcode.Subsystems.Turn_Table;
 
 @TeleOp(name="FTC_14133_2022", group="Iterative Opmode") // Labels program in Driver station Selection
@@ -31,21 +32,25 @@ public class  FTC_14133_2022 extends OpMode {
  private Intake Intake=null;
  private Turn_Table Turn_Table=null;
  private Generic_Lift Generic_Lift=null;
+ private Sensors Sensors=null;
  private int RED_BlUE;
+
+ boolean[] switches = Sensors.Update_Red_Blue();
+ boolean WT = switches[0];
+ boolean A = switches[1];
 
  public void init() {
      drivetrain = new Drivetrain(hardwareMap);
      Intake = new Intake(hardwareMap);
      Turn_Table = new Turn_Table(hardwareMap);
      Generic_Lift = new Generic_Lift(hardwareMap);
-     //Todo: run code determining which alliance we are on and which side of the field we are starting. This should only need to be run once and work for the entire match.
+     Sensors = new Sensors(hardwareMap);
  }
 
  public void init_loop() {
 
  }
-
- public void start() { // ToDo: This won't do anything in teleop. Use in Auto with (maybe) a switch box.
+ public void start() { // ToDo: This won't do anything in teleop. Use in Auto with (maybe) a switch box. <-- what is this for
 
  }
 
@@ -59,7 +64,7 @@ public class  FTC_14133_2022 extends OpMode {
 
     // getArmPosition here so that we can pass the minimal amount of data
     Intake.Update_telop(gamepad2, Generic_Lift.getArmPosition());
-    Turn_Table.Update_telop(gamepad2);
+    Turn_Table.Update_telop(gamepad2, A);
 
 
 
