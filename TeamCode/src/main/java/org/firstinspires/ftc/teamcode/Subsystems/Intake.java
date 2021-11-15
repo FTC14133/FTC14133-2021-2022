@@ -16,11 +16,11 @@ public class Intake {
     private DcMotorEx intake;
     int pos= 0 ;
     boolean toggle = true;
-    int count = 0;
+    int count = 0; //fixme: we don't need count. We can only pick up one single game piece.
     DigitalChannel beambreak; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
 
     public Intake(HardwareMap hardwareMap){                 // Motor Mapping
-        intake = hardwareMap.get(DcMotorEx.class, "intake_m");      //Sets the names of the hardware on the hardware map todo: make this name some more descriptive
+        intake = hardwareMap.get(DcMotorEx.class, "intake_m");      //Sets the names of the hardware on the hardware map todo: make this name some more descriptive than intake_m
         // "DeviceName" must match the Config EXACTLY
 
         // Set motor direction based on which side of the robot the motors are on

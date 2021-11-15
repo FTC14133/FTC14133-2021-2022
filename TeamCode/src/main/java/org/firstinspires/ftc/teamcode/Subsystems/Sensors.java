@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Sensors {
-    DigitalChannel Warehouse_Turntable; //Sets the varible of a switch on the robot
-    DigitalChannel alliance_s; //Sets the varible of a switch on the robot
+    DigitalChannel Warehouse_Turntable; //Sets the variable of a switch on the robot // fixme: which switch?
+    DigitalChannel alliance_s; //Sets the variable of a switch on the robot //fixme: Which switch?
     boolean WT;
     boolean A;
 
@@ -26,7 +26,7 @@ public class Sensors {
 
                                     ALLIANCE SWITCH:
                                         IF ON THE ROBOT IS ON THE RED ALLIANCE
-                                        IF ON THE ROBOT IS ON THE BLUE ALLIANCE
+                                        IF ON THE ROBOT IS ON THE BLUE ALLIANCE //fixme: both are on?
          */
 
         return new boolean[] {WT, A}; //Allows the main program or others using this function to access the variables
