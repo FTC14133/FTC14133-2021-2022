@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
-public class Pivot_Arm { //ToDo: Rename to specific lift type once we make decision (Elevator, arm, etc.)//Done
+public class Pivot_Arm {
     // Instantiate the drivetrain motor variables
     private DcMotorEx lift;
     public int position = 0; // Integer position of the arm
