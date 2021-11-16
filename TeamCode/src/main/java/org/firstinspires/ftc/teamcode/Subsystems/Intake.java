@@ -65,9 +65,8 @@ public class Intake {
             intake.setPower(-1);                           // runs the intake forward, but the arm is backwards so it is negative
         }
 
-
-        if (gamepad2.left_trigger > 0) {        //runs the intake backwards
-            intake.setPower(-1);
+        else{
+            intake.setPower(0);
         }
 
     }

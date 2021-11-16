@@ -34,15 +34,15 @@ public class Generic_Lift { //ToDo: Rename to specific lift type once we make de
             //}
 
     public Generic_Lift(HardwareMap hardwareMap){                 // Motor Mapping
-    lift = hardwareMap.get(DcMotorEx.class, "lift");      //Sets the names of the hardware on the hardware map
-// "DeviceName" must match the Config EXACTLY
+        lift = hardwareMap.get(DcMotorEx.class, "lift");      //Sets the names of the hardware on the hardware map
+    // "DeviceName" must match the Config EXACTLY
 
-    // Set motor direction based on which side of the robot the motors are on
-    lift.setDirection(DcMotorEx.Direction.FORWARD);
-    position=0; //initial arm position
+        // Set motor direction based on which side of the robot the motors are on
+        lift.setDirection(DcMotorEx.Direction.FORWARD);
+        position=0; //initial arm position
     }
 
-    public void Update(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
+    public void Generic_Lift_Telop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
 
         // if (gamepad.dpadup==1){   this needs to be a toggle methinks rather than simply a check
         // position = position + 1

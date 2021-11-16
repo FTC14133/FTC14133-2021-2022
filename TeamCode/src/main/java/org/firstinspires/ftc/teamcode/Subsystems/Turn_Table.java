@@ -27,12 +27,12 @@ public class Turn_Table {
 
     }
 
-    public void Update_auto(boolean A){
+    public void Update_auto(boolean A, double Power){
         if (A == true) { //Does an outcome if the robot is on the RED side
-            spin_table.setPower(-0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the RED side //fixme: this sets turntable to run the entire auto mode if A==true wiht no way to stop.
+            spin_table.setPower(Power); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the RED side //fixme: this sets turntable to run the entire auto mode if A==true wiht no way to stop.
         }
         else { //Does an outcome is the robot is on the BLUE side
-            spin_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the BLUE side
+            spin_table.setPower(Power); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the BLUE side
         }
     }
 
@@ -45,6 +45,9 @@ public class Turn_Table {
         else { //Does an outcome is the robot is on the BLUE side
             if (gamepad2.x) {        //runs the intake backwards for the BLUE side
                 spin_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
+            }
+            else{
+                spin_table.setPower(0);
             }
         }
     }

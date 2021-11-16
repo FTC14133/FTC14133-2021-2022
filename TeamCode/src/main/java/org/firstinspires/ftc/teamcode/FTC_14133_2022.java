@@ -50,7 +50,7 @@ public class  FTC_14133_2022 extends OpMode {
  public void init_loop() {
 
  }
- public void start() { // ToDo: This won't do anything in teleop. Use in Auto with (maybe) a switch box. <-- what is this for
+ public void start() {
 
  }
 
@@ -59,8 +59,8 @@ public class  FTC_14133_2022 extends OpMode {
  public void loop() {
 
 
-     drivetrain.Update(gamepad1);
-     Generic_Lift.Update(gamepad2);
+    drivetrain.Update(gamepad1);
+    Generic_Lift.Generic_Lift_Telop(gamepad2);
 
     // getArmPosition here so that we can pass the minimal amount of data
     Intake.Update_telop(gamepad2, Generic_Lift.getArmPosition());

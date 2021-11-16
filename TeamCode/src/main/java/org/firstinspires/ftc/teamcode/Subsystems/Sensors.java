@@ -18,7 +18,8 @@ public class Sensors {
         WT = Warehouse_Turntable.getState(); // Sees if the switches are on.
         A = alliance_s.getState();
 
-        /*IMPORTANT:
+        /*
+        IMPORTANT:
                                 IMPORTANT VERY VERY VERY!!!!!!!!!!!!!!!!!!!!!!!!!!!!:
                                     WAREHOUSE/TURNTABLE SWITCH:
                                         IF ON THE ROBOT IS WAREHOUSE SIDE
@@ -26,7 +27,7 @@ public class Sensors {
 
                                     ALLIANCE SWITCH:
                                         IF ON THE ROBOT IS ON THE RED ALLIANCE
-                                        IF ON THE ROBOT IS ON THE BLUE ALLIANCE //fixme: both are on?
+                                        IF ON THE ROBOT IS OFF THE BLUE ALLIANCE //fixme: both are on?
          */
 
         return new boolean[] {WT, A}; //Allows the main program or others using this function to access the variables

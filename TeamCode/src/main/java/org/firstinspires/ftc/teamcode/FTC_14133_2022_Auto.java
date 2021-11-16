@@ -51,8 +51,8 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         drivetrain.Rotate(360, 1);
         drivetrain.Strafing(10, 1);
         Intake.Update_auto(1);
-        Turn_Table.Update_auto(A);
-        Generic_Lift.Update(gamepad2);      //Fixme See above, will not work in auto. Needs a different method for auto. Input goto-positions instead of gamepad values.
+        Turn_Table.Update_auto(A, 0.25);
+        Generic_Lift.Generic_Lift_Telop(gamepad2);      //Fixme See above, will not work in auto. Needs a different method for auto. Input goto-positions instead of gamepad values.
 
 
     }
