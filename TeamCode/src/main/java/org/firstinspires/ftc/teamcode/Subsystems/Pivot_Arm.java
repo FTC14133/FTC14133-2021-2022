@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
-public class Generic_Lift { //ToDo: Rename to specific lift type once we make decision (Elevator, arm, etc.)
+public class Pivot_Arm { //ToDo: Rename to specific lift type once we make decision (Elevator, arm, etc.)//Done
     // Instantiate the drivetrain motor variables
     private DcMotorEx lift;
     public int position = 0; // Integer position of the arm
@@ -33,7 +33,7 @@ public class Generic_Lift { //ToDo: Rename to specific lift type once we make de
             // set encoder position to -y //etc}
             //}
 
-    public Generic_Lift(HardwareMap hardwareMap){                 // Motor Mapping
+    public Pivot_Arm(HardwareMap hardwareMap){                 // Motor Mapping
         lift = hardwareMap.get(DcMotorEx.class, "lift");      //Sets the names of the hardware on the hardware map
     // "DeviceName" must match the Config EXACTLY
 
@@ -42,7 +42,7 @@ public class Generic_Lift { //ToDo: Rename to specific lift type once we make de
         position=0; //initial arm position
     }
 
-    public void Generic_Lift_Telop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
+    public void Pivot_Arm_Telop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
 
         // if (gamepad.dpadup==1){   this needs to be a toggle methinks rather than simply a check
         // position = position + 1

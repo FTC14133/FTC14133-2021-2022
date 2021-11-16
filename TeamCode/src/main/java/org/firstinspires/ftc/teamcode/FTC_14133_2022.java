@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
-import org.firstinspires.ftc.teamcode.Subsystems.Generic_Lift;
+import org.firstinspires.ftc.teamcode.Subsystems.Pivot_Arm;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
 import org.firstinspires.ftc.teamcode.Subsystems.Sensors;
 import org.firstinspires.ftc.teamcode.Subsystems.Turn_Table;
@@ -31,7 +31,7 @@ public class  FTC_14133_2022 extends OpMode {
  private Drivetrain drivetrain=null;
  private Intake Intake=null;
  private Turn_Table Turn_Table=null;
- private Generic_Lift Generic_Lift=null;
+ private Pivot_Arm Pivot_Arm=null;
  private Sensors Sensors=null;
  private int RED_BlUE;
 
@@ -43,7 +43,7 @@ public class  FTC_14133_2022 extends OpMode {
      drivetrain = new Drivetrain(hardwareMap);
      Intake = new Intake(hardwareMap);
      Turn_Table = new Turn_Table(hardwareMap);
-     Generic_Lift = new Generic_Lift(hardwareMap);
+     Pivot_Arm = new Pivot_Arm(hardwareMap);
      Sensors = new Sensors(hardwareMap);
  }
 
@@ -60,10 +60,10 @@ public class  FTC_14133_2022 extends OpMode {
 
 
     drivetrain.Update(gamepad1);
-    Generic_Lift.Generic_Lift_Telop(gamepad2);
+    Pivot_Arm.Pivot_Arm_Telop(gamepad2);
 
     // getArmPosition here so that we can pass the minimal amount of data
-    Intake.Update_telop(gamepad2, Generic_Lift.getArmPosition());
+    Intake.Update_telop(gamepad2,Pivot_Arm.getArmPosition());
     Turn_Table.Update_telop(gamepad2, A);
 
 
