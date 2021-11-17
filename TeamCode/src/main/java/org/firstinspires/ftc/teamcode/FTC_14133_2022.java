@@ -35,7 +35,7 @@ public class  FTC_14133_2022 extends OpMode {
  private Sensors Sensors=null;
  private int RED_BlUE;
 
- boolean[] switches = Sensors.Update_Red_Blue(); //fixme: there is a problem with this I do not know how to solve. Lookup null pointer exception.
+ boolean[] switches = Sensors.Update_Red_Blue(); //fixme: This code needs to be run in one of the steps below, likely init. You can still instantiate "switches" here.
  boolean A = switches[1];
 
  public void init() {
@@ -56,7 +56,6 @@ public class  FTC_14133_2022 extends OpMode {
     public double tbegin = getRuntime();
 
  public void loop() {
-
 
     drivetrain.Update(gamepad1);
     Pivot_Arm.Pivot_Arm_Telop(gamepad2);

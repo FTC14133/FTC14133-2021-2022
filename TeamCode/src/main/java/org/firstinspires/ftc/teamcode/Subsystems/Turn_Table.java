@@ -52,7 +52,7 @@ public class Turn_Table {
         }
     }
 
-    public void Preset_TurnTable(Gamepad gamepad2, boolean A){
+    public void Preset_TurnTable(Gamepad gamepad2, boolean A){ //Fixme: why are we using drive commands in Turntable? Create a function in the top-level to incorporate these instead. Turntable is ONLY for turntable commands.
         if (gamepad2.a && A == true) { //This code will check if the driver presses the a button and that the robot is on the RED side
             drivetrain.Strafing(-30, 1); //Will go to to the left approaching the turn table
             turn_table.setPower(-0.25); //Will turn on the motor that spins the turn table

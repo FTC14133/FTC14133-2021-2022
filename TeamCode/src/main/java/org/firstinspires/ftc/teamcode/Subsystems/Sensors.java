@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Sensors {
-    DigitalChannel Warehouse_Turntable; //Sets the variable of a switch on the robot that the drivers will turn on or off that tells the code if the robot is on the warehouse or turntable side
-    DigitalChannel alliance_s; //Sets the variable of a switch on the robot that the drivers will turn on or off that tells the code if the robot is on the red or blue alliance
+    DigitalChannel Warehouse_Turntable; //Instantiates the variable of a switch on the robot that the drivers will turn on or off that tells the code if the robot is on the warehouse or turntable side
+    DigitalChannel alliance_s; //Instantiates the variable of a switch on the robot that the drivers will turn on or off that tells the code if the robot is on the red or blue alliance
     boolean WT;
     boolean A;
 
@@ -14,7 +14,7 @@ public class Sensors {
         alliance_s = hardwareMap.get(DigitalChannel.class, "A");
     }
 
-    public boolean[] Update_Red_Blue(){
+    public boolean[] Update_Red_Blue(){ //fixme: If this is for red or blue, why is it doing warehouse/turntable?
         WT = Warehouse_Turntable.getState(); // Sees if the switches are on or off. It will return a true or false (boolean).
         A = alliance_s.getState();
 
