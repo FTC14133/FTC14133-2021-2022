@@ -36,7 +36,6 @@ public class  FTC_14133_2022 extends OpMode {
  private int RED_BlUE;
 
  boolean[] switches = Sensors.Update_Red_Blue(); //fixme: there is a problem with this I do not know how to solve. Lookup null pointer exception.
- boolean WT = switches[0]; // fixme: this value is not needed in teleop, only auton.
  boolean A = switches[1];
 
  public void init() {

@@ -13,41 +13,41 @@ import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 
 public class Turn_Table {
     // Instantiate the  motor variables
-    private DcMotorEx spin_table;
+    private DcMotorEx turn_table;
     private Drivetrain drivetrain=null; //fixme: why are we mapping a drivetrain object in the turntable program?
 
 
     public Turn_Table(HardwareMap hardwareMap){                 // Motor Mapping
-        spin_table = hardwareMap.get(DcMotorEx.class, "spin_table");      //Sets the names of the hardware on the hardware map
+        turn_table = hardwareMap.get(DcMotorEx.class, "turn_table");      //Sets the names of the hardware on the hardware map
 // "DeviceName" must match the Config EXACTLY
 
     // Set motor direction based on which side of the robot the motors are on
-        spin_table.setDirection(DcMotorEx.Direction.FORWARD);
+        turn_table.setDirection(DcMotorEx.Direction.FORWARD);
         drivetrain = new Drivetrain(hardwareMap); //THE DRIVETRAIN IS USED FOR THE PRESET PROGRAM IN TELOP //fixme: you don't need to insert an entire drivetrain object in order to do this
 
     }
 
     public void Update_auto(boolean A, double Power){
         if (A == true) { //Does an outcome if the robot is on the RED side
-            spin_table.setPower(Power); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the RED side //fixme: this sets turntable to run the entire auto mode if A==true wiht no way to stop.
+            turn_table.setPower(Power); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the RED side //fixme: this sets turntable to run the entire auto mode if A==true wiht no way to stop.
         }
         else { //Does an outcome is the robot is on the BLUE side
-            spin_table.setPower(Power); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the BLUE side
+            turn_table.setPower(Power); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the BLUE side
         }
     }
 
     public void Update_telop(Gamepad gamepad2, boolean A){ //Code to be run in Op Mode void Loop at top level
         if (A == true) { //Does an outcome is the robot is on the RED side //fixme: only need to check for this once at the beginning of teleop
             if (gamepad2.x) {        //runs the intake backwards for the RED side
-                spin_table.setPower(-0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
+                turn_table.setPower(-0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
             }
         }
         else { //Does an outcome is the robot is on the BLUE side
             if (gamepad2.x) {        //runs the intake backwards for the BLUE side
-                spin_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
+                turn_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
             }
             else{
-                spin_table.setPower(0);
+                turn_table.setPower(0);
             }
         }
     }
@@ -55,11 +55,11 @@ public class Turn_Table {
     public void Preset_TurnTable(Gamepad gamepad2, boolean A){
         if (gamepad2.a && A == true) { //This code will check if the driver presses the a button and that the robot is on the RED side
             drivetrain.Strafing(-30, 1); //Will go to to the left approaching the turn table
-            spin_table.setPower(-0.25); //Will turn on the motor that spins the turn table
+            turn_table.setPower(-0.25); //Will turn on the motor that spins the turn table
         }
         else if (gamepad2.a) { //This is a different instance where if we are starting on the BLUE side
             drivetrain.Strafing(30, 1); //We will go to the right approaching the turn table
-            spin_table.setPower(0.25); //We will spin the turn table
+            turn_table.setPower(0.25); //We will spin the turn table
         }
 
     }

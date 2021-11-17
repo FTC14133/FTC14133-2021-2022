@@ -58,8 +58,32 @@ public class Intake {
     }
 
     public void Update_telop(Gamepad gamepad2, int liftPosition){ //Code to be run in Op Mode void Loop at top level
+
+        if (gamepad2.y){
+            intake.setPower(0.25);
+        }
+
+        if (gamepad2.b){
+            intake.setPower(-0.25);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             // gets the current arm position
-        if (gamepad2.right_trigger > 0 && liftPosition>0 ) {       //runs the intake forward based on arm position
+        /*if (gamepad2.right_trigger > 0 && liftPosition>0 ) {       //runs the intake forward based on arm position
             intake.setPower(1);
         }else if (gamepad2.right_trigger > 0 && liftPosition<0){
             intake.setPower(-1);                           // runs the intake forward, but the arm is backwards so it is negative
@@ -68,6 +92,10 @@ public class Intake {
         else{
             intake.setPower(0);
         }
+
+         */
+
+
 
     }
 
