@@ -13,6 +13,26 @@ public class Pivot_Arm {
     private DcMotorEx lift;
     public int position = 0; // Integer position of the arm
 
+
+int position = 0; //Initial position of arm
+
+    switch (position) {
+        case 0:
+            System.out.println("Position=0");
+                    break;
+        case 1:
+            System.out.println("Position=1");
+                  break;
+        case 2:
+            System.out.println("Position=2");
+                    break;
+        case 3:
+            System.out.println("Position=3");
+                    break;
+
+
+
+    }
     //ToDo: Add encoder count amount (still undetermined, just put a number in now)
     //ToDo: Add stop and reset encoder in init(), and run using encoder. See FTC_14133_2021_Auto.java
     //ToDo: Add limit switch sensing for either extreme location and to reset to 0 on one side (Homing) or in the middle
