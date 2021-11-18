@@ -52,8 +52,6 @@ Now we have the code that executes inside your `FTC_xxxxx_yyyy.java` file instea
 ```java
 import com.arcrobotics.ftclib.command.Subsystem;
 
-import org.firstinspires.ftc.teamcode.Subsystems.Subsystem;
-
 @TeleOp(name = "FTC_xxxxx_yyyy", group = "Iterative Opmode")
 @Disabled
 public class FTC_xxxxx_yyyy extends OpMode {
@@ -104,7 +102,7 @@ teamCode/
 And we can use the code back in `FTC_xxxxx_yyyy.java` by updating the import to look like this:
 
 ```java
-import org.firstinspires.ftc.teamcode.Subsystems.Subsystem;
+
 ```
 
 The rest of the code can remain the same.
