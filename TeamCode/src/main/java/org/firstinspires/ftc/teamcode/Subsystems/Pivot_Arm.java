@@ -13,6 +13,10 @@ public class Pivot_Arm {
     private DcMotorEx lift;
     public int position = 0; // Integer position of the arm
 
+    integer position == 0; //initial position of arm
+             if (gamepad.dpadup==1){
+        position = position + 1
+             else if(gamepad.dpaddown==1)
 
 int position = 0; //Initial position of arm
 
@@ -39,10 +43,10 @@ int position = 0; //Initial position of arm
     //ToDo: Create set-point positions for different arm positions (Intake, place low, place mid, place high, different sides)
         //This can likely be done with looking at different states and using the arrows, bumpers, or something else to move up the integer positions
         //Pseudo code:
-            // integer position == 0; //initial position of arm
-            // if (gamepad.dpadup==1){
-            // position = position + 1
-            // else if(gamepad.dpaddown==1)
+             integer position == 0; //initial position of arm
+             if (gamepad.dpadup==1){
+             position = position + 1
+             else if(gamepad.dpaddown==1)
             // position = position - 1}
 
             // if (position == 0){
@@ -63,6 +67,27 @@ int position = 0; //Initial position of arm
     }
 
     public void Pivot_Arm_Telop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
+
+                     integer position == 0; //initial position of arm
+                     if (gamepad.dpadup==1){
+                         position = position + 1
+             else if(gamepad.dpaddown==1)
+
+                             int position = 0; //Initial position of arm
+
+                         switch (position) {
+                             case 0:
+                                 System.out.println("Position=0");
+                                 break;
+                             case 1:
+                                 System.out.println("Position=1");
+                                 break;
+                             case 2:
+                                 System.out.println("Position=2");
+                                 break;
+                             case 3:
+                                 System.out.println("Position=3");
+                                 break;
 
         // if (gamepad.dpadup==1){   this needs to be a toggle methinks rather than simply a check
         // position = position + 1
