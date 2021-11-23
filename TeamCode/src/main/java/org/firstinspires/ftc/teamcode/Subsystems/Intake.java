@@ -36,9 +36,10 @@ public class Intake {
 
     if you need to access logic from an object ie a method that raises the arm
     */
-    public void Update_intake(int speed){ //todo: rather than having one method try to do everything in auto, make multiple methods like we did last year that each do something individually. Much easier to keep track of.
-
-        intake.setPower(speed);
+    public void Update_intake(int speed, int position){ //todo: rather than having one method try to do everything in auto, make multiple methods like we did last year that each do something individually. Much easier to keep track of.
+        if(position>0){
+            speed = -speed;
+        }
         if(!beambreak.getState()) { //if beam is broken
             Possession = true;
             intake.setPower(0);//Stop intake
@@ -47,7 +48,7 @@ public class Intake {
         }
         else{ // if beam break not broken
             Possession = false;
-            intake.setPower(1); // Run intake
+            intake.setPower(speed); // Run intake
         }
 
     }

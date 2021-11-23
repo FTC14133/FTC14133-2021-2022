@@ -42,7 +42,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         drivetrain.ForwardorBackwards(10, 1);
         drivetrain.Rotate(360, 1);
         drivetrain.Strafing(10, 1);
-        Intake.Update_intake(1);
+        Intake.Update_intake(1, Pivot_Arm.position);
         Turn_Table.Update_auto(A, 0.25);
         Pivot_Arm.Pivot_Arm_Telop(gamepad2);      //Fixme See above, will not work in auto. Needs a different method for auto. Input goto-positions instead of gamepad values.
 
