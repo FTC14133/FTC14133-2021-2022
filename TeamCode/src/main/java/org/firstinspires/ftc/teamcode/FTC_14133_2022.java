@@ -1,15 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 // https://first-tech-challenge.github.io/SkyStone/  This is the link to ALL metered of FTC
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
-import com.qualcomm.robotcore.hardware.PIDCoefficients;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.Subsystems.Pivot_Arm;
@@ -59,7 +52,7 @@ public class  FTC_14133_2022 extends OpMode {
 
 
     Intake.Update_telop(gamepad2,Pivot_Arm.GetArmPosition()); //Passes position of the arm so intake direction can change.
-    Turn_Table.Update_telop(gamepad2, A);
+    Turn_Table.Turn_Table_Telop(gamepad2, A);
 
 
 
