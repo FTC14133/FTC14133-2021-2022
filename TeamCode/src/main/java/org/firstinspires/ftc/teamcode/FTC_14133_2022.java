@@ -33,7 +33,6 @@ public class  FTC_14133_2022 extends OpMode {
  private Turn_Table Turn_Table=null;
  private Pivot_Arm Pivot_Arm=null;
  private Sensors Sensors=null;
- private int RED_BlUE;
 
  boolean[] switches = Sensors.Update_Red_Blue(); //fixme: This code needs to be run in one of the steps below, likely init. You can still instantiate "switches" here.
  boolean A = switches[1];
@@ -53,15 +52,13 @@ public class  FTC_14133_2022 extends OpMode {
 
  }
 
-    public double tbegin = getRuntime();
-
  public void loop() {
 
     drivetrain.Update(gamepad1);
     Pivot_Arm.Pivot_Arm_Telop(gamepad2);
 
-    // getArmPosition here so that we can pass the minimal amount of data
-    Intake.Update_telop(gamepad2,Pivot_Arm.getArmPosition());
+
+    Intake.Update_telop(gamepad2,Pivot_Arm.GetArmPosition()); //Passes position of the arm so intake direction can change.
     Turn_Table.Update_telop(gamepad2, A);
 
 
