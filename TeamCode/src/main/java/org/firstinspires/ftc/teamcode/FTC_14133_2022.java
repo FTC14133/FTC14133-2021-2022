@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.Subsystems.Pivot_Arm;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
@@ -27,8 +26,8 @@ public class  FTC_14133_2022 extends OpMode {
  private Pivot_Arm Pivot_Arm=null;
  private Sensors Sensors=null;
 
- boolean[] switches = Sensors.Update_Red_Blue(); //fixme: This code needs to be run in one of the steps below, likely init. You can still instantiate "switches" here.
- boolean A = switches[1];
+ boolean[] switches ; //fixme: This code needs to be run in one of the steps below, likely init. You can still instantiate "switches" here.
+ boolean A;
 
  public void init() {
      drivetrain = new Drivetrain(hardwareMap);
@@ -36,6 +35,8 @@ public class  FTC_14133_2022 extends OpMode {
      Turn_Table = new Turn_Table(hardwareMap);
      Pivot_Arm = new Pivot_Arm(hardwareMap);
      Sensors = new Sensors(hardwareMap);
+     switches = Sensors.Update_Red_Blue();
+     A = switches[1];
  }
 
  public void init_loop() {
