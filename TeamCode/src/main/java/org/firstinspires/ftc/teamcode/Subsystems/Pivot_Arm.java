@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 // Generic Lift
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -33,29 +32,44 @@ public class Pivot_Arm {
         position=0; //initial arm position
     }
 
-    public int Pivot_Arm_Telop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
+    public void Pivot_Arm_Telop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
 
 
-                     if (gamepad2.dpad_up==true) {
-                         position = position + 1;
-                     }
-                     else if(gamepad2.dpad_down==true)
+         if (gamepad2.dpad_up==true) {
+             position = position + 1; //Increase Arm position
+             //Todo: add a limiter here to stop it from going too high
+         }
+         else if(gamepad2.dpad_down==true){
+             position = position -1;
+             //Todo: Add a limiter here to stop it from going too low
+         }
 
 
 
-                         switch (position) {
-                             case 0:
-                                 System.out.println("Position=0");
-                                 break;
-                             case 1:
-                                 System.out.println("Position=1");
-                                 break;
-                             case 2:
-                                 System.out.println("Position=2");
-                                 break;
-                             case 3:
-                                 System.out.println("Position=3");
-                                 break;
+         switch (position) {
+             case -3: // Intake Back
+                 System.out.println("Position=1");
+                 break;
+             case -2: // Mid Level back
+                 System.out.println("Position=2");
+                 break;
+             case -1: //Upper Level Back
+                 System.out.println("Position=3");
+                 break;
+             case 0: //Straight Up
+                 System.out.println("Position=0");
+                 break;
+             case 1: //Upper Level Front
+                 System.out.println("Position=1");
+                break;
+             case 2: //Mid Level Front
+                 System.out.println("Position=2");
+                 break;
+             case 3:
+                 System.out.println("Position=3");
+                 break;
+         }
+
 
         // if (gamepad.dpadup==1){   this needs to be a toggle methinks rather than simply a check
         // position = position + 1
@@ -71,8 +85,10 @@ public class Pivot_Arm {
         // set encoder position to -y //etc}
         //}
 
+
     }
-     int getArmPosition;{
+
+    public int GetArmPosition(){
         return position;
     }
-}}
+}
