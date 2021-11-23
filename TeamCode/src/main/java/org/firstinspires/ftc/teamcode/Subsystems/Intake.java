@@ -16,7 +16,7 @@ public class Intake {
     private DcMotorEx intake;
     int pos= 0 ;
     boolean toggle = true;
-    boolean Posession;
+    boolean Possession;
     DigitalChannel beambreak; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
 
     public Intake(HardwareMap hardwareMap){                 // Motor Mapping
@@ -36,21 +36,32 @@ public class Intake {
 
     if you need to access logic from an object ie a method that raises the arm
     */
-    public void Update_auto(int speed){ //todo: rather than having one method try to do everything in auto, make multiple methods like we did last year that each do something individually. Much easier to keep track of.
-
-        intake.setPower(speed);
+    public void Update_intake(int speed, int position){ //todo: rather than having one method try to do everything in auto, make multiple methods like we did last year that each do something individually. Much easier to keep track of.
+        if(position>0){
+            speed = -speed;
+        }
         if(!beambreak.getState()) { //if beam is broken
-            intake.setPower(0);//Run intake
+            Possession = true;
+            intake.setPower(0);//Stop intake
 
 
         }
         else{ // if beam break not broken
-            toggle=true; //set to false to allow for count next time fright breaks beam
-            intake.setPower(1); // stop intake
+            Possession = false;
+            intake.setPower(speed); // Run intake
         }
 
     }
 
+    public void Update_outtake(int speed){ //todo: rather than having one method try to do everything in auto, make multiple methods like we did last year that each do something individually. Much easier to keep track of.
+
+        intake.setPower(speed);
+        if() { //if beam is broken
+
+
+        }
+
+    }
     public void Update_telop(Gamepad gamepad2, int liftPosition){ //Code to be run in Op Mode void Loop at top level
 
         if (gamepad2.y){
