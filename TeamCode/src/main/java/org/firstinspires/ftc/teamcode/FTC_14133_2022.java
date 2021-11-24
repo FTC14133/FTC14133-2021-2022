@@ -43,7 +43,7 @@ public class  FTC_14133_2022 extends OpMode {
 
  }
  public void start() {
-
+     Pivot_Arm.HomeArm();
  }
 
  public void loop() {

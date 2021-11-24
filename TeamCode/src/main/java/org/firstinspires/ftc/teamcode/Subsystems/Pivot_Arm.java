@@ -130,10 +130,12 @@ public class Pivot_Arm {
         return position;
     }
     public void HomeArm(){
-        lift.setPower(.25);
-        if (HomeSwitch.getState()==true){
-            Home=true;
-            lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        while (HomeSwitch.getState()==false){
+            lift.setPower(.25);
+
         }
+        lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lift.setPower(0);
+        Home=true;
     }
 }
