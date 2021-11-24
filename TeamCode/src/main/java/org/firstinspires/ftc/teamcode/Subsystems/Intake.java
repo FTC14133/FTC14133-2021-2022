@@ -14,7 +14,7 @@ public class Intake {
     // Instantiate the motor variables
     private DcMotorEx intake;
     boolean toggle = true;
-    boolean Possession;
+    boolean Possession; //Variable telling whether we have possession of a game piece or not
     DigitalChannel beambreak; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
 
     public Intake(HardwareMap hardwareMap){                 // Motor Mapping
@@ -50,11 +50,13 @@ public class Intake {
     }
 
     public void Update_telop(Gamepad gamepad2, int position){ //Code to be run in Op Mode void Loop at top level
-        if(gamepad2.right_trigger>0){
-        Update_intake(gamepad2.right_trigger ,position);
+        if(gamepad2.left_trigger>0){ //if the left trigger is pulled
+            Update_outtake(gamepad2.left_trigger, position); //Run the outtake program
+
         }
         else {
-            Update_outtake(gamepad2.left_trigger, position);
+            Update_intake(gamepad2.right_trigger ,position); //Otherwise run the Intake program
+
         }
 
     }
