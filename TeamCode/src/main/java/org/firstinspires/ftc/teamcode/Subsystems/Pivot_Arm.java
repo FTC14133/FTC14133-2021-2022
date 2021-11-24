@@ -2,14 +2,21 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 // Generic Lift
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import java.util.zip.DeflaterInputStream;
 
 
 public class Pivot_Arm {
     // Instantiate the drivetrain motor variables
     private DcMotorEx lift;
+    boolean Home;
+    DigitalChannel HomeSwitch;
+
     public int position = 0; // Integer position of the arm
 
 
@@ -24,7 +31,8 @@ public class Pivot_Arm {
         //Pseudo code:
 
     public Pivot_Arm(HardwareMap hardwareMap){                 // Motor Mapping
-        lift = hardwareMap.get(DcMotorEx.class, "lift");      //Sets the names of the hardware on the hardware map
+        lift = hardwareMap.get(DcMotorEx.class, "lift");//Sets the names of the hardware on the hardware map
+        HomeSwitch = hardwareMap.get(DigitalChannel.class, "HomeSwitch");
     // "DeviceName" must match the Config EXACTLY
 
         // Set motor direction based on which side of the robot the motors are on
@@ -37,11 +45,15 @@ public class Pivot_Arm {
 
          if (gamepad2.dpad_up==true) {
              position = position + 1; //Increase Arm position
-             //Todo: add a limiter here to stop it from going too high
+             if (position>3){
+                 position=3;
+             }
          }
          else if(gamepad2.dpad_down==true){
              position = position -1;
-             //Todo: Add a limiter here to stop it from going too low
+             if (position<-3){
+                 position=-3;
+             }
          }
 
 
@@ -116,5 +128,12 @@ public class Pivot_Arm {
 
     public int GetArmPosition(){
         return position;
+    }
+    public void HomeArm(){
+        lift.setPower(.25);
+        if (HomeSwitch.getState()==true){
+            Home=true;
+            lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        }
     }
 }

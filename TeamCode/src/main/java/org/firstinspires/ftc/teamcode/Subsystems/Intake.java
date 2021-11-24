@@ -46,7 +46,6 @@ public class Intake {
             intake.setPower(speed);
         }
         else{
-            intake.setPower(0);
         }
 
     }
