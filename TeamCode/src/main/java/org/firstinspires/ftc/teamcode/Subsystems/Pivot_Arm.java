@@ -106,6 +106,8 @@ public class Pivot_Arm {
                  lift.setPower(0.25);        //Sets the power for the lift
                  lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
                  break;
+             default:
+                 throw new IllegalStateException("Unexpected position value: " + position);
          }
 
 
