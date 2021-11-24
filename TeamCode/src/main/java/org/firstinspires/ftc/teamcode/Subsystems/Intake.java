@@ -9,7 +9,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 //ToDo: May use servo to open/close or drop the team element
 //ToDo: May enable/disable electromagnet?
-//ToDo: May need to run in different directions depending where the arm is, i.e. when arm is on front of robot the intake will be reversed compared to when it is by the back of the robot
 
 public class Intake {
     // Instantiate the motor variables
@@ -26,7 +25,7 @@ public class Intake {
         intake.setDirection(DcMotorEx.Direction.FORWARD);
     }
 
-    public void Update_intake(double speed, int position){ //todo: rather than having one method try to do everything in auto, make multiple methods like we did last year that each do something individually. Much easier to keep track of.
+    public void Update_intake(double speed, int position){
         if(position<0){ //if the arm is towards the back
             speed = -speed; //flip the direction of the intake
         }
@@ -49,14 +48,13 @@ public class Intake {
         }
 
     }
+
     public void Update_telop(Gamepad gamepad2, int position){ //Code to be run in Op Mode void Loop at top level
-
-        if (gamepad2.y){
-            intake.setPower(0.25);
+        if(gamepad2.right_trigger>0){
+        Update_intake(gamepad2.right_trigger ,position);
         }
-
-        if (gamepad2.b){
-            intake.setPower(-0.25);
+        else {
+            Update_outtake(gamepad2.left_trigger, position);
         }
 
     }
