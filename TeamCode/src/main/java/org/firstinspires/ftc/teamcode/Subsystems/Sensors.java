@@ -27,7 +27,7 @@ public class Sensors {
 
                                     ALLIANCE SWITCH:
                                         IF ON THE ROBOT IS ON THE RED ALLIANCE
-                                        IF ON THE ROBOT IS OFF THE BLUE ALLIANCE
+                                        IF OFF THE ROBOT IS OFF THE BLUE ALLIANCE
          */
 
         return new boolean[] {WT, A}; //Allows the main program or others using this function to access the variables
