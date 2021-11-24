@@ -53,6 +53,7 @@ public class  FTC_14133_2022 extends OpMode {
 
 
     Intake.Update_telop(gamepad2,Pivot_Arm.GetArmPosition()); //Passes position of the arm so intake direction can change.
+
     Turn_Table.Turn_Table_Telop(gamepad2, A);
 
 
