@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import org.opencv.core.Mat;
+import java.lang.Math;
 
 public class Drivetrain  {
     // Instantiate the drivetrain motor variables
@@ -13,6 +15,13 @@ public class Drivetrain  {
     private DcMotorEx rb;
     private DcMotorEx lf;
     private DcMotorEx rf;
+    int tolerance = 4;
+    final double countsperrev = 28; // Counts per rev of the motor
+    final double wheelD =0; // Diameter of the wheel (in inches)
+    final double gearratio=0; //Ratio of the entire drivetrain from the motor to the wheel
+    final double countsperin=0; //Todo: do the math for wheel rotations
+
+
 
     public Drivetrain(HardwareMap hardwareMap){                 // Motor Mapping
     lf = hardwareMap.get(DcMotorEx.class, "lf");      //Sets the names of the hardware on the hardware map
@@ -32,8 +41,12 @@ public class Drivetrain  {
         rf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lf.setTargetPositionTolerance(tolerance);
+        rf.setTargetPositionTolerance(tolerance);
+        rb.setTargetPositionTolerance(tolerance);
+        lb.setTargetPositionTolerance(tolerance);
         //Driving forward/backwards
-        double encodercounts = distance * 60.3686819388;//(1/(75*(1/25.4)))*560; //ToDo This math too
+        double encodercounts = distance * countsperin;
         int encodercountsint = (int) encodercounts;
         lf.setTargetPosition(encodercountsint);
         lf.setPower(speed);        //Sets the power for the left front wheel
@@ -49,7 +62,7 @@ public class Drivetrain  {
         rb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         while (lf.isBusy() || rf.isBusy() /*|| lb.isBusy() || rb.isBusy()*/) {
-
+            //run until motors arrive at position within tolerance
         }
     }
 
@@ -58,9 +71,13 @@ public class Drivetrain  {
         rf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lf.setTargetPositionTolerance(tolerance);
+        rf.setTargetPositionTolerance(tolerance);
+        rb.setTargetPositionTolerance(tolerance);
+        lb.setTargetPositionTolerance(tolerance);
         //Driving left/right
         //NOT DONE
-        double encodercounts = turn * 13.18; // test iteratively //ToDo This math needs to be redone as well
+        double encodercounts = turn * 13.18; // test iteratively //ToDo: This math needs to be redone as well
         int encodercountsint = (int) encodercounts;
         lf.setTargetPosition(-encodercountsint);
         lf.setPower(speed);        //
@@ -77,7 +94,7 @@ public class Drivetrain  {
 
         //noinspection StatementWithEmptyBody
         while (lf.isBusy() || rf.isBusy() /*|| lb.isBusy() || rb.isBusy()*/) {
-            //run until motors arrive at position
+            //run until motors arrive at position within tolerance
         }
     }
 
@@ -86,9 +103,13 @@ public class Drivetrain  {
         rf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lf.setTargetPositionTolerance(tolerance);
+        rf.setTargetPositionTolerance(tolerance);
+        rb.setTargetPositionTolerance(tolerance);
+        lb.setTargetPositionTolerance(tolerance);
         //Driving left/right
         //Positive is Strafing left negative is Strafing right
-        double encodercounts = Strafe * 60.3686819388 * 1.4142135623730950488016887242097; //ToDo This math needs to be redone for new drivetrain
+        double encodercounts = Strafe * countsperin * Math.sqrt(2);
         int encodercountsint = (int) encodercounts;
         lf.setTargetPosition(-encodercountsint);
         lf.setPower(speed);        //
@@ -103,13 +124,13 @@ public class Drivetrain  {
         lf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         while (lf.isBusy() || rf.isBusy() /*|| lb.isBusy() || rb.isBusy()*/) {
-            //run until motors arrive at position
+            //run until motors arrive at position within tolerance
         }
 
 
     }
 
-    public void Update(Gamepad gamepad1){ //Code to be run in Op Mode void Loop at top level
+    public void Update(Gamepad gamepad1){ //Code to be run in Teleop Mode void Loop at top level
         double leftPowerY = -gamepad1.left_stick_y;      //find the value of y axis on the left joystick;
         double leftPowerX = gamepad1.left_stick_x;      //find the value of x axis on the left joystick;
         double rightPowerX = gamepad1.right_stick_x;     //find the value of x axis on the right joystick;
