@@ -33,42 +33,46 @@ public class Pivot_Arm {
         position=0; //initial arm position
     }
 
-    public int Pivot_Arm_Telop(Gamepad gamepad2) { //Code to be run in Op Mode void Loop at top level
+    public int Pivot_Arm_Telop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
 
 
-        if (gamepad2.dpad_up == true) {
-            position = position + 1;
-        } else if (gamepad2.dpad_down == true)
+                     if (gamepad2.dpad_up==true) {
+                         position = position + 1;
+                     }
+                     else if(gamepad2.dpad_down==true)
 
 
-            switch (position) {
-                case 0:
-                    System.out.println("Position=0");
-                    break;
-                case 1:
-                    System.out.println("Position=1");
-                    break;
-                case 2:
-                    System.out.println("Position=2");
-                    break;
-                case 3:
-                    System.out.println("Position=3");
-                    break;
 
-                // if (gamepad.dpadup==1){   this needs to be a toggle methinks rather than simply a check
-                // position = position + 1
-                // else if(gamepad.dpaddown==1)
-                // position = position - 1}
-                //Limit this to however many positions we want (maybe 3 per side?
+                         switch (position) {
+                             case 0:
+                                 System.out.println("Position=0");
+                                 break;
+                             case 1:
+                                 System.out.println("Position=1");
+                                 break;
+                             case 2:
+                                 System.out.println("Position=2");
+                                 break;
+                             case 3:
+                                 System.out.println("Position=3");
+                                 break;
 
-                // if (position == 0){
-                // set encoder position to x
-                // else if(position==1){
-                // set encoder position to y //etc}
-                // else if(position==-1){
-                // set encoder position to -y //etc}
-                //}
+        // if (gamepad.dpadup==1){   this needs to be a toggle methinks rather than simply a check
+        // position = position + 1
+        // else if(gamepad.dpaddown==1)
+        // position = position - 1}
+        //Limit this to however many positions we want (maybe 3 per side?
 
-            }}
-    public int getArmPosition;
-        return position;}
+        // if (position == 0){
+        // set encoder position to x
+        // else if(position==1){
+        // set encoder position to y //etc}
+        // else if(position==-1){
+        // set encoder position to -y //etc}
+        //}
+
+    }
+     int getArmPosition;{
+        return position;
+    }
+}}

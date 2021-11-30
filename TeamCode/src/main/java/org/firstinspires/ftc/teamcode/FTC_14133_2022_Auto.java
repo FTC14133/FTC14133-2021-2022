@@ -32,6 +32,14 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
     }
 
     public void runOpMode() {
+        if (gamepad2.a && A == true && WT == true) { //This code will check if the driver presses the a button and that the robot is on the RED side and on the warehouse side
+            drivetrain.Strafing(-30, 1); //Will go to to the left approaching the turn table
+            Turn_Table.Turn_Table_Auto(A); //We will spin the turn table
+        }
+        else if (gamepad2.a && WT == true) { //This is a different instance where if we are starting on the BLUE side and on the warehouse side
+            drivetrain.Strafing(30, 1); //We will go to the right approaching the turn table
+            Turn_Table.Turn_Table_Auto(A); //We will spin the turn table
+        }
 
         drivetrain = new Drivetrain(hardwareMap);
         Intake = new Intake(hardwareMap);
@@ -43,7 +51,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         drivetrain.Rotate(360, 1);
         drivetrain.Strafing(10, 1);
         Intake.Update_intake(1, Pivot_Arm.position);
-        Turn_Table.Update_auto(A, 0.25);
+        Turn_Table.Turn_Table_Auto(A);
         Pivot_Arm.Pivot_Arm_Telop(gamepad2);      //Fixme See above, will not work in auto. Needs a different method for auto. Input goto-positions instead of gamepad values.
 
 
