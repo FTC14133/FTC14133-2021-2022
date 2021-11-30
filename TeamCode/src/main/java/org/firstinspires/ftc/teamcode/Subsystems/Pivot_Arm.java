@@ -4,13 +4,19 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import java.util.zip.DeflaterInputStream;
 
 
 public class Pivot_Arm {
     // Instantiate the drivetrain motor variables
     private DcMotorEx lift;
+    boolean Home;
+    DigitalChannel HomeSwitch;
+
     public int position = 0; // Integer position of the arm
 
 
@@ -25,7 +31,8 @@ public class Pivot_Arm {
         //Pseudo code:
 
     public Pivot_Arm(HardwareMap hardwareMap){                 // Motor Mapping
-        lift = hardwareMap.get(DcMotorEx.class, "lift");      //Sets the names of the hardware on the hardware map
+        lift = hardwareMap.get(DcMotorEx.class, "lift");//Sets the names of the hardware on the hardware map
+        HomeSwitch = hardwareMap.get(DigitalChannel.class, "HomeSwitch");
     // "DeviceName" must match the Config EXACTLY
 
         // Set motor direction based on which side of the robot the motors are on
@@ -33,29 +40,76 @@ public class Pivot_Arm {
         position=0; //initial arm position
     }
 
-    public int Pivot_Arm_Telop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
+    public void Pivot_Arm_Telop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
 
 
-                     if (gamepad2.dpad_up==true) {
-                         position = position + 1;
-                     }
-                     else if(gamepad2.dpad_down==true)
+         if (gamepad2.dpad_up==true) {
+             position = position + 1; //Increase Arm position
+             if (position>3){
+                 position=3;
+             }
+         }
+         else if(gamepad2.dpad_down==true){
+             position = position -1;
+             if (position<-3){
+                 position=-3;
+             }
+         }
 
 
 
-                         switch (position) {
-                             case 0:
-                                 System.out.println("Position=0");
-                                 break;
-                             case 1:
-                                 System.out.println("Position=1");
-                                 break;
-                             case 2:
-                                 System.out.println("Position=2");
-                                 break;
-                             case 3:
-                                 System.out.println("Position=3");
-                                 break;
+         switch (position) {
+             case -3: // Intake Back
+                 System.out.println("Position=1");
+                 lift.setTargetPosition(0); //Todo: Need to tune
+                 lift.setPower(0.25);        //Sets the power for the lift
+                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
+                 break;
+
+             case -2: // Mid Level back
+                 System.out.println("Position=2");
+                 lift.setTargetPosition(186); //Todo: Need to tune
+                 lift.setPower(0.25);        //Sets the power for the lift
+                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
+                 break;
+
+             case -1: //Upper Level Back
+                 System.out.println("Position=3");
+                 lift.setTargetPosition(372); //Todo: Need to tune
+                 lift.setPower(0.25);        //Sets the power for the lift
+                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
+                 break;
+
+             case 0: //Straight Up
+                 System.out.println("Position=0");
+                 lift.setTargetPosition(558); //Todo: Need to tune
+                 lift.setPower(0.25);        //Sets the power for the lift
+                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
+                 break;
+
+             case 1: //Upper Level Front
+                 System.out.println("Position=1");
+                 lift.setTargetPosition(744); //Todo: Need to tune
+                 lift.setPower(0.25);        //Sets the power for the lift
+                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
+                break;
+
+             case 2: //Mid Level Front
+                 System.out.println("Position=2");
+                 lift.setTargetPosition(930); //Todo: Need to tune
+                 lift.setPower(0.25);        //Sets the power for the lift
+                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
+                 break;
+             case 3:
+                 System.out.println("Position=3");
+                 lift.setTargetPosition(1120); //Todo: Need to tune
+                 lift.setPower(0.25);        //Sets the power for the lift
+                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
+                 break;
+             default:
+                 throw new IllegalStateException("Unexpected position value: " + position);
+         }
+
 
         // if (gamepad.dpadup==1){   this needs to be a toggle methinks rather than simply a check
         // position = position + 1
@@ -71,8 +125,19 @@ public class Pivot_Arm {
         // set encoder position to -y //etc}
         //}
 
+
     }
-     int getArmPosition;{
+
+    public int GetArmPosition(){
         return position;
     }
-}}
+    public void HomeArm(){
+        while (HomeSwitch.getState()==false){
+            lift.setPower(.25);
+
+        }
+        lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lift.setPower(0);
+        Home=true;
+    }
+}

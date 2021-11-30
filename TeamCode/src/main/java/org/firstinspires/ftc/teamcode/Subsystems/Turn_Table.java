@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 // Turntable
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -34,19 +35,19 @@ public class Turn_Table {
         }
     }
 
-    public void Turn_Table_Telop(Gamepad gamepad2, boolean A){ //Code to be run in Op Mode void Loop at top level
-        if (A == true) { //Does an outcome is the robot is on the RED side //fixme: only need to check for this once at the beginning of teleop
-            if (gamepad2.x) {        //runs the intake backwards for the RED side
-                turn_table.setPower(-0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
-            }
+    public void Turn_Table_Direction(boolean A){ //This code will set the direction of the turn table motor
+        if (A == true){ //If the robot is on the red side it will set the motor forward
+            turn_table.setDirection(DcMotorEx.Direction.FORWARD);
+        }else{ //If the robot is on the blue side it will set the motor backwards
+            turn_table.setDirection(DcMotorEx.Direction.REVERSE);
         }
-        else { //Does an outcome is the robot is on the BLUE side
-            if (gamepad2.x) {        //runs the intake backwards for the BLUE side
-                turn_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
-            }
-            else{
-                turn_table.setPower(0);
-            }
+    }
+
+    public void Turn_Table_Telop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top levelzaZ
+        if (gamepad2.x) {        //runs the intake backwards for the BLUE side
+            turn_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON
+        }else{
+            turn_table.setPower(0);
         }
     }
 }

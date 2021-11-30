@@ -14,7 +14,7 @@ public class Sensors {
         alliance_s = hardwareMap.get(DigitalChannel.class, "A");
     }
 
-    public boolean[] Update_Red_Blue(){ //fixme: If this is for red or blue, why is it doing warehouse/turntable?
+    public boolean[] Update_Switches(){ //fixme: If this is for red or blue, why is it doing warehouse/turntable?
         WT = Warehouse_Turntable.getState(); // Sees if the switches are on or off. It will return a true or false (boolean).
         A = alliance_s.getState();
 
