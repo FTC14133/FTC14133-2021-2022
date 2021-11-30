@@ -16,13 +16,8 @@ public class Pivot_Arm {
     private DcMotorEx lift;
     DigitalChannel HomeSwitch;
 
-    public int position = 0; // Integer position of the arm
+    public int position = -3; // Integer position of the arm
 
-
-
-
-
-    //ToDo: Add encoder count amount (still undetermined, just put a number in now)
 
     public Pivot_Arm(HardwareMap hardwareMap){                 // Motor Mapping
         lift = hardwareMap.get(DcMotorEx.class, "lift");//Sets the names of the hardware on the hardware map
@@ -33,6 +28,65 @@ public class Pivot_Arm {
         lift.setDirection(DcMotorEx.Direction.FORWARD);
         lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         position=-3; //initial arm position
+    }
+
+    public void Pivot_Arm_Switch_Case(int position){
+        switch (position) {
+            case -3: // Intake Back
+                System.out.println("Position=3");
+                lift.setTargetPosition(0); //Todo: Need to tune all set target values here and below
+                lift.setPower(0.25);        //Sets the power for the lift
+                lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
+                break;
+
+            case -2: // Mid Level back
+                System.out.println("Position=-2");
+                lift.setTargetPosition(186);
+                lift.setPower(0.25);        //Sets the power for the lift
+                lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
+                break;
+
+            case -1: //Upper Level Back
+                System.out.println("Position=-1");
+                lift.setTargetPosition(372);
+                lift.setPower(0.25);        //Sets the power for the lift
+                lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
+                break;
+
+            case 0: //Straight Up
+                System.out.println("Position=0");
+                lift.setTargetPosition(558);
+                lift.setPower(0.25);        //Sets the power for the lift
+                lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
+                break;
+
+            case 1: //Upper Level Front
+                System.out.println("Position=1");
+                lift.setTargetPosition(744);
+                lift.setPower(0.25);        //Sets the power for the lift
+                lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
+                break;
+
+            case 2: //Mid Level Front
+                System.out.println("Position=2");
+                lift.setTargetPosition(930);
+                lift.setPower(0.25);        //Sets the power for the lift
+                lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
+                break;
+            case 3:
+                System.out.println("Position=3");
+                lift.setTargetPosition(1120);
+                lift.setPower(0.25);        //Sets the power for the lift
+                lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
+                break;
+            default:
+                throw new IllegalStateException("Unexpected position value: " + position);
+        }
+
+    }
+
+    public void Pivot_Arm_Auto(int position){
+        Pivot_Arm_Switch_Case(position);
     }
 
     public void Pivot_Arm_Telop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
@@ -50,60 +104,7 @@ public class Pivot_Arm {
                  position=-3;
              }
          }
-
-
-
-         switch (position) {
-             case -3: // Intake Back
-                 System.out.println("Position=3");
-                 lift.setTargetPosition(0); //Todo: Need to tune all set target values here and below
-                 lift.setPower(0.25);        //Sets the power for the lift
-                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
-                 break;
-
-             case -2: // Mid Level back
-                 System.out.println("Position=-2");
-                 lift.setTargetPosition(186);
-                 lift.setPower(0.25);        //Sets the power for the lift
-                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
-                 break;
-
-             case -1: //Upper Level Back
-                 System.out.println("Position=-1");
-                 lift.setTargetPosition(372);
-                 lift.setPower(0.25);        //Sets the power for the lift
-                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
-                 break;
-
-             case 0: //Straight Up
-                 System.out.println("Position=0");
-                 lift.setTargetPosition(558);
-                 lift.setPower(0.25);        //Sets the power for the lift
-                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
-                 break;
-
-             case 1: //Upper Level Front
-                 System.out.println("Position=1");
-                 lift.setTargetPosition(744);
-                 lift.setPower(0.25);        //Sets the power for the lift
-                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
-                break;
-
-             case 2: //Mid Level Front
-                 System.out.println("Position=2");
-                 lift.setTargetPosition(930);
-                 lift.setPower(0.25);        //Sets the power for the lift
-                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
-                 break;
-             case 3:
-                 System.out.println("Position=3");
-                 lift.setTargetPosition(1120);
-                 lift.setPower(0.25);        //Sets the power for the lift
-                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
-                 break;
-             default:
-                 throw new IllegalStateException("Unexpected position value: " + position);
-         }
+    Pivot_Arm_Switch_Case(position);
 
     }
 
