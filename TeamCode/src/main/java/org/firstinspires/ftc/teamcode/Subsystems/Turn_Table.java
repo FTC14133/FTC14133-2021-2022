@@ -9,8 +9,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 
-//ToDo: May need multiple turntable spinners
-
 public class Turn_Table {
     // Instantiate the  motor variables
     private DcMotorEx turn_table;
