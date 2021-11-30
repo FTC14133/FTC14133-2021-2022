@@ -24,11 +24,6 @@ public class Pivot_Arm {
 
 
     //ToDo: Add encoder count amount (still undetermined, just put a number in now)
-    //ToDo: Add stop and reset encoder in init(), and run using encoder. See FTC_14133_2021_Auto.java
-    //ToDo: Add limit switch sensing for either extreme location and to reset to 0 on one side (Homing) or in the middle
-    //ToDo: Create set-point positions for different arm positions (Intake, place low, place mid, place high, different sides)
-        //This can likely be done with looking at different states and using the arrows, bumpers, or something else to move up the integer positions
-        //Pseudo code:
 
     public Pivot_Arm(HardwareMap hardwareMap){                 // Motor Mapping
         lift = hardwareMap.get(DcMotorEx.class, "lift");//Sets the names of the hardware on the hardware map
@@ -37,6 +32,7 @@ public class Pivot_Arm {
 
         // Set motor direction based on which side of the robot the motors are on
         lift.setDirection(DcMotorEx.Direction.FORWARD);
+        lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         position=0; //initial arm position
     }
 
@@ -131,6 +127,7 @@ public class Pivot_Arm {
     public int GetArmPosition(){
         return position;
     }
+
     public void HomeArm(){
         while (HomeSwitch.getState()==false){
             lift.setPower(.25);

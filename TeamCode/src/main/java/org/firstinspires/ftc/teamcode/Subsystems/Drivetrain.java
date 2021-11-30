@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import org.opencv.core.Mat;
+//import org.opencv.core.Mat;
 import java.lang.Math;
 
 public class Drivetrain  {

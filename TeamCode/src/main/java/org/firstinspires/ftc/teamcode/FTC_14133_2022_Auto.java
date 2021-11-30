@@ -23,9 +23,10 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
     private Turn_Table Turn_Table=null;
     private Pivot_Arm Pivot_Arm =null;
     private Sensors Sensors=null;
-    boolean[] switches = Sensors.Update_Red_Blue(); // Here we will see from the switches on the robot. Below is what they represent
+    boolean[] switches = Sensors.Update_Switches(); // Here we will see from the switches on the robot. Below is what they represent
     boolean WT = switches[0]; //This will decide if we are closer to the warehouse or turn table based on the switch on the robot
     boolean A = switches[1]; //This will tell us that we are either on the red or blue alliance side
+
 
     public void waitForStart() {
 
@@ -46,6 +47,8 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         Turn_Table = new Turn_Table(hardwareMap);
         Pivot_Arm = new Pivot_Arm(hardwareMap);
         Sensors = new Sensors(hardwareMap);
+
+        Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
 
         drivetrain.ForwardorBackwards(10, 1);
         drivetrain.Rotate(360, 1);
