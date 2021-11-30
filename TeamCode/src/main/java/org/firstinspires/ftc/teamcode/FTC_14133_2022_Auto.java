@@ -32,9 +32,16 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         switches = Sensors.Update_Switches(); // Here we will see from the switches on the robot. Below is what they represent
         WT = switches[0]; //This will decide if we are closer to the warehouse or turn table based on the switch on the robot
         A = switches[1]; //This will tell us that we are either on the red or blue alliance side
+        drivetrain = new Drivetrain(hardwareMap);
+        Intake = new Intake(hardwareMap);
+        Turn_Table = new Turn_Table(hardwareMap);
+        Pivot_Arm = new Pivot_Arm(hardwareMap);
+        Sensors = new Sensors(hardwareMap);
     }
 
-    public void runOpMode() { //Todo: Program all auto routines. Start with one, then copy all to another.
+    public void runOpMode() { //Todo: Program all auto routines. Start with one, then copy all to another. We can make these subprograms if that is easier.
+        Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
+
         if (A == true && WT == true) { //This code will check if the robot is on the RED side and on the warehouse side
             drivetrain.Strafing(-30, 1); //Will go to to the left approaching the turn table
             Turn_Table.Turn_Table_Auto(A); //We will spin the turn table
@@ -44,13 +51,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
             Turn_Table.Turn_Table_Auto(A); //We will spin the turn table
         }
 
-        drivetrain = new Drivetrain(hardwareMap);
-        Intake = new Intake(hardwareMap);
-        Turn_Table = new Turn_Table(hardwareMap);
-        Pivot_Arm = new Pivot_Arm(hardwareMap);
-        Sensors = new Sensors(hardwareMap);
 
-        Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
 
         drivetrain.ForwardorBackwards(10, 1);
         drivetrain.Rotate(360, 1);
