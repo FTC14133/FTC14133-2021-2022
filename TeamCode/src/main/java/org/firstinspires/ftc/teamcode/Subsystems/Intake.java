@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 // Intake
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -13,17 +14,17 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Intake {
     // Instantiate the motor variables
-    private Servo intake;
+    private CRServo intake;
     boolean toggle = true;
     boolean Possession; //Variable telling whether we have possession of a game piece or not
     DigitalChannel beambreak; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
 
     public Intake(HardwareMap hardwareMap){                 // Motor Mapping
-        intake = hardwareMap.get(Servo.class, "intake");      //Sets the names of the hardware on the hardware map
+        intake = hardwareMap.get(CRServo.class, "intake");      //Sets the names of the hardware on the hardware map
         // "DeviceName" must match the Config EXACTLY
 
         // Set motor direction based on which side of the robot the motors are on
-        intake.setDirection(Servo.Direction.FORWARD);
+        intake.setDirection(CRServo.Direction.FORWARD);
     }
 
     public void Update_intake(double speed, int position){
@@ -32,22 +33,20 @@ public class Intake {
         }
         if(!beambreak.getState()) { //if beam is broken
             Possession = true; //we have possession
-            intake.setPosition(0);//Stop intake
+            intake.setPower(0);//Stop intake
         }
         else{ // if beam break not broken
             Possession = false; //we do not have possession
-            intake.setPosition(speed); // Run intake
+            intake.setPower(speed); // Run intake
         }
     }
 
     public void Update_outtake(double speed, int position){
         if(position<0){
             speed=-speed;
-            intake.setPosition(speed);
-        }
-        else{
-        }
 
+        }
+        intake.setPower(speed);
     }
 
     public void Teleop(Gamepad gamepad2, int position){ //Code to be run in Op Mode void Loop at top level
