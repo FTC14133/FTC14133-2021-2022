@@ -20,8 +20,7 @@ public class Drivetrain  {
     final double wheelD =0; // Diameter of the wheel (in inches)
     final double gearratio=0; //Ratio of the entire drivetrain from the motor to the wheel
     final double countsperin=countsperrev*gearratio*(1/25.4)*(1/(Math.Pi()*wheelD)); //Todo: do the math for wheel rotations
-
-
+wheelD=96/25.4;
 
     public Drivetrain(HardwareMap hardwareMap){                 // Motor Mapping
     lf = hardwareMap.get(DcMotorEx.class, "lf");      //Sets the names of the hardware on the hardware map
