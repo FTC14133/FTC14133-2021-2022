@@ -11,10 +11,10 @@ import java.lang.Math;
 
 public class Drivetrain  {
     // Instantiate the drivetrain motor variables
-    private DcMotorEx lb;
-    private DcMotorEx rb;
-    private DcMotorEx lf;
-    private DcMotorEx rf;
+    private DcMotorEx lb; //Back left motor of drivetrain
+    private DcMotorEx rb; //Back right motor of drivetrain
+    private DcMotorEx lf; //Front left motor of drivetrain
+    private DcMotorEx rf; //Front right motor of drivetrain
     int tolerance = 4;
     final double countsperrev = 28; // Counts per rev of the motor
     final double wheelD =0; // Diameter of the wheel (in inches)
