@@ -19,7 +19,7 @@ public class Drivetrain  {
     final double countsperrev = 28; // Counts per rev of the motor
     final double wheelD =0; // Diameter of the wheel (in inches)
     final double gearratio=0; //Ratio of the entire drivetrain from the motor to the wheel
-    final double countsperin=0; //Todo: do the math for wheel rotations
+    final double countsperin=0; countsperin=countsperrev*gearratio*(1/25.4)*(1/(Math.pi()*)) //Todo: do the math for wheel rotations
 
 
 
@@ -156,5 +156,9 @@ public class Drivetrain  {
         rf.setPower(rightfrontpower);
         rb.setPower(rightbackpower);
 
+    }
+
+    public double getWheelD() {
+        return wheelD;
     }
 }
