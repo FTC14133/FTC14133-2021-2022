@@ -35,7 +35,7 @@ public class Turn_Table {
 
 
 
-    public void Turn_Table_Direction(boolean A){ //This code will set the direction of the turn table motor
+    public void Direction(boolean A){ //This code will set the direction of the turn table motor
         if (A == true){ //If the robot is on the red side it will set the motor forward
             turn_table.setDirection(DcMotorEx.Direction.FORWARD);
         }else{ //If the robot is on the blue side it will set the motor backwards
@@ -43,7 +43,7 @@ public class Turn_Table {
         }
     }
 
-    public void Turn_Table_Telop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top levelzaZ
+    public void Teleop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top levelzaZ
         if (gamepad2.x) {        //runs the intake backwards for the BLUE side
             turn_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON //Todo: This should also be run at a rate using velocity control.
         }else{

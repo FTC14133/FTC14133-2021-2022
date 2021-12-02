@@ -50,7 +50,7 @@ public class Intake {
 
     }
 
-    public void Update_telop(Gamepad gamepad2, int position){ //Code to be run in Op Mode void Loop at top level
+    public void Teleop(Gamepad gamepad2, int position){ //Code to be run in Op Mode void Loop at top level
         if(gamepad2.left_trigger>0){ //if the left trigger is pulled
             Update_outtake(gamepad2.left_trigger, position); //Run the outtake program
 

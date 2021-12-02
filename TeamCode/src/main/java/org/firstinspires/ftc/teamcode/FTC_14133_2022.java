@@ -45,18 +45,18 @@ public class  FTC_14133_2022 extends OpMode {
      switches = Sensors.Update_Switches(); //Reads the switches for which alliance we are on
      Alliance = switches[1]; //Assigns a variable to the state of our alliance (true red, false blue)
      Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
-     Turn_Table.Turn_Table_Direction(Alliance);
+     Turn_Table.Direction(Alliance);
  }
 
  public void loop() {
 
-    drivetrain.Update(gamepad1);
-    Pivot_Arm.Pivot_Arm_Telop(gamepad2);
+    drivetrain.Teleop(gamepad1);
+    Pivot_Arm.Teleop(gamepad2);
 
 
-    Intake.Update_telop(gamepad2,Pivot_Arm.GetArmPosition()); //Passes position of the arm so intake direction can change.
+    Intake.Teleop(gamepad2,Pivot_Arm.GetArmPosition()); //Passes position of the arm so intake direction can change.
 
-    Turn_Table.Turn_Table_Telop(gamepad2);
+    Turn_Table.Teleop(gamepad2);
 
 
 

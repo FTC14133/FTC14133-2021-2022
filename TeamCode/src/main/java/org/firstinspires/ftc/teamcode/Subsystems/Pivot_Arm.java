@@ -36,7 +36,7 @@ public class Pivot_Arm {
         position=0; //initial arm position
     }
 
-    public void Pivot_Arm_Telop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
+    public void Teleop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
 
 
          if (gamepad2.dpad_up==true) {
