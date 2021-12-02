@@ -58,7 +58,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         drivetrain.Strafing(10, 1);
         Intake.Update_intake(1, Pivot_Arm.position);
         Turn_Table.Turn_Table_Auto(A);
-        Pivot_Arm.Pivot_Arm_Auto(1);
+        Pivot_Arm.Auto(1);
 
 
     }
