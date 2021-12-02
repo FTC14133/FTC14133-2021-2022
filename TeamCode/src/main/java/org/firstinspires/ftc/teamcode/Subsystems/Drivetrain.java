@@ -19,7 +19,7 @@ public class Drivetrain  {
     final double countsperrev = 28; // Counts per rev of the motor
     final double wheelD =0; // Diameter of the wheel (in inches)
     final double gearratio=0; //Ratio of the entire drivetrain from the motor to the wheel
-    final double countsperin=countsperrev*gearratio*(1/25.4)*(1/(Math.pi()*wheelD)); //Todo: do the math for wheel rotations
+    final double countsperin=countsperrev*gearratio*(1/25.4)*(1/(Math.Pi()*wheelD)); //Todo: do the math for wheel rotations
 
 
 
