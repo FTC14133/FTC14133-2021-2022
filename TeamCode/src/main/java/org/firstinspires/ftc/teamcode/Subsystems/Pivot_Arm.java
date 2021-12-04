@@ -63,21 +63,21 @@ public class Pivot_Arm {
     public void GotoPosition(int position){
         switch (position) {
             case -3: // Intake Back
-                System.out.println("Position=1");
+                System.out.println("Position=-3");
                 lift.setTargetPosition(0); //Todo: Need to tune
                 lift.setPower(0.25);        //Sets the power for the lift
                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
                 break;
 
             case -2: // Mid Level back
-                System.out.println("Position=2");
+                System.out.println("Position=-2");
                 lift.setTargetPosition(186); //Todo: Need to tune
                 lift.setPower(0.25);        //Sets the power for the lift
                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
                 break;
 
             case -1: //Upper Level Back
-                System.out.println("Position=3");
+                System.out.println("Position=-1");
                 lift.setTargetPosition(372); //Todo: Need to tune
                 lift.setPower(0.25);        //Sets the power for the lift
                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
