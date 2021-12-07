@@ -46,6 +46,7 @@ public class  FTC_14133_2022 extends OpMode {
      Alliance = switches[1]; //Assigns a variable to the state of our alliance (true red, false blue)
      Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
      Turn_Table.Direction(Alliance);
+     Intake.Home_TSE();
  }
 
  public void loop() {
@@ -55,7 +56,7 @@ public class  FTC_14133_2022 extends OpMode {
 
 
     Intake.Teleop(gamepad2,Pivot_Arm.GetArmPosition()); //Passes position of the arm so intake direction can change.
-
+    Intake.Team_Shipping_Element(gamepad2);
     Turn_Table.Teleop(gamepad2);
 
 

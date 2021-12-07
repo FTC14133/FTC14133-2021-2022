@@ -9,15 +9,20 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+
+
+
+
 //ToDo: May use servo to open/close or drop the team element
 //ToDo: May enable/disable electromagnet?
 
-public class Intake {
+public class  Intake {
     // Instantiate the motor variables
     private CRServo intake;
     boolean toggle = true;
     boolean Possession; //Variable telling whether we have possession of a game piece or not
     DigitalChannel beambreak; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
+    Servo Hook = null;
 
     public Intake(HardwareMap hardwareMap){                 // Motor Mapping
         intake = hardwareMap.get(CRServo.class, "intake");      //Sets the names of the hardware on the hardware map
@@ -25,6 +30,7 @@ public class Intake {
 
         // Set motor direction based on which side of the robot the motors are on
         intake.setDirection(CRServo.Direction.FORWARD);
+        Hook =hardwareMap.get(Servo.class,"Hook");
     }
 
     public void Update_intake(double speed, int position){
@@ -57,8 +63,24 @@ public class Intake {
         else {
             Update_intake(gamepad2.right_trigger ,position); //Otherwise run the Intake program
 
-        }
 
+        }
+    }
+    public void Team_Shipping_Element(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
+        if(gamepad2.x==true){ //if the x button is pressed
+            Hook.setPosition(1); //Hook extended
+
+        }
+        else {
+           Hook.setPosition(0); //Hook not extended
+
+
+        }
+    }
+    public void Home_TSE(){ //Code to be run in Op Mode void Loop at top level
+            Hook.setPosition(0);
+
+
+        }
     }
 
-}
