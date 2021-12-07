@@ -66,12 +66,17 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
             drivetrain.Strafing(36, 1); //Goes to park at the warehouse
 
         }
-        else if (WT == true) { //This is a different instance where if we are starting on the BLUE side and on the warehouse side
+        else if (A == false && WT == true) { //This is a different instance where if we are starting on the BLUE side and on the warehouse side
             drivetrain.Strafing(30, 1); //We will go to the right approaching the turn table
             Turn_Table.Turn_Table_Auto(A); //We will spin the turn table
 
         }
+        else if (A == true && WT == false) { //red and turntable side
 
+        }
+        else if (A == true && WT == true) { // red and warehouse side
+
+        }
         /*
         drivetrain.ForwardorBackwards(10, 1);
         drivetrain.Rotate(360, 1);
