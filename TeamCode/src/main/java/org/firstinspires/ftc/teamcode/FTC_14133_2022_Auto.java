@@ -41,13 +41,14 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
 
     public void runOpMode() { //Todo: Program all auto routines. Start with one, then copy all to another. We can make these subprograms if that is easier.
         Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
+        Intake.Home_TSE();
 
         if (A == false && WT == false) { //This code will check if the robot is on the BLUE side and on the Turntable side
-            drivetrain.Strafing(-39, 1); //Will go to to the left approaching the turn table
-            Turn_Table.Turn_Table_Auto(A); //We will spin the turn table
+            drivetrain.Strafing(-39, 1); //Will go to to the left approaching the turn table Todo: Highly suggest first test should NOT be at full speed...
+            Turn_Table.Turn_Table_Auto(A); //We will spin the turn table Todo: this program currently just continuously runs. We might need a timer, or run it a certain encoder distance?
             drivetrain.Strafing(12, 1); //Lines up with the middle barcode
             //Need Camera Code //Sees where the duck is
-            drivetrain.Strafing(12, 1); //Goes to the right to be in line with the shipping hub
+            drivetrain.Strafing(12, 1); //Goes to the right to Trebe in line with the shipping hub
             drivetrain.ForwardorBackwards(37, 1); //Goes to the shipping hub
             /*
             if camera == 1: //if the duck is on the first barcode
