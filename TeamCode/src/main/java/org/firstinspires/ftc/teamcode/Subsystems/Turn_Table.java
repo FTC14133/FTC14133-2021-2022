@@ -34,7 +34,7 @@ public class Turn_Table {
         turn_table.setPower(-0.25);
         turn_table.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         turn_table.setTargetPositionTolerance();
-        turn_table.setTargetPosition();
+        turn_table.setTargetPosition(15);
         turn_table.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         while (turn_table.isBusy()) {
         }
