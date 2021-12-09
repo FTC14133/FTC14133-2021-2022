@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 // Turntable
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -23,13 +24,17 @@ public class Turn_Table {
 
     }
 
-    public void Turn_Table_Auto(boolean A){ //Todo: Can we run this with an encoder on velocity control to get a consistent rate? Similar to the shooter from last year.
+    public void Turn_Table_Auto(boolean A, int encodercountsint, int tolerance){ //Todo: Can we run this with an encoder on velocity control to get a consistent rate? Similar to the shooter from last year.
         if (A == true) { //Does an outcome if the robot is on the RED side
             turn_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the RED side
         }
         else { //Does an outcome is the robot is on the BLUE side
             turn_table.setPower(-0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the BLUE side
         }
+        turn_table.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        turn_table.setTargetPositionTolerance(tolerance);
+        turn_table.setTargetPosition(encodercountsint);
+        turn_table.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         //Todo: Are we going to continuously run this, or should it stop after some time or spin distance?
     }
 
