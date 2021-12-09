@@ -36,7 +36,7 @@ public class Turn_Table {
         turn_table.setTargetPositionTolerance();
         turn_table.setTargetPosition();
         turn_table.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        while (turn_table.isBusy() || turn_table.isBusy() /*|| lb.isBusy() || rb.isBusy()*/) {
+        while (turn_table.isBusy()) {
         }
         //Todo: Are we going to continuously run this, or should it stop after some time or spin distance?
     }
