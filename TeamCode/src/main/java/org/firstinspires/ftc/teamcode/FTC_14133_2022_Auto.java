@@ -26,6 +26,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
     boolean[] switches;
     boolean WT ; //This will decide if we are closer to the warehouse or turn table based on the switch on the robot
     boolean A ; //This will tell us that we are either on the red or blue alliance side
+    double total_speed = 0.25; //This is the speed of most of the motors.
 
 
     public void waitForStart() {
@@ -44,12 +45,12 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         Intake.Home_TSE();
 
         if (A == false && WT == false) { //This code will check if the robot is on the BLUE side and on the Turntable side
-            drivetrain.Strafing(-39, 1); //Will go to to the left approaching the turn table Todo: Highly suggest first test should NOT be at full speed...
+            drivetrain.Strafing(-39, total_speed); //Will go to to the left approaching the turn table Todo: Highly suggest first test should NOT be at full speed...
             Turn_Table.Turn_Table_Auto(A); //We will spin the turn table Todo: this program currently just continuously runs. We might need a timer, or run it a certain encoder distance?
-            drivetrain.Strafing(12, 1); //Lines up with the middle barcode
+            drivetrain.Strafing(12, total_speed); //Lines up with the middle barcode
             //Need Camera Code //Sees where the duck is
-            drivetrain.Strafing(12, 1); //Goes to the right to Trebe in line with the shipping hub
-            drivetrain.ForwardorBackwards(37, 1); //Goes to the shipping hub
+            drivetrain.Strafing(12, total_speed); //Goes to the right to Trebe in line with the shipping hub
+            drivetrain.ForwardorBackwards(37, total_speed); //Goes to the shipping hub
             /*
             if camera == 1: //if the duck is on the first barcode
                 Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the top of the shipping hub
@@ -62,9 +63,9 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
              */
 
             Intake.Update_outtake(1, Pivot_Arm.position); //Places the freight on the correct level
-            drivetrain.ForwardorBackwards(-37, 1); //Moves backwards
+            drivetrain.ForwardorBackwards(-37, total_speed); //Moves backwards
             Pivot_Arm.Auto(-3); //Puts down the arm
-            drivetrain.Strafing(36, 1); //Goes to park at the warehouse
+            drivetrain.Strafing(36, total_speed); //Goes to park at the warehouse
 
         }
         else if (A == false && WT == true) { //This is a different instance where if we are starting on the BLUE side and on the warehouse side
