@@ -24,7 +24,7 @@ public class Turn_Table {
 
     }
 
-    public void Auto(boolean A, int turntabledist){ //Todo: Can we run this with an encoder on velocity control to get a consistent rate? Similar to the shooter from last year.
+    public void Auto(boolean A, int turntabledist){
         if (A == true) { //Does an outcome if the robot is on the RED side
             // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the RED side
         }
@@ -38,7 +38,7 @@ public class Turn_Table {
         turn_table.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         while (turn_table.isBusy()) {
         }
-        //Todo: Are we going to continuously run this, or should it stop after some time or spin distance?
+
     }
 
 

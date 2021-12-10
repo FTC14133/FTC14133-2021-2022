@@ -9,13 +9,6 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-
-
-
-
-//ToDo: May use servo to open/close or drop the team element
-//ToDo: May enable/disable electromagnet?
-
 public class  Intake {
     // Instantiate the motor variables
     private CRServo intake;
@@ -33,7 +26,7 @@ public class  Intake {
         Hook =hardwareMap.get(Servo.class,"Hook");
     }
 
-    public void Update_intake(double speed, int position){
+    public void Update_intake(double speed, int position){ //Standard intake function
         if(position<0){ //if the arm is towards the back
             speed = -speed; //flip the direction of the intake
         }
@@ -47,7 +40,7 @@ public class  Intake {
         }
     }
 
-    public void Update_outtake(double speed, int position){
+    public void Update_outtake(double speed, int position){ //Standard outtake function
         if(position<0){
             speed=-speed;
 
@@ -63,7 +56,6 @@ public class  Intake {
         else {
             Update_intake(gamepad2.right_trigger ,position); //Otherwise run the Intake program
 
-
         }
     }
     public void Team_Shipping_Element(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
@@ -74,12 +66,10 @@ public class  Intake {
         else {
            Hook.setPosition(0); //Hook not extended
 
-
         }
     }
     public void Home_TSE(){ //Code to be run in Op Mode void Loop at top level
             Hook.setPosition(0);
-
 
         }
     }
