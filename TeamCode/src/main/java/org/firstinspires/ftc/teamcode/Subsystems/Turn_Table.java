@@ -24,7 +24,7 @@ public class Turn_Table {
 
     }
 
-    public void Turn_Table_Auto(boolean A),(int turntabledist){ //Todo: Can we run this with an encoder on velocity control to get a consistent rate? Similar to the shooter from last year.
+    public void Auto(boolean A, int turntabledist){ //Todo: Can we run this with an encoder on velocity control to get a consistent rate? Similar to the shooter from last year.
         if (A == true) { //Does an outcome if the robot is on the RED side
             // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the RED side
         }

@@ -45,9 +45,12 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         Intake.Home_TSE();
 
         if (A == false && WT == false) { //This code will check if the robot is on the BLUE side and on the Turntable side
-            drivetrain.Strafing(-39, total_speed); //Will go to to the left approaching the turn table Todo: Highly suggest first test should NOT be at full speed...
-            Turn_Table.Turn_Table_Auto(A); //We will spin the turn table Todo: this program currently just continuously runs. We might need a timer, or run it a certain encoder distance?
+            drivetrain.Strafing(-39, total_speed); //Will go to to the left approaching the turn table
+            Turn_Table.Auto(A,1000); //We will spin the turn table
             drivetrain.Strafing(12, total_speed); //Lines up with the middle barcode
+            drivetrain.Strafing(-39, 1); //Will go to to the left approaching the turn table
+            Turn_Table.Auto(A,1000); //We will spin the turn table
+            drivetrain.Strafing(12, 1); //Lines up with the middle barcode
             //Need Camera Code //Sees where the duck is
             drivetrain.Strafing(12, total_speed); //Goes to the right to Trebe in line with the shipping hub
             drivetrain.ForwardorBackwards(37, total_speed); //Goes to the shipping hub
@@ -70,7 +73,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         }
         else if (A == false && WT == true) { //This is a different instance where if we are starting on the BLUE side and on the warehouse side
             drivetrain.Strafing(30, 1); //We will go to the right approaching the turn table
-            Turn_Table.Turn_Table_Auto(A); //We will spin the turn table
+            Turn_Table.Auto(A,1000); //We will spin the turn table
             drivetrain.ForwardorBackwards(23, 1);
             /*
             if camera == 1: //if the duck is on the first barcode
