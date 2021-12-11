@@ -78,10 +78,10 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
                 Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the bottom of the shipping hub
              */
             drivetrain.Strafing(11, 1); //We will go to the right to the team shipping element
-            drivetrain.ForwardorBackwards(23, 1);
-            Intake.Update_outtake(1, Pivot_Arm.position);
-            drivetrain.ForwardorBackwards(-23, 1);
-            drivetrain.Strafing(-48,1);
+            drivetrain.ForwardorBackwards(23, 1); //goes forward to the team shipping element
+            Intake.Update_outtake(1, Pivot_Arm.position); //puts the freight on the shipping element
+            drivetrain.ForwardorBackwards(-23, 1); //goes away from the shipping element
+            drivetrain.Strafing(-48,1); //goes up to the warehouse
         }
         else if (A == true && WT == false) { //red and turntable side
             //Need Camera Code //Sees where the duck is
@@ -95,13 +95,13 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
             if camera == 3: //if the duck is on the third barcode
                 Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the bottom of the shipping hub
              */
-            drivetrain.Strafing(35,1);
-            Turn_Table.Auto(A,1000);
-            drivetrain.Strafing(47,1);
-            drivetrain.ForwardorBackwards(23,1);
-            Intake.Update_outtake(1, Pivot_Arm.position);
-            drivetrain.ForwardorBackwards(-23,1);
-            drivetrain.Strafing(48,1);
+            drivetrain.Strafing(35,1); //goes down to the turntable
+            Turn_Table.Auto(A,1000); //spins the turntable
+            drivetrain.Strafing(47,1); //goes up to the shipping element
+            drivetrain.ForwardorBackwards(23,1); //goes forward to the shipping element
+            Intake.Update_outtake(1, Pivot_Arm.position); //puts freight on the shipping element
+            drivetrain.ForwardorBackwards(-23,1);//goes away from the shipping element
+            drivetrain.Strafing(48,1);//parks in the warehouse
         }
         else if (A == true && WT == true) { // red and warehouse side
             //Need Camera Code //Sees where the duck is
