@@ -44,7 +44,7 @@ public class  FTC_14133_2022 extends OpMode {
  public void start() {
      switches = Sensors.Update_Switches(); //Reads the switches for which alliance we are on
      Alliance = switches[1]; //Assigns a variable to the state of our alliance (true red, false blue)
-     Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
+    // Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
      Turn_Table.Direction(Alliance);
      Intake.Home_TSE();
  }

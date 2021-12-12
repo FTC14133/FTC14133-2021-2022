@@ -12,7 +12,7 @@ import java.util.zip.DeflaterInputStream;
 
 
 public class Pivot_Arm {
-    // Instantiate the drivetrain motor variables
+    // Instantiate the lift motor variables
     private DcMotorEx lift;
     boolean Home;
     DigitalChannel HomeSwitch;
@@ -25,7 +25,7 @@ public class Pivot_Arm {
     final int countsperdegreeint=(int)countsperdegree;
     final double liftpower=0.5;
 
-
+    boolean toggle = true;
 
     //ToDo: Add encoder count amount (still undetermined, just put a number in now)
 
@@ -42,23 +42,25 @@ public class Pivot_Arm {
 
     public void Teleop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
 
+        if (toggle && (gamepad2.dpad_up || gamepad2.dpad_down)) {  // Only execute once per Button push
+            toggle = false;  // Prevents this section of code from being called again until the Button is released and re-pressed
+            if (gamepad2.dpad_up) {  // Decide which way to set the motor this time through (or use this as a motor value instead)
+                position = position + 1; //Increase Arm position
+                if (position>3){
+                    position=3;
+            } else if(gamepad2.dpad_down) {
+                    position = position -1;
+                    if (position<-3){
+                        position=-3;
+            }
+        } else if (!gamepad2.dpad_up || !gamepad2.dpad_down) {
+            toggle = true; // Button has been released, so this allows a re-press to activate the code above.
+        }
 
-         if (gamepad2.dpad_up==true) {
-             position = position + 1; //Increase Arm position
-             if (position>3){
-                 position=3;
-             }
-         }
-         else if(gamepad2.dpad_down==true){
-             position = position -1;
-             if (position<-3){
-                 position=-3;
-             }
-         }
 
         GotoPosition(position);
 
-    }
+    }}}
 
     public void Auto(int position){
         GotoPosition(position);
