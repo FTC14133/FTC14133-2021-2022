@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 // Intake
 
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -11,19 +12,19 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class  Intake {
     // Instantiate the motor variables
-    private CRServo intake;
+    private DcMotorEx intake;
     boolean toggle = true;
     boolean Possession; //Variable telling whether we have possession of a game piece or not
     DigitalChannel beambreak; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
-    Servo Hook = null;
+    DcMotorEx Hook = null;
 
     public Intake(HardwareMap hardwareMap){                 // Motor Mapping
-        intake = hardwareMap.get(CRServo.class, "intake");      //Sets the names of the hardware on the hardware map
+        intake = hardwareMap.get(DcMotorEx.class, "intake");      //Sets the names of the hardware on the hardware map
         // "DeviceName" must match the Config EXACTLY
 
         // Set motor direction based on which side of the robot the motors are on
-        intake.setDirection(CRServo.Direction.FORWARD);
-        Hook =hardwareMap.get(Servo.class,"Hook");
+        intake.setDirection(DcMotorEx.Direction.FORWARD);
+        Hook =hardwareMap.get(DcMotorEx.class,"Hook");
     }
 
     public void Update_intake(double speed, int position){ //Standard intake function
@@ -60,16 +61,16 @@ public class  Intake {
     }
     public void Team_Shipping_Element(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
         if(gamepad2.x==true){ //if the x button is pressed
-            Hook.setPosition(1); //Hook extended
+            Hook.setPower(1); //Hook extended
 
         }
         else {
-           Hook.setPosition(0); //Hook not extended
+           Hook.setPower(0); //Hook not extended
 
         }
     }
     public void Home_TSE(){ //Code to be run in Op Mode void Loop at top level
-            Hook.setPosition(0);
+            Hook.setPower(0);
 
         }
     }
