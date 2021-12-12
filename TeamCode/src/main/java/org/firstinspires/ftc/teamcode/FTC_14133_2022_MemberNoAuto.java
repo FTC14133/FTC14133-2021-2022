@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
@@ -10,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Pivot_Arm;
 import org.firstinspires.ftc.teamcode.Subsystems.Sensors;
 import org.firstinspires.ftc.teamcode.Subsystems.Turn_Table;
 
-@TeleOp(name="FTC_14133_2022_Auto", group="Auto")
+@Autonomous(name="FTC_14133_2022_MemberNoAuto", group="Auto")
 
 
 //My favorite shape is a nonagon

@@ -15,13 +15,6 @@
 apply from: '../build.common.gradle'
 apply from: '../build.dependencies.gradle'
 
-android {
-    androidResources {
-        noCompress 'tflite'
-    }
-}
-
-
 dependencies {
     implementation project(':FtcRobotController')
     annotationProcessor files('lib/OpModeAnnotationProcessor.jar')
