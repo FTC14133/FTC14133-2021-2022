@@ -2,12 +2,13 @@ package org.firstinspires.ftc.teamcode.Reference;
 
 //This is an example subsystem. Reference this to set up new devices.
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.AnalogSensor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-
+@Disabled
 public class Subsystem {
 
     DcMotorEx subsystemmotor = null; //Instantiate a motor
