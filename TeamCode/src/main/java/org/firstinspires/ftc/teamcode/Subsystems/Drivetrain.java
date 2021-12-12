@@ -23,16 +23,16 @@ public class Drivetrain  {
 
 
     public Drivetrain(HardwareMap hardwareMap){                 // Motor Mapping
-    lf = hardwareMap.get(DcMotorEx.class, "lf");      //Sets the names of the hardware on the hardware map
-    rf = hardwareMap.get(DcMotorEx.class, "rf");      // "DeviceName" must match the Config EXACTLY
-    lb = hardwareMap.get(DcMotorEx.class, "lb");
-    rb = hardwareMap.get(DcMotorEx.class, "rb");
+        lf = hardwareMap.get(DcMotorEx.class, "lf");      //Sets the names of the hardware on the hardware map
+        rf = hardwareMap.get(DcMotorEx.class, "rf");      // "DeviceName" must match the Config EXACTLY
+        lb = hardwareMap.get(DcMotorEx.class, "lb");
+        rb = hardwareMap.get(DcMotorEx.class, "rb");
 
-    // Set motor direction based on which side of the robot the motors are on
-    lf.setDirection(DcMotorEx.Direction.FORWARD);
-    rf.setDirection(DcMotorEx.Direction.REVERSE);
-    lb.setDirection(DcMotorEx.Direction.FORWARD);
-    rb.setDirection(DcMotorEx.Direction.REVERSE);
+        // Set motor direction based on which side of the robot the motors are on
+        lf.setDirection(DcMotorEx.Direction.FORWARD);
+        rf.setDirection(DcMotorEx.Direction.REVERSE);
+        lb.setDirection(DcMotorEx.Direction.FORWARD);
+        rb.setDirection(DcMotorEx.Direction.REVERSE);
     }
 
     public void ForwardorBackwards(double distance, double speed) {

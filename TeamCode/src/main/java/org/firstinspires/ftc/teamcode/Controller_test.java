@@ -19,7 +19,7 @@ public class Controller_test extends OpMode  {
     private DcMotor test_motor = null;
 
     public void init() {
-        test_motor = (DcMotorEx)hardwareMap.get(DcMotorEx.class, "test");
+        test_motor = hardwareMap.get(DcMotorEx.class, "test");
 
     }
 

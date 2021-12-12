@@ -46,6 +46,25 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
         Intake.Home_TSE();
 
         if (A == false && WT == false) { //BLUE side and on the Turntable side
+            //Need Camera Code //Sees where the duck is
+            /*
+            if camera == 1: //if the duck is on the first barcode
+                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the top of the shipping hub
+
+            if camera == 2: //if the duck is on the second barcode
+                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the middle of the shipping hub
+
+            if camera == 3: //if the duck is on the third barcode
+                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the bottom of the shipping hub
+             */
+
+            drivetrain.Strafing(-12, total_speed);
+            drivetrain.ForwardorBackwards(23, total_speed);
+            Intake.Update_outtake(1, Pivot_Arm.position); //Places the freight on the correct level
+            drivetrain.ForwardorBackwards(-23, total_speed); //Moves backwards
+            Pivot_Arm.Auto(-3); //Puts down the arm
+            drivetrain.Strafing(-47, total_speed); //Goes to park at the warehouse
+
             drivetrain.Strafing(23,1); // Goes to line up with middle barcode
             //Need Camera Code //Sees where the duck is
             /*
@@ -65,6 +84,23 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
             drivetrain.Strafing(-47,1); //Parks in warehouse
         }
         else if (A == false && WT == true) { //BLUE side and on the warehouse side
+            //Need Camera Code //Sees where the duck is
+            /*
+            if camera == 1: //if the duck is on the first barcode
+                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the top of the shipping hub
+
+            if camera == 2: //if the duck is on the second barcode
+                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the middle of the shipping hub
+
+            if camera == 3: //if the duck is on the third barcode
+                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the bottom of the shipping hub
+             */
+            drivetrain.Strafing(11, 1); //We will go to the right to the team shipping element
+            drivetrain.ForwardorBackwards(23, 1); //goes forward to the team shipping element
+            Intake.Update_outtake(1, Pivot_Arm.position); //puts the freight on the shipping element
+            drivetrain.ForwardorBackwards(-23, 1); //goes away from the shipping element
+            drivetrain.Strafing(-48,1); //goes up to the warehouse
+
             drivetrain.Strafing(70,1);//goes down to the ducks
             /*
             //Need Camera Code //Sees where the duck is
@@ -82,6 +118,25 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
             drivetrain.Strafing(-48,1);//goes up to the warehouse
         }
         else if (A == true && WT == false) { //red and turntable side
+            //Need Camera Code //Sees where the duck is
+            /*
+            if camera == 1: //if the duck is on the first barcode
+                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the top of the shipping hub
+
+            if camera == 2: //if the duck is on the second barcode
+                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the middle of the shipping hub
+
+            if camera == 3: //if the duck is on the third barcode
+                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the bottom of the shipping hub
+             */
+            drivetrain.Strafing(35,1); //goes down to the turntable
+            Turn_Table.Auto(A,1000); //spins the turntable
+            drivetrain.Strafing(47,1); //goes up to the shipping element
+            drivetrain.ForwardorBackwards(23,1); //goes forward to the shipping element
+            Intake.Update_outtake(1, Pivot_Arm.position); //puts freight on the shipping element
+            drivetrain.ForwardorBackwards(-23,1);//goes away from the shipping element
+            drivetrain.Strafing(48,1);//parks in the warehouse
+
             Intake.Update_outtake(1, Pivot_Arm.position);
             drivetrain.Strafing(-23,1);
             //Need Camera Code //Sees where the duck is
@@ -104,6 +159,23 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
 
         }
         else if (A == true && WT == true) { // red and warehouse side
+            //Need Camera Code //Sees where the duck is
+            /*
+            if camera == 1: //if the duck is on the first barcode
+                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the top of the shipping hub
+
+            if camera == 2: //if the duck is on the second barcode
+                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the middle of the shipping hub
+
+            if camera == 3: //if the duck is on the third barcode
+                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the bottom of the shipping hub
+             */
+            drivetrain.Strafing(-12, total_speed); // Lines up with shipping hub
+            drivetrain.ForwardorBackwards(23, total_speed); //Goes towards the shipping hub
+            Intake.Update_outtake(1, Pivot_Arm.position); //Runs the intake to release the fright
+            drivetrain.ForwardorBackwards(-23, total_speed);//backs away from shipping hub
+            drivetrain.Strafing(-47, total_speed); //Goes to park at the warehouse
+
             drivetrain.Strafing(23, 1);//goes down to the ducks
             /*
             //Need Camera Code //Sees where the duck is
@@ -120,32 +192,6 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
             drivetrain.ForwardorBackwards(-23,1);//goes back from the shipping hub
             drivetrain.Strafing(-48,1);//goes up to the warehouse
         }
-
-        /*
-        drivetrain.ForwardorBackwards(10, 1);
-        drivetrain.Rotate(360, 1);
-        drivetrain.Strafing(10, 1);
-        Intake.Update_intake(1, Pivot_Arm.position);
-        Turn_Table.Turn_Table_Auto(A);
-        Pivot_Arm.Auto(1);
-         */
-        /*drivetrain.Strafing(-23,1);
-            //Need Camera Code //Sees where the duck is
-
-            if camera == 1: //if the duck is on the first barcode
-                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the top of the shipping hub
-
-            if camera == 2: //if the duck is on the second barcode
-                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the middle of the shipping hub
-
-            if camera == 3: //if the duck is on the third barcode
-                Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the bottom of the shipping hub
-
-            drivetrain.Strafing(-23,1);
-            drivetrain.ForwardorBackwards(23,1);
-            Intake.Update_outtake(1, Pivot_Arm.position);
-            drivetrain.ForwardorBackwards(-23,1);
-            drivetrain.Strafing(48,1);*/
 
 
     }
