@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 // Intake
 
+import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -16,7 +17,7 @@ public class  Intake {
     boolean toggle = true;
     boolean Possession; //Variable telling whether we have possession of a game piece or not
     DigitalChannel beambreak; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
-    DcMotorEx Hook = null;
+    DcMotorEx Hook = null; //Todo: Hook should still be a servo. Use the ServoEx class please. Only for hook, not for intake
 
     public Intake(HardwareMap hardwareMap){                 // Motor Mapping
         intake = hardwareMap.get(DcMotorEx.class, "intake");      //Sets the names of the hardware on the hardware map
