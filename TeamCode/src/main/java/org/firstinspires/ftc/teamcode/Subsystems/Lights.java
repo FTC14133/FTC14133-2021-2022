@@ -2,6 +2,9 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 //This is an example subsystem. Reference this to set up new devices.
 
+//demo on how the device works:
+//https://www.youtube.com/watch?v=wMdkM2rr1a4&ab_channel=REVRobotics
+
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
