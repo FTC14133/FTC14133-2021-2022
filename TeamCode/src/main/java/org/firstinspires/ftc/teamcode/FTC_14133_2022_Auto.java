@@ -41,7 +41,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         Sensors = new Sensors(hardwareMap);
     }
 
-    public void runOpMode() { //Todo: Program all auto routines. Start with one, then copy all to another. We can make these subprograms if that is easier.
+    public void runOpMode() {
         Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
         Intake.Home_TSE();
 
@@ -63,7 +63,10 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
             Intake.Update_outtake(1, Pivot_Arm.position); //Places the freight on the correct level
             drivetrain.ForwardorBackwards(-23, total_speed); //Moves backwards
             Pivot_Arm.Auto(-3); //Puts down the arm
-            drivetrain.Strafing(-47, total_speed); //Goes to park at the warehouse
+            drivetrain.Strafing(47, total_speed); //Goes to the turntable
+            Turn_Table.Auto(A,1000);
+            drivetrain.Strafing(94,total_speed);
+
 
         }
         else if (A == false && WT == true) { //This is a different instance where if we are starting on the BLUE side and on the warehouse side
@@ -78,11 +81,12 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
             if camera == 3: //if the duck is on the third barcode
                 Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the bottom of the shipping hub
              */
-            drivetrain.Strafing(11, 1); //We will go to the right to the team shipping element
-            drivetrain.ForwardorBackwards(23, 1); //goes forward to the team shipping element
-            Intake.Update_outtake(1, Pivot_Arm.position); //puts the freight on the shipping element
-            drivetrain.ForwardorBackwards(-23, 1); //goes away from the shipping element
-            drivetrain.Strafing(-48,1); //goes up to the warehouse
+            drivetrain.Strafing(11, total_speed); //We will go to the right to the team shipping hub
+            drivetrain.ForwardorBackwards(23, total_speed); //goes forward to the team shipping hub
+            Intake.Update_outtake(1, Pivot_Arm.position); //puts the freight on the shipping hub
+            drivetrain.ForwardorBackwards(-23, total_speed); //goes away from the shipping hub
+            drivetrain.Strafing(-48,total_speed); //goes up to the warehouse
+            drivetrain.Rotate(30,total_speed);
         }
         else if (A == true && WT == false) { //red and turntable side
             //Need Camera Code //Sees where the duck is
