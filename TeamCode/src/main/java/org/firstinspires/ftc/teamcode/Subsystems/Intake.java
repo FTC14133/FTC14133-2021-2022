@@ -17,7 +17,7 @@ public class  Intake {
     boolean toggle = true;
     boolean Possession; //Variable telling whether we have possession of a game piece or not
     DigitalChannel beambreak; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
-    DcMotorEx Hook = null; //Todo: Hook should still be a servo. Use the ServoEx class please. Only for hook, not for intake
+    Servo Hook = null;
 
     public Intake(HardwareMap hardwareMap){                 // Motor Mapping
         intake = hardwareMap.get(DcMotorEx.class, "intake");      //Sets the names of the hardware on the hardware map
@@ -25,7 +25,7 @@ public class  Intake {
 
         // Set motor direction based on which side of the robot the motors are on
         intake.setDirection(DcMotorEx.Direction.FORWARD);
-        Hook =hardwareMap.get(DcMotorEx.class,"Hook");
+        Hook =hardwareMap.get(Servo.class,"Hook");
     }
 
     public void Update_intake(double speed, int position){ //Standard intake function
@@ -62,16 +62,16 @@ public class  Intake {
     }
     public void Team_Shipping_Element(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
         if(gamepad2.x==true){ //if the x button is pressed
-            Hook.setPower(1); //Hook extended
+            Hook.setPosition(1); //Hook extended
 
         }
         else {
-           Hook.setPower(0); //Hook not extended
+           Hook.setPosition(0); //Hook not extended
 
         }
     }
     public void Home_TSE(){ //Code to be run in Op Mode void Loop at top level
-            Hook.setPower(0);
+            Hook.setPosition(0);
 
         }
     }

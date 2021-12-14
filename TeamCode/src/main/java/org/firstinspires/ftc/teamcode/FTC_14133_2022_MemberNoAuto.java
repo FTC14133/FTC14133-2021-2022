@@ -41,7 +41,7 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
         Sensors = new Sensors(hardwareMap);
     }
 
-    public void runOpMode() { //Todo: Program all auto routines. Start with one, then copy all to another. We can make these subprograms if that is easier.
+    public void runOpMode() {
         Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
         Intake.Home_TSE();
 
@@ -63,8 +63,9 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
             Intake.Update_outtake(1, Pivot_Arm.position); //Places the freight on the correct level
             drivetrain.ForwardorBackwards(-23, total_speed); //Moves backwards
             Pivot_Arm.Auto(-3); //Puts down the arm
-            drivetrain.Strafing(-47, total_speed); //Goes to park at the warehouse
-
+            drivetrain.Strafing(47, total_speed); //Goes to park the turntable
+            Turn_Table.Auto(A,1000);
+            drivetrain.Strafing(94,total_speed);
             drivetrain.Strafing(23,1); // Goes to line up with middle barcode
             //Need Camera Code //Sees where the duck is
             /*
