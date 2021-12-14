@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 public class Turn_Table {
     // Instantiate the  motor variables
     private DcMotorEx turn_table;
+    boolean Rotation=false;
 
 
     public Turn_Table(HardwareMap hardwareMap){                 // Motor Mapping
@@ -54,8 +55,13 @@ public class Turn_Table {
     public void Teleop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top levelzaZ
         if (gamepad2.x) {        //runs the intake backwards for the BLUE side
             turn_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON //Todo: This should also be run at a rate using velocity control.
+            Rotation=true;
         }else{
             turn_table.setPower(0);
+            Rotation=false;
         }
+    }
+    public boolean getRotation(){
+        return Rotation;
     }
 }

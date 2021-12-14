@@ -57,7 +57,7 @@ public class  FTC_14133_2022 extends OpMode {
 
     drivetrain.Teleop(gamepad1);
     Pivot_Arm.Teleop(gamepad2);
-    Lights.Teleop(Intake.getPossession());
+    Lights.Teleop(Intake.getPossession(),Turn_Table.getRotation());
 
     Intake.Teleop(gamepad2,Pivot_Arm.GetArmPosition()); //Passes position of the arm so intake direction can change.
     Intake.Team_Shipping_Element(gamepad2);

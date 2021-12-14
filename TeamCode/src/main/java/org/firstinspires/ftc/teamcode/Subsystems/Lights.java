@@ -13,11 +13,18 @@ public class Lights {
         blinkinLedDriver = hardwareMap.get(RevBlinkinLedDriver.class, "LED");
     }
 
-    public void Teleop(boolean possession){ //Run this inside of the main program.
-        if(possession==true){
+    public void Teleop(boolean possession,boolean Rotation){ //Run this inside of the main program.
+        if(possession==true) {
             blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GOLD);
-
         }
+
+        else if(Rotation==true){
+            blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_LAVA_PALETTE);
+            }
+        else if (Rotation==false){
+            blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.AQUA);
+        }
+
 
     }
 }
