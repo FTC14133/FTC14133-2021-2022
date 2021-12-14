@@ -70,9 +70,12 @@ public class  Intake {
 
         }
     }
-    public void Home_TSE(){ //Code to be run in Op Mode void Loop at top level
+        public void Home_TSE(){ //Code to be run in Op Mode void Loop at top level
             Hook.setPosition(0);
 
+        }
+        public boolean getPossession(){
+            return Possession;
         }
     }
 

@@ -3,7 +3,9 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
+import org.firstinspires.ftc.teamcode.Subsystems.Lights;
 import org.firstinspires.ftc.teamcode.Subsystems.Pivot_Arm;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
 import org.firstinspires.ftc.teamcode.Subsystems.Sensors;
@@ -25,6 +27,7 @@ public class  FTC_14133_2022 extends OpMode {
  private Turn_Table Turn_Table=null;
  private Pivot_Arm Pivot_Arm=null;
  private Sensors Sensors=null;
+ private Lights Lights=null;
  boolean [] switches;
  boolean Alliance;
 
@@ -34,6 +37,7 @@ public class  FTC_14133_2022 extends OpMode {
      Turn_Table = new Turn_Table(hardwareMap);
      Pivot_Arm = new Pivot_Arm(hardwareMap);
      Sensors = new Sensors(hardwareMap);
+     Lights = new   Lights(hardwareMap);
 
 
  }
@@ -53,7 +57,7 @@ public class  FTC_14133_2022 extends OpMode {
 
     drivetrain.Teleop(gamepad1);
     Pivot_Arm.Teleop(gamepad2);
-
+    Lights.Teleop(Intake.getPossession());
 
     Intake.Teleop(gamepad2,Pivot_Arm.GetArmPosition()); //Passes position of the arm so intake direction can change.
     Intake.Team_Shipping_Element(gamepad2);
