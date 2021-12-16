@@ -62,9 +62,6 @@ public class Pivot_Arm {
 
     }}}
 
-    public void Auto(int position){
-        GotoPosition(position);
-    }
 
     public void GotoPosition(int position){
         switch (position) {
@@ -125,8 +122,9 @@ public class Pivot_Arm {
     }
 
     public void HomeArm(){
+        lift.setPower(.25);
         while (HomeSwitch.getState()==false){
-            lift.setPower(.25);
+
 
         }
         lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

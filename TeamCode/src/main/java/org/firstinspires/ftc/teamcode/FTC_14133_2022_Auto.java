@@ -62,10 +62,13 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
             drivetrain.ForwardorBackwards(23, total_speed);
             Intake.Update_outtake(1, Pivot_Arm.position); //Places the freight on the correct level
             drivetrain.ForwardorBackwards(-23, total_speed); //Moves backwards
-            Pivot_Arm.Auto(-3); //Puts down the arm
-            drivetrain.Strafing(47, total_speed); //Goes to the turntable
+            Pivot_Arm.GotoPosition(-3); //Puts down the arm
+            drivetrain.Rotate(90,1);
+            drivetrain.ForwardorBackwards(47, total_speed);//Goes to the turntable
+            drivetrain.Rotate(-90,1);
             Turn_Table.Auto(A,1000);
-            drivetrain.Strafing(94,total_speed);
+            drivetrain.Rotate(90,1);
+            drivetrain.ForwardorBackwards(94,total_speed);
 
 
         }
@@ -85,8 +88,10 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
             drivetrain.ForwardorBackwards(23, total_speed); //goes forward to the team shipping hub
             Intake.Update_outtake(1, Pivot_Arm.position); //puts the freight on the shipping hub
             drivetrain.ForwardorBackwards(-23, total_speed); //goes away from the shipping hub
-            drivetrain.Strafing(-48,total_speed); //goes up to the warehouse
-            drivetrain.Rotate(30,total_speed);
+            Pivot_Arm.GotoPosition(-3);
+            drivetrain.Rotate(90,1);
+            drivetrain.ForwardorBackwards(-48,total_speed); //goes up to the warehouse
+
         }
         else if (A == true && WT == false) { //red and turntable side
             //Need Camera Code //Sees where the duck is
@@ -100,13 +105,14 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
             if camera == 3: //if the duck is on the third barcode
                 Pivot_Arm.Auto(3); //it will set the arm position to place the freight on the bottom of the shipping hub
              */
-            drivetrain.Strafing(35,1); //goes down to the turntable
+            drivetrain.Strafing(35,total_speed); //goes down to the turntable
             Turn_Table.Auto(A,1000); //spins the turntable
-            drivetrain.Strafing(47,1); //goes up to the shipping element
-            drivetrain.ForwardorBackwards(23,1); //goes forward to the shipping element
+            drivetrain.Strafing(47,total_speed); //goes up to the shipping element
+            drivetrain.ForwardorBackwards(23,total_speed); //goes forward to the shipping element
             Intake.Update_outtake(1, Pivot_Arm.position); //puts freight on the shipping element
-            drivetrain.ForwardorBackwards(-23,1);//goes away from the shipping element
-            drivetrain.Strafing(48,1);//parks in the warehouse
+            drivetrain.ForwardorBackwards(-23,total_speed);//goes away from the shipping element
+            Pivot_Arm.GotoPosition(3);
+            drivetrain.Strafing(48,total_speed);//parks in the warehouse
         }
         else if (A == true && WT == true) { // red and warehouse side
             //Need Camera Code //Sees where the duck is
