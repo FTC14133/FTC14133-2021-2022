@@ -2,11 +2,17 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 // Generic Lift
 
+import android.util.Log;
+
+import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 import java.util.zip.DeflaterInputStream;
 
@@ -14,8 +20,9 @@ import java.util.zip.DeflaterInputStream;
 public class Pivot_Arm {
     // Instantiate the lift motor variables
     private DcMotorEx lift;
-    boolean Home;
-    DigitalChannel HomeSwitch;
+    boolean Home = false;
+    RevTouchSensor HomeSwitch;
+
 
     public int position = 0; // Integer position of the arm
     int tolerance = 2; // Encoder tolerance
@@ -27,20 +34,20 @@ public class Pivot_Arm {
 
     boolean toggle = true;
 
-    //ToDo: Add encoder count amount (still undetermined, just put a number in now)
-
     public Pivot_Arm(HardwareMap hardwareMap){                 // Motor Mapping
         lift = hardwareMap.get(DcMotorEx.class, "lift");//Sets the names of the hardware on the hardware map
-        HomeSwitch = hardwareMap.get(DigitalChannel.class, "HomeSwitch");
+        HomeSwitch = hardwareMap.get(RevTouchSensor.class, "HomeSwitch");
     // "DeviceName" must match the Config EXACTLY
 
         // Set motor direction based on which side of the robot the motors are on
-        lift.setDirection(DcMotorEx.Direction.FORWARD);
+        lift.setDirection(DcMotorEx.Direction.REVERSE);
         lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         position=0; //initial arm position
     }
 
     public void Teleop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
+        Log.i(String.valueOf(position), String.valueOf((lift.getCurrentPosition())));
+
 
         if (toggle && (gamepad2.dpad_up || gamepad2.dpad_down)) {  // Only execute once per Button push
             toggle = false;  // Prevents this section of code from being called again until the Button is released and re-pressed
@@ -84,6 +91,7 @@ public class Pivot_Arm {
 
             case -1: //Upper Level Back
                 System.out.println("Position=-1");
+
                 lift.setTargetPosition(75*countsperdegreeint); //Todo: Need to tune
                 lift.setPower(liftpower);        //Sets the power for the lift
                 lift.setMode(DcMotorEx.RunMode.RUN_TO_POSITION); //Allows the lift to run
@@ -123,14 +131,22 @@ public class Pivot_Arm {
     public int GetArmPosition(){
         return position;
     }
+    public boolean GetArmHome(){
+        return Home;
+    }
 
     public void HomeArm(){
-        while (HomeSwitch.getState()==false){
-            lift.setPower(.25);
+        if (HomeSwitch.isPressed()==false){
+           lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            lift.setPower(.5);
 
         }
-        lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lift.setPower(0);
-        Home=true;
+        else {
+            Log.i("homed", "Homed");
+            lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            lift.setPower(0);
+            Home=true;
+        }
     }
+
 }

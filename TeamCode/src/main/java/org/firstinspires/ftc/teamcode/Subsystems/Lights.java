@@ -16,17 +16,19 @@ public class Lights {
         blinkinLedDriver = hardwareMap.get(RevBlinkinLedDriver.class, "LED");
     }
 
-    public void Teleop(boolean possession,boolean Rotation){ //Run this inside of the main program.
-        if(possession==true) {
+    public void Teleop(boolean possession,boolean Rotation){
+        if (possession==true){ //The possession is if we have freight in our robot
             blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GOLD);
         }
-
-        else if(Rotation==true){
+        else if (Rotation==true){ //The Rotation is if the turn table motor is on
             blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_LAVA_PALETTE);
             }
         else if (Rotation==false){
             blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.AQUA);
         }
+        //else if (){
+
+        //}
 
 
     }

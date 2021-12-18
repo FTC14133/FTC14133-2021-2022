@@ -134,10 +134,10 @@ public class Drivetrain  {
         double leftPowerX = gamepad1.left_stick_x;      //find the value of x axis on the left joystick;
         double rightPowerX = gamepad1.right_stick_x;     //find the value of x axis on the right joystick;
         //Power of Mecanum wheels;
-        double leftfrontpower = leftPowerY + leftPowerX - rightPowerX;     //Power level for leftfront
-        double rightbackpower = leftPowerY - leftPowerX + rightPowerX;     //Power level for rightback
-        double leftbackpower = leftPowerY - leftPowerX - rightPowerX;      //Power level for leftback
-        double rightfrontpower = leftPowerY + leftPowerX + rightPowerX;    //Power level for rightfront
+        double leftfrontpower = leftPowerY + leftPowerX + rightPowerX;     //Power level for leftfront
+        double rightbackpower = leftPowerY + leftPowerX - rightPowerX;     //Power level for rightback
+        double leftbackpower = leftPowerY - leftPowerX + rightPowerX;      //Power level for leftback
+        double rightfrontpower = leftPowerY - leftPowerX - rightPowerX;    //Power level for rightfront
 
         //Get the max of the the absolute values of the power of the wheels.
         double NormScaling = Math.max(Math.max(Math.abs(leftfrontpower), Math.abs(rightfrontpower)), Math.max(Math.abs(leftbackpower), Math.abs(rightbackpower)));

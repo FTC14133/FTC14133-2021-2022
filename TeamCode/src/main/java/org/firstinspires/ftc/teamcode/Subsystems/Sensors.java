@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
+import android.util.Log;
+
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -17,6 +19,8 @@ public class Sensors {
     public boolean[] Update_Switches(){
         WT = Warehouse_Turntable.getState(); // Sees if the switches are on or off. It will return a true or false (boolean).
         A = alliance_s.getState();
+        Log.i("WT", String.valueOf(WT));
+        Log.i("A", String.valueOf(A));
 
         /*
         IMPORTANT:
