@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.Subsystems.Lights;
 import org.firstinspires.ftc.teamcode.Subsystems.Pivot_Arm;
@@ -49,22 +48,25 @@ public class  FTC_14133_2022 extends OpMode {
      telemetry.addData("Status", "Start");
      Turn_Table.Direction(Alliance);
      Intake.Home_TSE();
+
  }
 
  public void loop() {
      telemetry.addData("Status", "Looping");
-     if (Pivot_Arm.GetArmHome()==false){
+     if (Pivot_Arm.GetArmHome()==false){ //If arm is not homed
          telemetry.addData("Status", "Homing");
          telemetry.update();
          Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
      }
-     else if (gamepad2.back){
-         Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
-         telemetry.addData("Status", "Homed");
+     else if (gamepad2.back){ //If the arm is homed, but the back button is pressed
+        Pivot_Arm.SetArmHome(false); //Set home variable to false (not-homed)
+     }
+     else{ //When arm is homed and back button not pressed
+         Pivot_Arm.Teleop(gamepad2); //Run the regular arm function
      }
 
     drivetrain.Teleop(gamepad1);
-    Pivot_Arm.Teleop(gamepad2);
+
     //Lights.Teleop(Intake.getPossession(),Turn_Table.getRotation());
 
     Intake.Teleop(gamepad2,Pivot_Arm.GetArmPosition()); //Passes position of the arm so intake direction can change.
