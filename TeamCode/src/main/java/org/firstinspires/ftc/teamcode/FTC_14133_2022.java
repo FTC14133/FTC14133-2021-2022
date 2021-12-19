@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.Subsystems.Lights;
 import org.firstinspires.ftc.teamcode.Subsystems.Pivot_Arm;
@@ -48,14 +50,12 @@ public class  FTC_14133_2022 extends OpMode {
      telemetry.addData("Status", "Start");
      Turn_Table.Direction(Alliance);
      Intake.Home_TSE();
-
+     telemetry.update();
  }
 
  public void loop() {
      telemetry.addData("Status", "Looping");
      if (Pivot_Arm.GetArmHome()==false){ //If arm is not homed
-         telemetry.addData("Status", "Homing");
-         telemetry.update();
          Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
      }
      else if (gamepad2.back){ //If the arm is homed, but the back button is pressed
