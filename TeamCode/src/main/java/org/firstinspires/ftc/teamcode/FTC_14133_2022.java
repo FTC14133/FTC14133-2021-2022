@@ -55,7 +55,7 @@ public class  FTC_14133_2022 extends OpMode {
 
  public void loop() {
      telemetry.addData("Status", "Looping");
-     if (Pivot_Arm.GetArmHome()==false){ //If arm is not homed
+     if (Pivot_Arm.GetArmHome()==false){ //If arm is not homed Todo: Put all of this logic within the Pivot_Arm class. No need for it to be here.
          Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
      }
      else if (gamepad2.back){ //If the arm is homed, but the back button is pressed

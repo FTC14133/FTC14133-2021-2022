@@ -53,26 +53,27 @@ public class Pivot_Arm {
             toggle = false;  // Prevents this section of code from being called again until the Button is released and re-pressed
             if (gamepad2.dpad_up) {  // If the d-pad up button is pressed
                 position = position + 1; //Increase Arm position
-                if (position>3){ //If arm position is above 3
-                    position=3; //Cap it at 3
-            } else if(gamepad2.dpad_down) { // If d-pad down button is pressed
-                    position = position -1; //Decrease arm position
-                    if (position<-3){ //If arm position is below -3
-                        position=-3; //cap it at -3
+                if (position > 3) { //If arm position is above 3
+                    position = 3; //Cap it at 3
+                }
+            } else if (gamepad2.dpad_down) { // If d-pad down button is pressed
+                position = position - 1; //Decrease arm position
+                if (position < -3) { //If arm position is below -3
+                    position = -3; //cap it at -3
+                }
             }
-        } else if (!gamepad2.dpad_up || !gamepad2.dpad_down) { //if neither button is being pressed
-            toggle = true; // Button has been released, so this allows a re-press to activate the code above.
         }
-
-
+        else if (!gamepad2.dpad_up || !gamepad2.dpad_down) { //if neither button is being pressed
+        toggle = true; // Button has been released, so this allows a re-press to activate the code above.
+        }
         GotoPosition(position);
+        telemetry.addData("Homed", Home);
+    }
 
-                telemetry.addData("Homed", Home);
-    }}}
 
     public void Auto(int position){
         GotoPosition(position);
-    } //Todo: This is a rather useless funcion
+    } //Todo: This is a rather useless function
 
     public void GotoPosition(int position){
         lift.setPower(liftpower);        //Sets the power for the lift
