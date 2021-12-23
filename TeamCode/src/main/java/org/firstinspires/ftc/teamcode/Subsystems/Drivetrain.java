@@ -7,6 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 //import org.opencv.core.Mat;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 import java.lang.Math;
 
 public class Drivetrain  {
@@ -129,15 +131,15 @@ public class Drivetrain  {
 
     }
 
-    public void Teleop(Gamepad gamepad1){ //Code to be run in Teleop Mode void Loop at top level
+    public void Teleop(Gamepad gamepad1, Telemetry telemetry){ //Code to be run in Teleop Mode void Loop at top level
         double leftPowerY = -gamepad1.left_stick_y;      //find the value of y axis on the left joystick;
         double leftPowerX = gamepad1.left_stick_x;      //find the value of x axis on the left joystick;
         double rightPowerX = gamepad1.right_stick_x;     //find the value of x axis on the right joystick;
         //Power of Mecanum wheels;
-        double leftfrontpower = leftPowerY + leftPowerX - rightPowerX;     //Power level for leftfront
-        double rightbackpower = leftPowerY - leftPowerX + rightPowerX;     //Power level for rightback
-        double leftbackpower = leftPowerY - leftPowerX - rightPowerX;      //Power level for leftback
-        double rightfrontpower = leftPowerY + leftPowerX + rightPowerX;    //Power level for rightfront
+        double leftfrontpower = leftPowerY + leftPowerX + rightPowerX;     //Power level for leftfront
+        double rightbackpower = leftPowerY + leftPowerX - rightPowerX;     //Power level for rightback
+        double leftbackpower = leftPowerY - leftPowerX + rightPowerX;      //Power level for leftback
+        double rightfrontpower = leftPowerY - leftPowerX - rightPowerX;    //Power level for rightfront
 
         //Get the max of the the absolute values of the power of the wheels.
         double NormScaling = Math.max(Math.max(Math.abs(leftfrontpower), Math.abs(rightfrontpower)), Math.max(Math.abs(leftbackpower), Math.abs(rightbackpower)));
@@ -154,6 +156,11 @@ public class Drivetrain  {
         lb.setPower(leftbackpower);
         rf.setPower(rightfrontpower);
         rb.setPower(rightbackpower);
+
+        telemetry.addData("LF Power", leftfrontpower);
+        telemetry.addData("LB Power", leftbackpower);
+        telemetry.addData("RF Power", rightfrontpower);
+        telemetry.addData("RB Power", rightbackpower);
 
     }
 

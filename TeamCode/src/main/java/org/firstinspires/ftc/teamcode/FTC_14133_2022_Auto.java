@@ -62,13 +62,10 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
             drivetrain.ForwardorBackwards(23, total_speed);
             Intake.Update_outtake(1, Pivot_Arm.position); //Places the freight on the correct level
             drivetrain.ForwardorBackwards(-23, total_speed); //Moves backwards
-            Pivot_Arm.GotoPosition(-3); //Puts down the arm
-            drivetrain.Rotate(90,1);
-            drivetrain.ForwardorBackwards(47, total_speed);//Goes to the turntable
-            drivetrain.Rotate(-90,1);
+            Pivot_Arm.Auto(-3); //Puts down the arm
+            drivetrain.Strafing(47, total_speed); //Goes to the turntable
             Turn_Table.Auto(A,1000);
-            drivetrain.Rotate(90,1);
-            drivetrain.ForwardorBackwards(94,total_speed);
+            drivetrain.Strafing(94,total_speed);
 
 
         }
@@ -88,10 +85,8 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
             drivetrain.ForwardorBackwards(23, total_speed); //goes forward to the team shipping hub
             Intake.Update_outtake(1, Pivot_Arm.position); //puts the freight on the shipping hub
             drivetrain.ForwardorBackwards(-23, total_speed); //goes away from the shipping hub
-            Pivot_Arm.GotoPosition(-3);
-            drivetrain.Rotate(90,1);
-            drivetrain.ForwardorBackwards(-48,total_speed); //goes up to the warehouse
-
+            drivetrain.Strafing(-48,total_speed); //goes up to the warehouse
+            drivetrain.Rotate(30,total_speed);
         }
         else if (A == true && WT == false) { //red and turntable side
             //Need Camera Code //Sees where the duck is
@@ -109,10 +104,10 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
             Turn_Table.Auto(A,1000); //spins the turntable
             drivetrain.Strafing(47,total_speed); //goes up to the shipping element
             drivetrain.ForwardorBackwards(23,total_speed); //goes forward to the shipping element
-            Intake.Update_outtake(1, Pivot_Arm.position); //puts freight on the shipping element
+            Intake.Update_outtake(total_speed, Pivot_Arm.position); //puts freight on the shipping element
             drivetrain.ForwardorBackwards(-23,total_speed);//goes away from the shipping element
-            Pivot_Arm.GotoPosition(3);
-            drivetrain.Strafing(48,total_speed);//parks in the warehouse
+            drivetrain.Rotate(90,total_speed);//parks in the warehouse
+            drivetrain.ForwardorBackwards(47, total_speed);
         }
         else if (A == true && WT == true) { // red and warehouse side
             //Need Camera Code //Sees where the duck is
@@ -130,8 +125,9 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
             drivetrain.ForwardorBackwards(23, total_speed); //Goes towards the shipping hub
             Intake.Update_outtake(1, Pivot_Arm.position); //Runs the intake to release the fright
             drivetrain.ForwardorBackwards(-23, total_speed);//backs away from shipping hub
-            drivetrain.Strafing(-47, total_speed); //Goes to park at the warehouse
-
+            Pivot_Arm.GotoPosition(3);
+            drivetrain.Rotate(90, total_speed); //Goes to park at the warehouse
+            drivetrain.ForwardorBackwards(47, total_speed);
         }
 
         /*

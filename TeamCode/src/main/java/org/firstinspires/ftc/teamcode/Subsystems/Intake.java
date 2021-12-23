@@ -15,14 +15,14 @@ public class  Intake {
     // Instantiate the motor variables
     private DcMotorEx intake;
     boolean toggle = true;
-    boolean Possession; //Variable telling whether we have possession of a game piece or not
+    boolean Possession = true; //Variable telling whether we have possession of a game piece or not
     DigitalChannel beambreak; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
     Servo Hook = null;
 
     public Intake(HardwareMap hardwareMap){                 // Motor Mapping
         intake = hardwareMap.get(DcMotorEx.class, "intake");      //Sets the names of the hardware on the hardware map
         // "DeviceName" must match the Config EXACTLY
-
+        beambreak = hardwareMap.get(DigitalChannel.class, "beambreak");
         // Set motor direction based on which side of the robot the motors are on
         intake.setDirection(DcMotorEx.Direction.FORWARD);
         Hook =hardwareMap.get(Servo.class,"Hook");
