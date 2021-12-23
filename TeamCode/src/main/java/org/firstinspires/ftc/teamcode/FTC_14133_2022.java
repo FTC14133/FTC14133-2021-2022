@@ -31,6 +31,7 @@ public class  FTC_14133_2022 extends OpMode {
  //private Lights Lights=null;
  boolean [] switches;
  boolean Alliance;
+ boolean Warehouse_TurnTable;
 
  public void init() {
      drivetrain = new Drivetrain(hardwareMap);
@@ -46,7 +47,9 @@ public class  FTC_14133_2022 extends OpMode {
  }
  public void start() {
      switches = Sensors.Update_Switches(); //Reads the switches for which alliance we are on
+     Warehouse_TurnTable = switches[0]; //Assigns a variable to the state of our alliance (true red, false blue)
      Alliance = switches[1]; //Assigns a variable to the state of our alliance (true red, false blue)
+
      telemetry.addData("Status", "Start");
      Turn_Table.Direction(Alliance);
      Intake.Home_TSE();
@@ -54,6 +57,8 @@ public class  FTC_14133_2022 extends OpMode {
  }
 
  public void loop() {
+     telemetry.addData("Warehouse_TurnTable", Warehouse_TurnTable);
+     telemetry.addData("Alliance", Alliance);
      telemetry.addData("Status", "Looping");
      if (Pivot_Arm.GetArmHome()==false){ //If arm is not homed Todo: Put all of this logic within the Pivot_Arm class. No need for it to be here.
          Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it

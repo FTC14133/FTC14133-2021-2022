@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
+//import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 import java.util.zip.DeflaterInputStream;
 
@@ -25,13 +25,13 @@ public class Pivot_Arm {
 
 
     public int position = 0; // Integer position of the arm
-    int tolerance = 2; // Encoder tolerance
+    int tolerance = 0; // Encoder tolerance
     final double countsperrev = 28; // Counts per rev of the motor
     final double gearratio=3*4*5*4; //Ratio of the entire Pivot Arm from the motor to the arm
     final double countsperdegree=countsperrev*gearratio/360; //Converts counts per motor rev to counts per degree of arm rotation
-    final int countsperdegreeint=(int)countsperdegree; //Converts to an integer value
-    final double liftpower=0.5; //
-    Telemetry telemetry;
+    final int countsperdegreeint= 4; //(int)countsperdegree; //Converts to an integer value
+    final double liftpower=0; //
+    //Telemetry telemetry;
 
     boolean toggle = true;
 
@@ -63,11 +63,11 @@ public class Pivot_Arm {
                 }
             }
         }
-        else if (!gamepad2.dpad_up || !gamepad2.dpad_down) { //if neither button is being pressed
-        toggle = true; // Button has been released, so this allows a re-press to activate the code above.
+        else if (!gamepad2.dpad_up && !gamepad2.dpad_down) { //if neither button is being pressed
+            toggle = true; // Button has been released, so this allows a re-press to activate the code above.
         }
         GotoPosition(position);
-        telemetry.addData("Homed", Home);
+        //telemetry.addData("Homed", Home);
     }
 
 
@@ -107,8 +107,8 @@ public class Pivot_Arm {
             default:
                 throw new IllegalStateException("Unexpected position value: " + position);
         }
-        telemetry.addData("Arm Position", position);
-    };
+        //telemetry.addData("Arm Position", position);
+    }
 
     public int GetArmPosition(){ // Returns the current position value of the arm
         return position;
@@ -123,16 +123,16 @@ public class Pivot_Arm {
 
     public void HomeArm(){ //Method to home arm
         if (HomeSwitch.isPressed()==false){ //If the home switch is not pressed
-           lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             lift.setPower(.5); //run the motor towards the switch
-            telemetry.addData("Homed", Home);
+            //telemetry.addData("Homed", Home);
         }
         else { //when the switch is pressed
             lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); //Stop lift motor and set position to 0
             lift.setMode(DcMotor.RunMode.RUN_TO_POSITION); //Change the run mode
             lift.setTargetPositionTolerance(tolerance); //Set the arm encoder tolerance
             Home=true; //Change value of Home to true
-            telemetry.addData("Homed", Home);
+            //telemetry.addData("Homed", Home);
 
         }
     }
