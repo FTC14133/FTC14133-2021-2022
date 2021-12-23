@@ -70,7 +70,7 @@ public class  FTC_14133_2022 extends OpMode {
          Pivot_Arm.Teleop(gamepad2); //Run the regular arm function
      }
 
-    drivetrain.Teleop(gamepad1);
+    drivetrain.Teleop(gamepad1,telemetry);
 
     //Lights.Teleop(Intake.getPossession(),Turn_Table.getRotation());
 
