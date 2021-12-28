@@ -56,15 +56,8 @@ public class  FTC_14133_2022 extends OpMode {
      telemetry.addData("Warehouse_TurnTable", Warehouse_TurnTable);
      telemetry.addData("Alliance", Alliance);
      telemetry.addData("Status", "Looping");
-     if (Pivot_Arm.GetArmHome()==false){ //If arm is not homed Todo: Put all of this logic within the Pivot_Arm class. No need for it to be here.
-         Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
-     }
-     else if (gamepad2.back){ //If the arm is homed, but the back button is pressed
-        Pivot_Arm.SetArmHome(false); //Set home variable to false (not-homed)
-     }
-     else{ //When arm is homed and back button not pressed
-         Pivot_Arm.Teleop(gamepad2); //Run the regular arm function
-     }
+
+     Pivot_Arm.Teleop(gamepad2); //Run the regular arm function
 
     drivetrain.Teleop(gamepad1,telemetry);
 

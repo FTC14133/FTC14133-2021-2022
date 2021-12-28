@@ -1,9 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 // https://first-tech-challenge.github.io/SkyStone/  This is the link to ALL metered of FTC
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
@@ -62,7 +61,7 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
             drivetrain.ForwardorBackwards(23, total_speed);
             Intake.Update_outtake(1, Pivot_Arm.position); //Places the freight on the correct level
             drivetrain.ForwardorBackwards(-23, total_speed); //Moves backwards
-            Pivot_Arm.Auto(-3); //Puts down the arm
+            Pivot_Arm.GotoPosition(-3); //Puts down the arm
             drivetrain.Strafing(47, total_speed); //Goes to park the turntable
             Turn_Table.Auto(A,1000);
             drivetrain.Strafing(94,total_speed);
