@@ -16,7 +16,7 @@ public class Lights {
         blinkinLedDriver = hardwareMap.get(RevBlinkinLedDriver.class, "LED");
     }
 
-    public void Teleop(boolean possession,boolean Rotation){
+    public void Update_Lights(boolean possession,boolean Rotation,boolean A){
         if (possession==true){ //The possession is if we have freight in our robot
             blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GOLD);
         }
@@ -26,10 +26,11 @@ public class Lights {
         else if (Rotation==false){
             blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.AQUA);
         }
-        //else if (){
-
-        //}
-
-
+        else if (A == true){
+            blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RED);
+        }
+        else if (A == false){
+            blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLUE);
+        }
     }
 }

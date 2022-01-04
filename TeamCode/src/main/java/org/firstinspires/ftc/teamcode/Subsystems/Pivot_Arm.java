@@ -2,19 +2,13 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 
 // Generic Lift
 
-import android.util.Log;
-
 import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 //import org.firstinspires.ftc.robotcore.external.Telemetry;
-
-import java.util.zip.DeflaterInputStream;
 
 
 public class Pivot_Arm {
@@ -49,31 +43,34 @@ public class Pivot_Arm {
     public void Teleop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
 
 
-        if (toggle && (gamepad2.dpad_up || gamepad2.dpad_down)) {  // Only execute once per Button push
-            toggle = false;  // Prevents this section of code from being called again until the Button is released and re-pressed
-            if (gamepad2.dpad_up) {  // If the d-pad up button is pressed
-                position = position + 1; //Increase Arm position
-                if (position > 3) { //If arm position is above 3
-                    position = 3; //Cap it at 3
+        if (Home==false){ //If arm is not homed
+            HomeArm(); //Runs the homing sequence for the arm to reset it
+        }
+        else if (gamepad2.back){ //If the arm is homed, but the back button is pressed
+            SetArmHome(false); //Set home variable to false (not-homed)
+        }
+        else { //When arm is homed and back button not pressed
+
+            if (toggle && (gamepad2.dpad_up || gamepad2.dpad_down)) {  // Only execute once per Button push
+                toggle = false;  // Prevents this section of code from being called again until the Button is released and re-pressed
+                if (gamepad2.dpad_up) {  // If the d-pad up button is pressed
+                    position = position + 1; //Increase Arm position
+                    if (position > 3) { //If arm position is above 3
+                        position = 3; //Cap it at 3
+                    }
+                } else if (gamepad2.dpad_down) { // If d-pad down button is pressed
+                    position = position - 1; //Decrease arm position
+                    if (position < -3) { //If arm position is below -3
+                        position = -3; //cap it at -3
+                    }
                 }
-            } else if (gamepad2.dpad_down) { // If d-pad down button is pressed
-                position = position - 1; //Decrease arm position
-                if (position < -3) { //If arm position is below -3
-                    position = -3; //cap it at -3
-                }
+            } else if (!gamepad2.dpad_up && !gamepad2.dpad_down) { //if neither button is being pressed
+                toggle = true; // Button has been released, so this allows a re-press to activate the code above.
             }
+            GotoPosition(position);
+            //telemetry.addData("Homed", Home);
         }
-        else if (!gamepad2.dpad_up && !gamepad2.dpad_down) { //if neither button is being pressed
-            toggle = true; // Button has been released, so this allows a re-press to activate the code above.
-        }
-        GotoPosition(position);
-        //telemetry.addData("Homed", Home);
     }
-
-
-    public void Auto(int position){
-        GotoPosition(position);
-    } //Todo: This is a rather useless function
 
     public void GotoPosition(int position){
         lift.setPower(liftpower);        //Sets the power for the lift
