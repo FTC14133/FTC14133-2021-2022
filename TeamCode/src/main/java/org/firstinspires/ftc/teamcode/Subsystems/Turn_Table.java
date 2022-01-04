@@ -26,15 +26,10 @@ public class Turn_Table {
     }
 
     public void Auto(boolean A, int turntabledist){
-        if (A == true) { //Does an outcome if the robot is on the RED side
-            // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the RED side
-        }
-        else { //Does an outcome is the robot is on the BLUE side
-            turn_table.setDirection(DcMotorEx.Direction.REVERSE);// THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON  runs the intake backwards for the BLUE side
-        }
+        Direction(A);
         turn_table.setPower(-0.25);
         turn_table.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        turn_table.setTargetPositionTolerance(15);
+        turn_table.setTargetPositionTolerance(4);
         turn_table.setTargetPosition(turntabledist);
         turn_table.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         while (turn_table.isBusy()) {
