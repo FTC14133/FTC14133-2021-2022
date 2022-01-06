@@ -8,6 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 //import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 
@@ -40,7 +42,7 @@ public class Pivot_Arm {
         position=3; //initial arm position
     }
 
-    public void Teleop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
+    public void Teleop(Gamepad gamepad2, Telemetry telemetry){ //Code to be run in Op Mode void Loop at top level
 
 
         if (Home==false){ //If arm is not homed
@@ -64,12 +66,14 @@ public class Pivot_Arm {
                         position = -3; //cap it at -3
                     }
                 }
-            } else if (!gamepad2.dpad_up && !gamepad2.dpad_down) { //if neither button is being pressed
+            }
+            else if (!gamepad2.dpad_up && !gamepad2.dpad_down) { //if neither button is being pressed
                 toggle = true; // Button has been released, so this allows a re-press to activate the code above.
             }
             GotoPosition(position);
             //telemetry.addData("Homed", Home);
         }
+        telemetry.addData("Home", Home);
     }
 
     public void GotoPosition(int position){

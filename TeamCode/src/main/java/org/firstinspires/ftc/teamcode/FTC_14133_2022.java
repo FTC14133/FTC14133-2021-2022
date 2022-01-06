@@ -58,7 +58,7 @@ public class  FTC_14133_2022 extends OpMode {
      telemetry.addData("Alliance", Alliance);
      telemetry.addData("Status", "Looping");
 
-     Pivot_Arm.Teleop(gamepad2); //Run the regular arm function
+     Pivot_Arm.Teleop(gamepad2, telemetry); //Run the regular arm function
 
      drivetrain.Teleop(gamepad1,telemetry);
 
