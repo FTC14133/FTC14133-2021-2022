@@ -73,6 +73,8 @@ public class Pivot_Arm {
         }
         telemetry.addData("Home", Home);
         telemetry.addData("Arm Position", position);
+        telemetry.addData("Target Position", lift.getTargetPosition());
+        telemetry.addData("Encoder Position", lift.getCurrentPosition());
     }
 
     public void GotoPosition(int position){
