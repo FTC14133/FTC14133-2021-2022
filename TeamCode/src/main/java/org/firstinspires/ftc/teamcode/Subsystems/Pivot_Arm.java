@@ -26,7 +26,7 @@ public class Pivot_Arm {
     final double gearratio=3*4*5*4; //Ratio of the entire Pivot Arm from the motor to the arm
     final double countsperdegree=countsperrev*gearratio/360; //Converts counts per motor rev to counts per degree of arm rotation
     final int countsperdegreeint= 4; //(int)countsperdegree; //Converts to an integer value
-    final double liftpower=0;
+    final double liftpower=0.75;
 
     boolean toggle = true;
 
@@ -54,12 +54,12 @@ public class Pivot_Arm {
 
             if (toggle && (gamepad2.dpad_up || gamepad2.dpad_down)) {  // Only execute once per Button push
                 toggle = false;  // Prevents this section of code from being called again until the Button is released and re-pressed
-                if (gamepad2.dpad_up) {  // If the d-pad up button is pressed
+                    if (gamepad2.dpad_down) {  // If the d-pad up button is pressed
                     position = position + 1; //Increase Arm position
                     if (position > 3) { //If arm position is above 3
                         position = 3; //Cap it at 3
                     }
-                } else if (gamepad2.dpad_down) { // If d-pad down button is pressed
+                } else if (gamepad2.dpad_up) { // If d-pad down button is pressed
                     position = position - 1; //Decrease arm position
                     if (position < -3) { //If arm position is below -3
                         position = -3; //cap it at -3
@@ -81,7 +81,7 @@ public class Pivot_Arm {
         lift.setPower(liftpower);        //Sets the power for the lift
         switch (position) {
             case 3: // Intake Front
-                lift.setTargetPosition(-0*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(0*countsperdegreeint); //Todo: Need to tune
                 break;
 
             case 2: // Mid Level Front
