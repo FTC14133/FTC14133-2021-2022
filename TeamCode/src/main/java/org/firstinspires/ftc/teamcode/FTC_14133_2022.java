@@ -43,9 +43,9 @@ public class  FTC_14133_2022 extends OpMode {
 
  }
  public void start() {
-     switches = Sensors.Update_Switches(); //Reads the switches for which alliance we are on
-     Warehouse_TurnTable = switches[0]; //Assigns a variable to the state of our alliance (true red, false blue)
-     Alliance = switches[1]; //Assigns a variable to the state of our alliance (true red, false blue)
+     //switches = Sensors.Update_Switches(); //Reads the switches for which alliance we are on
+     Warehouse_TurnTable = false; //Assigns a variable to the state of our alliance (true red, false blue)
+     Alliance = false; //Assigns a variable to the state of our alliance (true red, false blue)
 
      telemetry.addData("Status", "Start");
      Turn_Table.Direction(Alliance);

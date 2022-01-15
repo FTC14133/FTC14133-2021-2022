@@ -27,7 +27,7 @@ public class Turn_Table {
 
     public void Auto(boolean A, int turntabledist){
         Direction(A);
-        turn_table.setPower(-0.25);
+        turn_table.setPower(1);
         turn_table.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         turn_table.setTargetPositionTolerance(4);
         turn_table.setTargetPosition(turntabledist);
@@ -49,7 +49,7 @@ public class Turn_Table {
 
     public void Teleop(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top levelzaZ
         if (gamepad2.x) {        //runs the intake backwards for the BLUE side
-            turn_table.setPower(0.25); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON //Todo: This should also be run at a rate using velocity control.
+            turn_table.setPower(1); // THIS WILL BE TUNED FOR PERFECTIIIIIOOOOON //Todo: This should also be run at a rate using velocity control.
             Rotation=true;
         }else{
             turn_table.setPower(0);

@@ -17,7 +17,7 @@ public class Drivetrain  {
     private DcMotorEx rb; //Back right motor of drivetrain
     private DcMotorEx lf; //Front left motor of drivetrain
     private DcMotorEx rf; //Front right motor of drivetrain
-    int tolerance = 2; // Encoder tolerance
+    int tolerance = 4; // Encoder tolerance
     final double countsperrev = 28; // Counts per rev of the motor
     final double wheelD =96/25.4; // Diameter of the wheel (in inches)
     final double gearratio=2*5.23; //Ratio of the entire drivetrain from the motor to the wheel

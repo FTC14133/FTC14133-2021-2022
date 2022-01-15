@@ -43,7 +43,7 @@ public class  Intake {
     }
 
     public void Update_outtake(double speed, int position){ //Standard outtake function
-        if(position<0){
+        if(position>0){
             speed=-speed;
 
         }
@@ -52,11 +52,11 @@ public class  Intake {
 
     public void Teleop(Gamepad gamepad2, int position){ //Code to be run in Op Mode void Loop at top level
         if(gamepad2.left_trigger>0){ //if the left trigger is pulled
-            Update_outtake(gamepad2.left_trigger, position); //Run the outtake program
+            Update_outtake(gamepad2.right_trigger, position); //Run the outtake program
 
         }
         else {
-            Update_intake(gamepad2.right_trigger ,position); //Otherwise run the Intake program
+            Update_intake(gamepad2.left_trigger ,position); //Otherwise run the Intake program
 
         }
     }

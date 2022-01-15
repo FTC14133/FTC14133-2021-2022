@@ -64,13 +64,10 @@ public class TensorFlowObjectDetection extends LinearOpMode {
    *  Two additional model assets are available which only contain a subset of the objects:
    *  FreightFrenzy_BC.tflite  0: Ball,  1: Cube
    *  FreightFrenzy_DM.tflite  0: Duck,  1: Marker
-   */
+   */                                      // TODO: Here we have to put our own tflite file
     private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
     private static final String[] LABELS = {
-      "Ball",
-      "Cube",
-      "Duck",
-      "Marker"
+      "Duck" // TODO: Here we have to put the correct name from the model
     };
 
     /*
@@ -84,7 +81,7 @@ public class TensorFlowObjectDetection extends LinearOpMode {
      *      ... yIgIzTqZ4mWjk9wd3cZO9T1axEqzuhxoGlfOOI2dRzKS4T0hQ8kT ...
      * Once you've obtained a license key, copy the string from the Vuforia web site
      * and paste it in to your code on the next line, between the double quotes.
-     */
+     */                             // TODO: Vuforia key can be deleted if not working
     private static final String VUFORIA_KEY =
             "ASpmDeb/////AAABmRxze77upU+Eirum4kwztfeCR62IXUXk4nl6GbXS5ccPvrZ6U5leBd3C5/4DeVoUWNwQNpV2mh+gx1oUfoJ7WLC/LEwZxYKoHdiVwPYcKuNZcCFud4SM8Xkeb7Fdzdejaxi5tUPvMrcDOnyhs0zOQRY2aVWJWVZ/OeYo/l9Dq4TUIfmv7Xc4TQkynXC9fbbqcu4do+wRTCRtbT5sXvzCgSk1TsEnkFrARdGPHOIBbGA85n8ORpGdx3W/egnaji6pE5ie7E8wk+1sRk46qLPb0YTQkTI4GOWp13dIWqMqZVV8ZD7T4kupqbcjeePyyVpWDfbvLX5Cwk6HC9NcRhJpmDU18zoekAahJw0Y0YWc/whA";
 
@@ -120,7 +117,8 @@ public class TensorFlowObjectDetection extends LinearOpMode {
             // to artificially zoom in to the center of image.  For best results, the "aspectRatio" argument
             // should be set to the value of the images used to create the TensorFlow Object Detection model
             // (typically 16/9).
-            tfod.setZoom(2.5, 16.0/9.0);
+            //TODO: for setZoom v means the zoom and v1 is the aspect ratio
+            tfod.setZoom(1, 16.0/9.0);
         }
 
         /** Wait for the game to begin */
@@ -164,7 +162,6 @@ public class TensorFlowObjectDetection extends LinearOpMode {
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
-        parameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
 
         //  Instantiate the Vuforia engine
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
@@ -179,10 +176,10 @@ public class TensorFlowObjectDetection extends LinearOpMode {
         int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
             "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-        tfodParameters.minResultConfidence = 0.8f;
+        tfodParameters.minResultConfidence = 0.8f; //TODO: if this value is to high it can return wrong results. 0.7 is good to use if the detection is not working
         tfodParameters.isModelTensorFlow2 = true;
         tfodParameters.inputSize = 320;
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
-        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABELS);
+        tfod.loadModelFromFile(TFOD_MODEL_ASSET, LABELS);
     }
 }
