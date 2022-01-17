@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 // https://first-tech-challenge.github.io/SkyStone/  This is the link to ALL metered of FTC
 
+import com.qualcomm.hardware.ams.AMSColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -59,6 +60,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
 
             telemetry.addData("Object", "After SetArmHome");
             telemetry.update();
+            Pivot_Arm.SetArmHome(false);
 
             while (Pivot_Arm.GetArmHome() == false) {
                 Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
@@ -70,14 +72,17 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
 
             Intake.Home_TSE();
 
+
             Pivot_Arm.GotoPosition(1); //Sets the arm to the position of top goal
-            drivetrain.Strafing(-12, total_speed); //Line up towards shipping hub
-            drivetrain.ForwardorBackwards(35, total_speed); //Goes towards the shipping hub
+            drivetrain.Strafing(10, total_speed); //Line up towards shipping hub
+            drivetrain.ForwardorBackwards(26, total_speed); //Goes towards the shipping hub
             Intake.Update_outtake(1, Pivot_Arm.position); //Places the freight on the correct level
-            drivetrain.ForwardorBackwards(-3, total_speed); //Moves backwards a bit
-            drivetrain.Rotate(45, total_speed); //rotate to be in line of the turn table
-            drivetrain.Strafing(56, total_speed); //Goes to the turn table
-            Turn_Table.Auto(A, 1000); //Runs the turn table
+            drivetrain.ForwardorBackwards(-2.5, total_speed); //Moves backwards a bit
+            Pivot_Arm.GotoPosition(0);
+            Intake.Update_outtake(0, Pivot_Arm.position);
+            drivetrain.Rotate(-210.25, total_speed); //rotate to be in line of the turn table
+            drivetrain.Strafing(43, total_speed); //Goes to the turn table
+            Turn_Table.Auto(A, 4); //Runs the turn table
             drivetrain.Rotate(-45, total_speed); //Rotates to be in line with the storage hub
             drivetrain.Strafing(-105, total_speed); //Goes to the storage hub
 

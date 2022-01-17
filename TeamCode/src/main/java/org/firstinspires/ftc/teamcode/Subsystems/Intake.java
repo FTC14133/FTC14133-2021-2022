@@ -40,6 +40,7 @@ public class  Intake {
             Possession = false; //we do not have possession
             intake.setPower(speed); // Run intake
         }
+
     }
 
     public void Update_outtake(double speed, int position){ //Standard outtake function
@@ -51,7 +52,7 @@ public class  Intake {
     }
 
     public void Teleop(Gamepad gamepad2, int position){ //Code to be run in Op Mode void Loop at top level
-        if(gamepad2.left_trigger>0){ //if the left trigger is pulled
+        if(gamepad2.right_trigger>0){ //if the left trigger is pulled
             Update_outtake(gamepad2.right_trigger, position); //Run the outtake program
 
         }
@@ -61,7 +62,7 @@ public class  Intake {
         }
     }
     public void Team_Shipping_Element(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
-        if(gamepad2.x==true){ //if the x button is pressed
+        if(gamepad2.y==true){ //if the x button is pressed
             Hook.setPosition(1); //Hook extended
 
         }
