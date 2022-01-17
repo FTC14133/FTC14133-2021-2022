@@ -20,7 +20,7 @@ public class Drivetrain  {
     int tolerance = 4; // Encoder tolerance
     final double countsperrev = 28; // Counts per rev of the motor
     final double wheelD =96/25.4; // Diameter of the wheel (in inches)
-    final double gearratio=2*5.23; //Ratio of the entire drivetrain from the motor to the wheel
+    final double gearratio=2*2.89*2.89; //Ratio of the entire drivetrain from the motor to the wheel
     final double countsperin=countsperrev*gearratio*(1/(Math.PI*wheelD));
 
 

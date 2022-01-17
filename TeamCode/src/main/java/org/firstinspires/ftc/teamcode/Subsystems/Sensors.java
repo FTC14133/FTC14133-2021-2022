@@ -19,7 +19,7 @@ public class Sensors {
     public boolean[] Update_Switches(){
         WT = Warehouse_Turntable.getState(); // Sees if the switches are on or off. It will return a true or false (boolean).
         A = alliance_s.getState();
-        Log.i("WT", String.valueOf(WT));
+        Log.i("WT", String.valueOf(WT)); //prints the value of the switches
         Log.i("A", String.valueOf(A));
 
         /*

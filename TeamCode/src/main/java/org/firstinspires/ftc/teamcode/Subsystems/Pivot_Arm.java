@@ -104,7 +104,7 @@ public class Pivot_Arm {
                 lift.setTargetPosition(-210*countsperdegreeint); //Todo: Need to tune
                 break;
             case -3: // Intake Back
-                lift.setTargetPosition(-265*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(-280*countsperdegreeint); //Todo: Need to tune
                 break;
             default:
                 throw new IllegalStateException("Unexpected position value: " + position);

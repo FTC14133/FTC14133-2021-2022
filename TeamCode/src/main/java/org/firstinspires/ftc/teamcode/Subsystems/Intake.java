@@ -43,11 +43,11 @@ public class  Intake {
     }
 
     public void Update_outtake(double speed, int position){ //Standard outtake function
-        if(position>0){
-            speed=-speed;
+        if(position>0){ //if the position of the arm is on the backside of the robot
+            speed=-speed; //reverse the intake automatically so we can pick up stuff correctly
 
         }
-        intake.setPower(speed);
+        intake.setPower(speed);//Runs the intake
     }
 
     public void Teleop(Gamepad gamepad2, int position){ //Code to be run in Op Mode void Loop at top level
@@ -71,11 +71,12 @@ public class  Intake {
         }
     }
         public void Home_TSE(){ //Code to be run in Op Mode void Loop at top level
-            Hook.setPosition(0);
+            Hook.setPosition(0); //locks the hook
 
         }
         public boolean getPossession(){
-            return Possession;
+            return Possession; //returns the variable from thr beambreak that identifies if we have fright or not
+            //returns 0 if we have no freight, returns 1 if we have 1 freight
         }
     }
 
