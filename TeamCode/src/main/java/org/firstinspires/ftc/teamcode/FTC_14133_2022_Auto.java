@@ -28,7 +28,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
     boolean[] switches;
     boolean WT ; //This will decide if we are closer to the warehouse or turn table based on the switch on the robot
     boolean A ; //This will tell us that we are either on the red or blue alliance side
-    double total_speed = 0.25; //This is the speed of most of the motors.
+    double total_speed = 0.5; //This is the speed of most of the motors.
 
 
     public void waitForStart() {
@@ -61,10 +61,10 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
             telemetry.addData("Object", "After SetArmHome");
             telemetry.update();
             Pivot_Arm.SetArmHome(false);
-
             while (Pivot_Arm.GetArmHome() == false) {
                 Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
             }
+
             //Pivot_Arm.SetArmHome(true);
 
             telemetry.addData("Object", "Passed while loop");
@@ -72,19 +72,34 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
 
             Intake.Home_TSE();
 
+            drivetrain.Rotate(-45, total_speed);
+            Turn_Table.Auto(A, 8000);
+            drivetrain.Rotate(-90, total_speed);
+            Pivot_Arm.GotoPosition(1); //Sets the arm to the position of top goal
+            drivetrain.ForwardorBackwards(42.5, total_speed);
+            Intake.Update_outtake(0.5, Pivot_Arm.position);
+            sleep(500);
+            drivetrain.Strafing(35, total_speed);
+            drivetrain.Rotate(30, total_speed);
+            drivetrain.ForwardorBackwards(65, total_speed);
+            Pivot_Arm.GotoPosition(3);
 
+
+            /*
             Pivot_Arm.GotoPosition(1); //Sets the arm to the position of top goal
             drivetrain.Strafing(10, total_speed); //Line up towards shipping hub
             drivetrain.ForwardorBackwards(26, total_speed); //Goes towards the shipping hub
             Intake.Update_outtake(1, Pivot_Arm.position); //Places the freight on the correct level
             drivetrain.ForwardorBackwards(-2.5, total_speed); //Moves backwards a bit
-            Pivot_Arm.GotoPosition(0);
+            Pivot_Arm.GotoPosition(0); //57 and 26
             Intake.Update_outtake(0, Pivot_Arm.position);
             drivetrain.Rotate(-210.25, total_speed); //rotate to be in line of the turn table
-            drivetrain.Strafing(43, total_speed); //Goes to the turn table
+            drivetrain.Strafing(43.4, 0.2); //Goes to the turn table
             Turn_Table.Auto(A, 4); //Runs the turn table
-            drivetrain.Rotate(-45, total_speed); //Rotates to be in line with the storage hub
-            drivetrain.Strafing(-105, total_speed); //Goes to the storage hub
+            drivetrain.Rotate(15, total_speed); //Rotates to be in line with the storage hub
+            drivetrain.Strafing(-100, total_speed); //Goes to the storage hub
+
+             */
 
             if (A == false && WT == false && GateFlag == true) { //This code will check if the robot is on the BLUE side and on the Turntable side
                 //Need Camera Code //Sees where the duck is

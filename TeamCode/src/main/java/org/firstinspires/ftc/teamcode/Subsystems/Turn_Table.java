@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 
 public class Turn_Table {
@@ -33,6 +34,7 @@ public class Turn_Table {
         turn_table.setTargetPosition(turntabledist);
         turn_table.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         while (turn_table.isBusy()) {
+
         }
 
     }

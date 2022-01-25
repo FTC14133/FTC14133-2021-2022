@@ -22,6 +22,7 @@ public class Sensors {
         Log.i("WT", String.valueOf(WT)); //prints the value of the switches
         Log.i("A", String.valueOf(A));
 
+
         /*
         IMPORTANT:
                                 IMPORTANT VERY VERY VERY!!!!!!!!!!!!!!!!!!!!!!!!!!!!:

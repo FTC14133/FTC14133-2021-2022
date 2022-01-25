@@ -11,6 +11,8 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 public class  Intake {
     // Instantiate the motor variables
     private DcMotorEx intake;
@@ -51,13 +53,13 @@ public class  Intake {
         intake.setPower(speed);//Runs the intake
     }
 
-    public void Teleop(Gamepad gamepad2, int position){ //Code to be run in Op Mode void Loop at top level
+    public void Teleop(Gamepad gamepad2, int position, Telemetry telemetry){ //Code to be run in Op Mode void Loop at top level
         if(gamepad2.right_trigger>0){ //if the left trigger is pulled
-            Update_outtake(gamepad2.right_trigger, position); //Run the outtake program
+            Update_intake(gamepad2.right_trigger*0.75, position); //Run the outtake program
 
         }
         else {
-            Update_intake(gamepad2.left_trigger ,position); //Otherwise run the Intake program
+            Update_outtake(gamepad2.left_trigger*0.75 ,position); //Otherwise run the Intake program
 
         }
     }
@@ -73,6 +75,10 @@ public class  Intake {
     }
         public void Home_TSE(){ //Code to be run in Op Mode void Loop at top level
             Hook.setPosition(0); //locks the hook
+
+        }
+        public void print(Telemetry telemetry){ //Code to be run in Op Mode void Loop at top level
+            telemetry.addData("beambreak", beambreak.getState());
 
         }
         public boolean getPossession(){
