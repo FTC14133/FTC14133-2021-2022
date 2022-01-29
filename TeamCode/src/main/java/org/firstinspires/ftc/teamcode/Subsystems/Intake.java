@@ -21,7 +21,7 @@ public class  Intake {
     DigitalChannel beambreak_Up; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
     DigitalChannel beambreak_Down;
     Servo Hook = null;
-    boolean beambreak = !beambreak_Down.getState();
+    boolean beambreak = !beambreak_Down.getState()||!beambreak_Down.getState();
 
     public Intake(HardwareMap hardwareMap){                 // Motor Mapping
         intake = hardwareMap.get(DcMotorEx.class, "intake");      //Sets the names of the hardware on the hardware map
@@ -36,12 +36,8 @@ public class  Intake {
     public void Update_intake(double speed, int position){ //Standard intake function
         if(position<0){ //if the arm is towards the back
             speed = -speed; //flip the direction of the intake
-            beambreak = !beambreak_Up.getState();
         }
-        else if(position>0){
-            beambreak = !beambreak_Down.getState();
-        }
-        else if(!beambreak_Up.getState()) { //if beam is broken
+        else if(!beambreak_Down.getState()||!beambreak_Down.getState()) {
             Possession = true; //we have possession
             intake.setPower(0);//Stop intake
         }
@@ -85,7 +81,7 @@ public class  Intake {
 
         }
         public void print(Telemetry telemetry){ //Code to be run in Op Mode void Loop at top level
-            telemetry.addData("beambreak", beambreak_Up.getState());
+            telemetry.addData("possession", getPossession());
 
         }
         public boolean getPossession(){
