@@ -18,13 +18,16 @@ public class  Intake {
     private DcMotorEx intake;
     boolean toggle = true;
     boolean Possession = true; //Variable telling whether we have possession of a game piece or not
-    DigitalChannel beambreak; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
+    DigitalChannel beambreak_Up; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
+    DigitalChannel beambreak_Down;
     Servo Hook = null;
+    boolean beambreak = !beambreak_Down.getState();
 
     public Intake(HardwareMap hardwareMap){                 // Motor Mapping
         intake = hardwareMap.get(DcMotorEx.class, "intake");      //Sets the names of the hardware on the hardware map
         // "DeviceName" must match the Config EXACTLY
-        beambreak = hardwareMap.get(DigitalChannel.class, "beambreak");
+        beambreak_Up = hardwareMap.get(DigitalChannel.class, "beambreak_Up");
+        beambreak_Down = hardwareMap.get(DigitalChannel.class, "beambreak_Down");
         // Set motor direction based on which side of the robot the motors are on
         intake.setDirection(DcMotorEx.Direction.FORWARD);
         Hook =hardwareMap.get(Servo.class,"Hook");
@@ -33,8 +36,12 @@ public class  Intake {
     public void Update_intake(double speed, int position){ //Standard intake function
         if(position<0){ //if the arm is towards the back
             speed = -speed; //flip the direction of the intake
+            beambreak = !beambreak_Up.getState();
         }
-        if(!beambreak.getState()) { //if beam is broken
+        else if(position>0){
+            beambreak = !beambreak_Down.getState();
+        }
+        else if(!beambreak_Up.getState()) { //if beam is broken
             Possession = true; //we have possession
             intake.setPower(0);//Stop intake
         }
@@ -78,7 +85,7 @@ public class  Intake {
 
         }
         public void print(Telemetry telemetry){ //Code to be run in Op Mode void Loop at top level
-            telemetry.addData("beambreak", beambreak.getState());
+            telemetry.addData("beambreak", beambreak_Up.getState());
 
         }
         public boolean getPossession(){
