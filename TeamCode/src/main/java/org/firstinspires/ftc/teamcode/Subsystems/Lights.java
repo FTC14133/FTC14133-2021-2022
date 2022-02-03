@@ -23,9 +23,6 @@ public class Lights {
         else if (Rotation==true){ //The Rotation is if the turn table motor is on
             blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_LAVA_PALETTE);
             }
-        else if (Rotation==false){
-            blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.AQUA);
-        }
         else if (A == true){
             blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RED);
         }

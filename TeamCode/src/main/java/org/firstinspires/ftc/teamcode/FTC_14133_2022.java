@@ -25,7 +25,7 @@ public class  FTC_14133_2022 extends OpMode {
  private Turn_Table Turn_Table=null;
  private Pivot_Arm Pivot_Arm=null;
  private Sensors Sensors=null;
- //private Lights Lights=null;
+ private Lights Lights=null;
  boolean [] switches;
  boolean Alliance;
  boolean Warehouse_TurnTable;
@@ -36,16 +36,16 @@ public class  FTC_14133_2022 extends OpMode {
      Turn_Table = new Turn_Table(hardwareMap);
      Pivot_Arm = new Pivot_Arm(hardwareMap);
      Sensors = new Sensors(hardwareMap);
-     //Lights = new Lights(hardwareMap);
+     Lights = new Lights(hardwareMap);
  }
 
  public void init_loop() {
 
  }
  public void start() {
-     switches = Sensors.Update_Switches(); //Reads the switches for which alliance we are on
-     Warehouse_TurnTable = switches[0]; //Assigns a variable to the state of our alliance (true red, false blue)
-     Alliance = switches[1]; //Assigns a variable to the state of our alliance (true red, false blue)
+     //switches = Sensors.Update_Switches(); //Reads the switches for which alliance we are on
+     Warehouse_TurnTable = false; //Assigns a variable to the state of our alliance (true red, false blue)
+     Alliance = false; //Assigns a variable to the state of our alliance (true red, false blue)
 
      telemetry.addData("Status", "Start");
      Turn_Table.Direction(Alliance);
@@ -62,12 +62,12 @@ public class  FTC_14133_2022 extends OpMode {
 
      drivetrain.Teleop(gamepad1,telemetry);
 
-     //Lights.Update_Lights(Intake.getPossession(),Turn_Table.getRotation(), Alliance);
+     Lights.Update_Lights(Intake.getPossession(),Turn_Table.getRotation(), Alliance);
 
-     Intake.Teleop(gamepad2,Pivot_Arm.GetArmPosition()); //Passes position of the arm so intake direction can change.
+     Intake.Teleop(gamepad2,Pivot_Arm.GetArmPosition(), telemetry); //Passes position of the arm so intake direction can change.
      Intake.Team_Shipping_Element(gamepad2);
      Turn_Table.Teleop(gamepad2);
-
+     Intake.print(telemetry);
      telemetry.update();
 
  }

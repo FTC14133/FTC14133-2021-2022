@@ -17,10 +17,10 @@ public class Drivetrain  {
     private DcMotorEx rb; //Back right motor of drivetrain
     private DcMotorEx lf; //Front left motor of drivetrain
     private DcMotorEx rf; //Front right motor of drivetrain
-    int tolerance = 2; // Encoder tolerance
+    int tolerance = 4; // Encoder tolerance
     final double countsperrev = 28; // Counts per rev of the motor
     final double wheelD =96/25.4; // Diameter of the wheel (in inches)
-    final double gearratio=2*5.23; //Ratio of the entire drivetrain from the motor to the wheel
+    final double gearratio=2*2.89*2.89; //Ratio of the entire drivetrain from the motor to the wheel
     final double countsperin=countsperrev*gearratio*(1/(Math.PI*wheelD));
 
 
@@ -78,7 +78,7 @@ public class Drivetrain  {
         lb.setTargetPositionTolerance(tolerance);
         //Driving left/right
         //NOT DONE
-        double encodercounts = turn * 13.18; // test iteratively //ToDo: This math needs to be redone as well
+        double encodercounts = turn * 7.123; // test iteratively //ToDo: This math needs to be redone as well
         int encodercountsint = (int) encodercounts;
         lf.setTargetPosition(-encodercountsint);
         lf.setPower(speed);        //
@@ -134,7 +134,7 @@ public class Drivetrain  {
     public void Teleop(Gamepad gamepad1, Telemetry telemetry){ //Code to be run in Teleop Mode void Loop at top level
         double leftPowerY = -gamepad1.left_stick_y;      //find the value of y axis on the left joystick;
         double leftPowerX = gamepad1.left_stick_x;      //find the value of x axis on the left joystick;
-        double rightPowerX = gamepad1.right_stick_x*0.5;     //find the value of x axis on the right joystick;
+        double rightPowerX = gamepad1.right_stick_x*0.75;     //find the value of x axis on the right joystick;
         //Power of Mecanum wheels;
         double leftfrontpower = leftPowerY + leftPowerX + rightPowerX;     //Power level for leftfront
         double rightbackpower = leftPowerY + leftPowerX - rightPowerX;     //Power level for rightback
