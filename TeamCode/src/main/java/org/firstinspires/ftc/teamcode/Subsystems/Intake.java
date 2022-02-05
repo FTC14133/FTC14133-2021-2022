@@ -5,6 +5,7 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -20,8 +21,7 @@ public class  Intake {
     boolean Possession = true; //Variable telling whether we have possession of a game piece or not
     DigitalChannel beambreak_Up; //The "beambreak" sensor is a type of IR sensor that detects if it vision is broken
     DigitalChannel beambreak_Down;
-    Servo Hook = null;
-    boolean beambreak = !beambreak_Down.getState()||!beambreak_Down.getState();
+    Servo Hook;
 
     public Intake(HardwareMap hardwareMap){                 // Motor Mapping
         intake = hardwareMap.get(DcMotorEx.class, "intake");      //Sets the names of the hardware on the hardware map
@@ -29,7 +29,7 @@ public class  Intake {
         beambreak_Up = hardwareMap.get(DigitalChannel.class, "beambreak_Up");
         beambreak_Down = hardwareMap.get(DigitalChannel.class, "beambreak_Down");
         // Set motor direction based on which side of the robot the motors are on
-        intake.setDirection(DcMotorEx.Direction.FORWARD);
+        intake.setDirection(DcMotorEx.Direction.REVERSE);
         Hook =hardwareMap.get(Servo.class,"Hook");
     }
 
@@ -37,7 +37,7 @@ public class  Intake {
         if(position<0){ //if the arm is towards the back
             speed = -speed; //flip the direction of the intake
         }
-        else if(!beambreak_Down.getState()||!beambreak_Down.getState()) {
+        if(!beambreak_Down.getState() || !beambreak_Up.getState()) {
             Possession = true; //we have possession
             intake.setPower(0);//Stop intake
         }
@@ -81,12 +81,13 @@ public class  Intake {
 
         }
         public void print(Telemetry telemetry){ //Code to be run in Op Mode void Loop at top level
-            telemetry.addData("possession", getPossession());
+            telemetry.addData("possession", Possession);
+            telemetry.addData("beambreak_Up", beambreak_Up.getState());
+            telemetry.addData("beambreak_Down", beambreak_Down.getState());
 
         }
         public boolean getPossession(){
             return Possession; //returns the variable from thr beambreak that identifies if we have fright or not
-            //returns 0 if we have no freight, returns 1 if we have 1 freight
         }
     }
 
