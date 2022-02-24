@@ -38,7 +38,6 @@ public class  Intake {
             speed = -speed; //flip the direction of the intake
         }
         if(!beambreak_Down.getState() || !beambreak_Up.getState()) {
-            Possession = true; //we have possession
             intake.setPower(0);//Stop intake
         }
         else{ // if beam break not broken
@@ -59,7 +58,6 @@ public class  Intake {
     public void Teleop(Gamepad gamepad2, int position, Telemetry telemetry){ //Code to be run in Op Mode void Loop at top level
         if(gamepad2.right_trigger>0){ //if the left trigger is pulled
             Update_intake(gamepad2.right_trigger*0.75, position); //Run the outtake program
-
         }
         else {
             Update_outtake(gamepad2.left_trigger*0.75 ,position); //Otherwise run the Intake program
@@ -80,7 +78,7 @@ public class  Intake {
             Hook.setPosition(0); //locks the hook
 
         }
-        public void print(Telemetry telemetry){ //Code to be run in Op Mode void Loop at top level
+        public void beambreak_print(Telemetry telemetry){ //Code to be run in Op Mode void Loop at top level
             telemetry.addData("possession", Possession);
             telemetry.addData("beambreak_Up", beambreak_Up.getState());
             telemetry.addData("beambreak_Down", beambreak_Down.getState());
@@ -88,6 +86,15 @@ public class  Intake {
         }
         public boolean getPossession(){
             return Possession; //returns the variable from thr beambreak that identifies if we have fright or not
+        }
+
+        public void Possession_Check(){
+            if(!beambreak_Down.getState() || !beambreak_Up.getState()){
+                Possession = true;
+            }
+            else{
+                Possession = false;
+            }
         }
     }
 
