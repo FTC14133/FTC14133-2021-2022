@@ -16,6 +16,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
+import com.qualcomm.robotcore.util.RobotLog;
+
 @Autonomous(name="FTC_14133_2022_Auto", group="Auto")
 
 
@@ -45,6 +47,8 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
             "ASpmDeb/////AAABmRxze77upU+Eirum4kwztfeCR62IXUXk4nl6GbXS5ccPvrZ6U5leBd3C5/4DeVoUWNwQNpV2mh+gx1oUfoJ7WLC/LEwZxYKoHdiVwPYcKuNZcCFud4SM8Xkeb7Fdzdejaxi5tUPvMrcDOnyhs0zOQRY2aVWJWVZ/OeYo/l9Dq4TUIfmv7Xc4TQkynXC9fbbqcu4do+wRTCRtbT5sXvzCgSk1TsEnkFrARdGPHOIBbGA85n8ORpGdx3W/egnaji6pE5ie7E8wk+1sRk46qLPb0YTQkTI4GOWp13dIWqMqZVV8ZD7T4kupqbcjeePyyVpWDfbvLX5Cwk6HC9NcRhJpmDU18zoekAahJw0Y0YWc/whA";
     private VuforiaLocalizer vuforia;
     private TFObjectDetector tfod;
+    int first = 0;
+    int second = 0;
 
     public void waitForStart() {
         telemetry.addData("Object Creation", "Start");
@@ -92,7 +96,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
 
         i = 0;
         counter = 0;
-        while (counter <= 50){
+        while (counter <= 500 && i == 0){
             if (tfod != null) {
                 // getUpdatedRecognitions() will return null if no new information is available since
                 // the last time that call was made.
@@ -120,6 +124,8 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
 
         //     if ((Pivot_Arm != null) && (drivetrain != null) && (Intake !=null) && (Sensors != null) && (Turn_Table != null))
         //     {
+
+        RobotLog.d("TEST:TEST");
 
         initVuforia();
         initTfod();
@@ -163,31 +169,33 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         telemetry.update();
 
 
-
-
-
-        if (reconnition() > 0){
+        sleep(5000);
+        first = reconnition();
+        if (first > 0){
             telemetry.addData("Recognition", "Saw TSE");
             telemetry.update();
-            Pivot_Arm.GotoPosition(-1);
-            drivetrain.Strafing(-32, total_speed);
+            Pivot_Arm.GotoPosition(-2, 0);
+            drivetrain.Strafing(-26, total_speed);
         }
         telemetry.addData("Recognition", "Ran code to see TSE");
-        telemetry.addData("i", i);
+        telemetry.addData("i", first);
         telemetry.update();
 
-        if (reconnition() == 0){
-            drivetrain.Strafing(-20, total_speed);
-            if (reconnition() > 0){
-                Pivot_Arm.GotoPosition(-3);
+        if (first == 0){
+            drivetrain.Strafing(-16, total_speed);
+            sleep(5000);
+            second = reconnition();
+            if (second > 0){
+                Pivot_Arm.GotoPosition(-2, 0);
                 drivetrain.Strafing(-12, total_speed);
             }
-            else{
-                Pivot_Arm.GotoPosition(-2);
+            if (second == 0){
+                Pivot_Arm.GotoPosition(-2, 0);
                 drivetrain.Strafing(-12, total_speed);
             }
 
         }
+
 
 
 
@@ -195,7 +203,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
         Intake.Update_outtake(0.5, 1, gamepad2);
         sleep(500);
         drivetrain.ForwardorBackwards(25, total_speed);
-        drivetrain.Strafing(-30, total_speed);
+        drivetrain.Strafing(-45, total_speed);
         /*
         drivetrain.ForwardorBackwards(42.5, total_speed);
         Intake.Update_outtake(0.5, Pivot_Arm.position);

@@ -27,6 +27,8 @@ public class Pivot_Arm {
     final double countsperdegree=countsperrev*gearratio/360; //Converts counts per motor rev to counts per degree of arm rotation
     final int countsperdegreeint= 4; //(int)countsperdegree; //Converts to an integer value
     final double liftpower=0.75;
+    float joystick_double;
+    int joystick_int;
 
     boolean toggle = true;
 
@@ -43,6 +45,8 @@ public class Pivot_Arm {
 
     public void Teleop(Gamepad gamepad2, Telemetry telemetry){ //Code to be run in Op Mode void Loop at top level
 
+        joystick_double = gamepad2.right_stick_y*10;
+        joystick_int = (int) joystick_double;
 
         if (Home==false){ //If arm is not homed
             HomeArm(); //Runs the homing sequence for the arm to reset it
@@ -69,7 +73,8 @@ public class Pivot_Arm {
             else if (!gamepad2.dpad_up && !gamepad2.dpad_down) { //if neither button is being pressed
                 toggle = true; // Button has been released, so this allows a re-press to activate the code above.
             }
-            GotoPosition(position);
+
+            GotoPosition(position, joystick_int);
         }
         telemetry.addData("Home", Home);
         telemetry.addData("Arm Position", position);
@@ -77,39 +82,37 @@ public class Pivot_Arm {
         telemetry.addData("Encoder Position", lift.getCurrentPosition());
     }
 
-    public void GotoPosition(int position){
+    public void GotoPosition(int position, int joystick){
         lift.setPower(liftpower);        //Sets the power for the lift
         switch (position) {
             case 3: // Intake Front
-                lift.setTargetPosition(0*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(0*countsperdegreeint+joystick);
                 break;
-
             case 2: // Mid Level Front
-                lift.setTargetPosition(-60*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(-60*countsperdegreeint+joystick);
                 break;
 
             case 1: //Upper Level Front
-                lift.setTargetPosition(-100*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(-100*countsperdegreeint+joystick);
                 break;
 
             case 0: //Straight Up
-                lift.setTargetPosition(-140*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(-140*countsperdegreeint+joystick);
                 break;
 
             case -1: //Upper Level Back
-                lift.setTargetPosition(-185*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(-185*countsperdegreeint+joystick);
                 break;
-
             case -2: //Mid Level Back
-                lift.setTargetPosition(-220*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(-220*countsperdegreeint+joystick);
                 break;
             case -3: // Intake Back
-                lift.setTargetPosition(-290*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(-290*countsperdegreeint+joystick);
                 break;
             default:
                 throw new IllegalStateException("Unexpected position value: " + position);
         }
-        //
+
     }
 
     public int GetArmPosition(){ // Returns the current position value of the arm
