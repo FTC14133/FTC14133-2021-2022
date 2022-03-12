@@ -47,10 +47,13 @@ public class  Intake {
 
     }
 
-    public void Update_outtake(double speed, int position){ //Standard outtake function
+    public void Update_outtake(double speed, int position, Gamepad gamepad2){ //Standard outtake function
         if(position>0){ //if the position of the arm is on the backside of the robot
             speed=-speed; //reverse the intake automatically so we can pick up stuff correctly
 
+        }
+        if (gamepad2.left_bumper) {
+            speed *= .5;
         }
         intake.setPower(speed);//Runs the intake
     }
@@ -60,7 +63,7 @@ public class  Intake {
             Update_intake(gamepad2.right_trigger*0.75, position); //Run the outtake program
         }
         else {
-            Update_outtake(gamepad2.left_trigger*0.75 ,position); //Otherwise run the Intake program
+            Update_outtake(gamepad2.left_trigger*0.75 ,position, gamepad2); //Otherwise run the Intake program
 
         }
         telemetry.addData("Posession",Possession);

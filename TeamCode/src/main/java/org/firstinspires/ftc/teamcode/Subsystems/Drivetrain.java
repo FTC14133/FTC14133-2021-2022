@@ -142,10 +142,10 @@ public class Drivetrain  {
         double rightfrontpower = leftPowerY - leftPowerX - rightPowerX;    //Power level for rightfront
 
         if (gamepad1.right_bumper) {
-            leftfrontpower *= 0.5;
-            rightfrontpower *= 0.5;
-            leftbackpower *= 0.5;
-            rightbackpower *= 0.5;
+            leftfrontpower *= 0.35;
+            rightfrontpower *= 0.35;
+            leftbackpower *= 0.35;
+            rightbackpower *= 0.35;
         }
 
         //Get the max of the the absolute values of the power of the wheels.

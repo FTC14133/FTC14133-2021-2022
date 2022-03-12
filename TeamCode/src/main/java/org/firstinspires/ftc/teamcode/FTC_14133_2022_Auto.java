@@ -192,7 +192,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
 
 
         drivetrain.ForwardorBackwards(-25, total_speed);
-        Intake.Update_outtake(0.5, 1);
+        Intake.Update_outtake(0.5, 1, gamepad2);
         sleep(500);
         drivetrain.ForwardorBackwards(25, total_speed);
         drivetrain.Strafing(-30, total_speed);
@@ -239,7 +239,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
 
                 drivetrain.Strafing(-12, total_speed); //Line up towards shipping hub
                 drivetrain.ForwardorBackwards(35, total_speed); //Goes towards the shipping hub
-                Intake.Update_outtake(1, Pivot_Arm.position); //Places the freight on the correct level
+                Intake.Update_outtake(1, Pivot_Arm.position, gamepad2); //Places the freight on the correct level
                 drivetrain.ForwardorBackwards(-3, total_speed); //Moves backwards a bit
                 drivetrain.Rotate(45, total_speed); //rotate to be in line of the turn table
                 drivetrain.Strafing(56, total_speed); //Goes to the turn table
@@ -263,7 +263,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
              */
                 drivetrain.Strafing(12, total_speed); //We will go to the right to the team shipping hub
                 drivetrain.ForwardorBackwards(35, total_speed); //goes forward to the team shipping hub
-                Intake.Update_outtake(1, Pivot_Arm.position); //puts the freight on the shipping hub
+                Intake.Update_outtake(1, Pivot_Arm.position, gamepad2); //puts the freight on the shipping hub
                 drivetrain.ForwardorBackwards(-35, total_speed); //goes away from the shipping hub
                 drivetrain.Strafing(-62, total_speed); //goes up to the warehouse
             } else if (A == true && WT == false && GateFlag == true) { //red and turntable side
@@ -280,7 +280,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
              */
                 drivetrain.Strafing(12, total_speed); //Goes in line wit the shipping hub
                 drivetrain.ForwardorBackwards(35, total_speed); //Goes to shipping hub
-                Intake.Update_outtake(total_speed, Pivot_Arm.position); //Places freight
+                Intake.Update_outtake(total_speed, Pivot_Arm.position, gamepad2); //Places freight
                 drivetrain.ForwardorBackwards(-3, total_speed); //Goes backwards a bit
                 drivetrain.Rotate(-45, total_speed); //Rotates to be in line with the turn table
                 drivetrain.Strafing(56, total_speed); //Goes to the turntable
@@ -301,7 +301,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
              */
                 drivetrain.Strafing(-12, total_speed); // Lines up with shipping hub
                 drivetrain.ForwardorBackwards(35, total_speed); //Goes towards the shipping hub
-                Intake.Update_outtake(1, Pivot_Arm.position); //Runs the intake to release the fright
+                Intake.Update_outtake(1, Pivot_Arm.position, gamepad2); //Runs the intake to release the fright
                 drivetrain.ForwardorBackwards(-35, total_speed);//backs away from shipping hub
                 drivetrain.Strafing(62, total_speed); //Parks in the storage hub
             }
