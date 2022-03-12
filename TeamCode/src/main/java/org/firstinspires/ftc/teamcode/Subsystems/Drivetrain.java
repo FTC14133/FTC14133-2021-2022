@@ -141,6 +141,13 @@ public class Drivetrain  {
         double leftbackpower = leftPowerY - leftPowerX + rightPowerX;      //Power level for leftback
         double rightfrontpower = leftPowerY - leftPowerX - rightPowerX;    //Power level for rightfront
 
+        if (gamepad1.right_bumper) {
+            leftfrontpower *= 0.5;
+            rightfrontpower *= 0.5;
+            leftbackpower *= 0.5;
+            rightbackpower *= 0.5;
+        }
+
         //Get the max of the the absolute values of the power of the wheels.
         double NormScaling = Math.max(Math.max(Math.abs(leftfrontpower), Math.abs(rightfrontpower)), Math.max(Math.abs(leftbackpower), Math.abs(rightbackpower)));
 
@@ -167,4 +174,6 @@ public class Drivetrain  {
     public double getWheelD() {
         return wheelD;
     }
+
+
 }

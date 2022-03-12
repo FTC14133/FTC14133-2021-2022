@@ -63,6 +63,7 @@ public class  Intake {
             Update_outtake(gamepad2.left_trigger*0.75 ,position); //Otherwise run the Intake program
 
         }
+        telemetry.addData("Posession",Possession);
     }
     public void Team_Shipping_Element(Gamepad gamepad2){ //Code to be run in Op Mode void Loop at top level
         if(gamepad2.y==true){ //if the x button is pressed
