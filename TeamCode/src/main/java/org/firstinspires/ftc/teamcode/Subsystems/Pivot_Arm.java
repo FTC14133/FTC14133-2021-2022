@@ -45,7 +45,7 @@ public class Pivot_Arm {
 
     public void Teleop(Gamepad gamepad2, Telemetry telemetry){ //Code to be run in Op Mode void Loop at top level
 
-        joystick_double = gamepad2.right_stick_y*40;
+        joystick_double = gamepad2.right_stick_y*60;
         joystick_int = (int) joystick_double;
 
         if (Home==false){ //If arm is not homed
