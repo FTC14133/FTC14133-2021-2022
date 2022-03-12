@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Drivetrain;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
@@ -59,7 +60,7 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
 
             drivetrain.Strafing(-12, total_speed);
             drivetrain.ForwardorBackwards(23, total_speed);
-            Intake.Update_outtake(1, Pivot_Arm.position); //Places the freight on the correct level
+            Intake.Update_outtake(1, Pivot_Arm.position, gamepad2); //Places the freight on the correct level
             drivetrain.ForwardorBackwards(-23, total_speed); //Moves backwards
             Pivot_Arm.GotoPosition(-3, 0); //Puts down the arm
             drivetrain.Strafing(47, total_speed); //Goes to park the turntable
@@ -79,7 +80,7 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
              */
             drivetrain.Strafing(23,1); //lines up with shipping hub
             drivetrain.ForwardorBackwards(23,1); //Goes to shipping hub
-            Intake.Update_outtake(1, Pivot_Arm.position); //Releases freight
+            Intake.Update_outtake(1, Pivot_Arm.position, gamepad2); //Releases freight
             drivetrain.ForwardorBackwards(-23,1); //Goes backwards
             drivetrain.Strafing(-47,1); //Parks in warehouse
         }
@@ -97,7 +98,7 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
              */
             drivetrain.Strafing(11, 1); //We will go to the right to the team shipping element
             drivetrain.ForwardorBackwards(23, 1); //goes forward to the team shipping element
-            Intake.Update_outtake(1, Pivot_Arm.position); //puts the freight on the shipping element
+            Intake.Update_outtake(1, Pivot_Arm.position,gamepad2); //puts the freight on the shipping element
             drivetrain.ForwardorBackwards(-23, 1); //goes away from the shipping element
             drivetrain.Strafing(-48,1); //goes up to the warehouse
 
@@ -113,7 +114,7 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
                 */
             drivetrain.Strafing(-23,1);//goes up to the shipping hub
             drivetrain.ForwardorBackwards(23,1); //goes forward to the shipping hub
-            Intake.Update_outtake(1, Pivot_Arm.position); // puts freight on the shipping hub
+            Intake.Update_outtake(1, Pivot_Arm.position, gamepad2); // puts freight on the shipping hub
             drivetrain.ForwardorBackwards(-23,1);//goes back from the shipping hub
             drivetrain.Strafing(-48,1);//goes up to the warehouse
         }
@@ -133,11 +134,11 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
             Turn_Table.Auto(A,1000); //spins the turntable
             drivetrain.Strafing(47,1); //goes up to the shipping element
             drivetrain.ForwardorBackwards(23,1); //goes forward to the shipping element
-            Intake.Update_outtake(1, Pivot_Arm.position); //puts freight on the shipping element
+            Intake.Update_outtake(1, Pivot_Arm.position, gamepad2); //puts freight on the shipping element
             drivetrain.ForwardorBackwards(-23,1);//goes away from the shipping element
             drivetrain.Strafing(48,1);//parks in the warehouse
 
-            Intake.Update_outtake(1, Pivot_Arm.position);
+            Intake.Update_outtake(1, Pivot_Arm.position,gamepad2);
             drivetrain.Strafing(-23,1);
             //Need Camera Code //Sees where the duck is
             /*
@@ -153,7 +154,7 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
 
             drivetrain.Strafing(-23,1);
             drivetrain.ForwardorBackwards(23,1);
-            Intake.Update_outtake(1, Pivot_Arm.position);
+            Intake.Update_outtake(1, Pivot_Arm.position,gamepad2);
             drivetrain.ForwardorBackwards(-23,1);
             drivetrain.Strafing(48,1);
 
@@ -172,7 +173,7 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
              */
             drivetrain.Strafing(-12, total_speed); // Lines up with shipping hub
             drivetrain.ForwardorBackwards(23, total_speed); //Goes towards the shipping hub
-            Intake.Update_outtake(1, Pivot_Arm.position); //Runs the intake to release the fright
+            Intake.Update_outtake(1, Pivot_Arm.position, gamepad2); //Runs the intake to release the fright
             drivetrain.ForwardorBackwards(-23, total_speed);//backs away from shipping hub
             drivetrain.Strafing(-47, total_speed); //Goes to park at the warehouse
 
@@ -188,7 +189,7 @@ public class FTC_14133_2022_MemberNoAuto extends LinearOpMode {
                 */
             drivetrain.Strafing(23,1);//goes down to the shipping hub
             drivetrain.ForwardorBackwards(23,1);//goes forward to the shipping hub
-            Intake.Update_outtake(1, Pivot_Arm.position);//puts freight on the shipping hub
+            Intake.Update_outtake(1, Pivot_Arm.position, gamepad2);//puts freight on the shipping hub
             drivetrain.ForwardorBackwards(-23,1);//goes back from the shipping hub
             drivetrain.Strafing(-48,1);//goes up to the warehouse
         }
