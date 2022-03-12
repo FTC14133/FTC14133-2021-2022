@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode.Subsystems;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -52,7 +52,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
  * is explained below.
  */
 @TeleOp(name = "TensorFlow Object Detection", group = "Auto")
-@Disabled
+
 public class TensorFlowObjectDetection extends LinearOpMode {
   /* Note: This sample uses the all-objects Tensor Flow model (FreightFrenzy_BCDM.tflite), which contains
    * the following 4 detectable objects
@@ -65,9 +65,9 @@ public class TensorFlowObjectDetection extends LinearOpMode {
    *  FreightFrenzy_BC.tflite  0: Ball,  1: Cube
    *  FreightFrenzy_DM.tflite  0: Duck,  1: Marker
    */                                      // TODO: Here we have to put our own tflite file
-    private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
+    private static final String TFOD_MODEL_ASSET = "model_20220212_125551.tflite";
     private static final String[] LABELS = {
-      "Duck" // TODO: Here we have to put the correct name from the model
+      "TSE" // TODO: Here we have to put the correct name from the model
     };
 
     /*
@@ -176,9 +176,9 @@ public class TensorFlowObjectDetection extends LinearOpMode {
         int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
             "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-        tfodParameters.minResultConfidence = 0.8f; //TODO: if this value is to high it can return wrong results. 0.7 is good to use if the detection is not working
+        tfodParameters.minResultConfidence = 0.7f; //TODO: if this value is to high it can return wrong results. 0.7 is good to use if the detection is not working
         tfodParameters.isModelTensorFlow2 = true;
-        tfodParameters.inputSize = 320;
+        //tfodParameters.inputSize = 320;
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromFile(TFOD_MODEL_ASSET, LABELS);
     }

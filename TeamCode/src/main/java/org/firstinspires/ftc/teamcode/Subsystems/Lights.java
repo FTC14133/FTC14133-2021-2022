@@ -21,7 +21,7 @@ public class Lights {
             blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.GOLD);
         }
         else if (Rotation==true){ //The Rotation is if the turn table motor is on
-            blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_LAVA_PALETTE);
+            blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.CP1_HEARTBEAT_FAST);
             }
         else if (A == true){
             blinkinLedDriver.setPattern(RevBlinkinLedDriver.BlinkinPattern.RED);

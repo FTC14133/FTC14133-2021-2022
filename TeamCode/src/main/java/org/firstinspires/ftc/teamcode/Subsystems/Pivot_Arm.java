@@ -85,26 +85,26 @@ public class Pivot_Arm {
                 break;
 
             case 2: // Mid Level Front
-                lift.setTargetPosition(-34*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(-60*countsperdegreeint); //Todo: Need to tune
                 break;
 
             case 1: //Upper Level Front
-                lift.setTargetPosition(-75*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(-100*countsperdegreeint); //Todo: Need to tune
                 break;
 
             case 0: //Straight Up
-                lift.setTargetPosition(-120*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(-140*countsperdegreeint); //Todo: Need to tune
                 break;
 
             case -1: //Upper Level Back
-                lift.setTargetPosition(-170*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(-185*countsperdegreeint); //Todo: Need to tune
                 break;
 
             case -2: //Mid Level Back
-                lift.setTargetPosition(-210*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(-220*countsperdegreeint); //Todo: Need to tune
                 break;
             case -3: // Intake Back
-                lift.setTargetPosition(-280*countsperdegreeint); //Todo: Need to tune
+                lift.setTargetPosition(-290*countsperdegreeint); //Todo: Need to tune
                 break;
             default:
                 throw new IllegalStateException("Unexpected position value: " + position);

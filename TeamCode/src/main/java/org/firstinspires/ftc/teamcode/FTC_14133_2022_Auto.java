@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 // https://first-tech-challenge.github.io/SkyStone/  This is the link to ALL metered of FTC
 
-import com.qualcomm.hardware.ams.AMSColorSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -11,6 +10,12 @@ import org.firstinspires.ftc.teamcode.Subsystems.Pivot_Arm;
 import org.firstinspires.ftc.teamcode.Subsystems.Sensors;
 import org.firstinspires.ftc.teamcode.Subsystems.Turn_Table;
 
+import java.util.List;
+import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
+import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
+
 @Autonomous(name="FTC_14133_2022_Auto", group="Auto")
 
 
@@ -19,17 +24,27 @@ import org.firstinspires.ftc.teamcode.Subsystems.Turn_Table;
 
 
 public class  FTC_14133_2022_Auto extends LinearOpMode {
-    private Drivetrain drivetrain=null; // This activate the sub systems
-    private Intake Intake=null;
-    private Turn_Table Turn_Table=null;
-    private Pivot_Arm Pivot_Arm =null;
-    private Sensors Sensors=null;
+    private Drivetrain drivetrain = null; // This activate the sub systems
+    private Intake Intake = null;
+    private Turn_Table Turn_Table = null;
+    private Pivot_Arm Pivot_Arm = null;
+    private Sensors Sensors = null;
     boolean GateFlag = false;
     boolean[] switches;
-    boolean WT ; //This will decide if we are closer to the warehouse or turn table based on the switch on the robot
-    boolean A ; //This will tell us that we are either on the red or blue alliance side
+    boolean WT; //This will decide if we are closer to the warehouse or turn table based on the switch on the robot
+    boolean A; //This will tell us that we are either on the red or blue alliance side
     double total_speed = 0.5; //This is the speed of most of the motors.
-
+    int i = 0;
+    int counter = 0;
+    int TSE = 0;
+    private static final String TFOD_MODEL_ASSET = "model_20220212_125551.tflite";
+    private static final String[] LABELS = {
+            "TSE"
+    };
+    private static final String VUFORIA_KEY =
+            "ASpmDeb/////AAABmRxze77upU+Eirum4kwztfeCR62IXUXk4nl6GbXS5ccPvrZ6U5leBd3C5/4DeVoUWNwQNpV2mh+gx1oUfoJ7WLC/LEwZxYKoHdiVwPYcKuNZcCFud4SM8Xkeb7Fdzdejaxi5tUPvMrcDOnyhs0zOQRY2aVWJWVZ/OeYo/l9Dq4TUIfmv7Xc4TQkynXC9fbbqcu4do+wRTCRtbT5sXvzCgSk1TsEnkFrARdGPHOIBbGA85n8ORpGdx3W/egnaji6pE5ie7E8wk+1sRk46qLPb0YTQkTI4GOWp13dIWqMqZVV8ZD7T4kupqbcjeePyyVpWDfbvLX5Cwk6HC9NcRhJpmDU18zoekAahJw0Y0YWc/whA";
+    private VuforiaLocalizer vuforia;
+    private TFObjectDetector tfod;
 
     public void waitForStart() {
         telemetry.addData("Object Creation", "Start");
@@ -48,41 +63,149 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
 
     }
 
+    private void initVuforia() {
+        /*
+         * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
+         */
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+
+        parameters.vuforiaLicenseKey = VUFORIA_KEY;
+
+        //  Instantiate the Vuforia engine
+        vuforia = ClassFactory.getInstance().createVuforia(parameters);
+
+        // Loading trackables is not necessary for the TensorFlow Object Detection engine.
+    }
+
+    private void initTfod() {
+        int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
+                "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+        tfodParameters.minResultConfidence = 0.5f; //TODO: if this value is to high it can return wrong results. 0.7 is good to use if the detection is not working
+        tfodParameters.isModelTensorFlow2 = true;
+        //tfodParameters.inputSize = 320;
+        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
+        tfod.loadModelFromFile(TFOD_MODEL_ASSET, LABELS);
+    }
+
+    private int reconnition() {
+
+        i = 0;
+        counter = 0;
+        while (counter <= 50){
+            if (tfod != null) {
+                // getUpdatedRecognitions() will return null if no new information is available since
+                // the last time that call was made.
+                List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+                if (updatedRecognitions != null) {
+                    // step through the list of recognitions and display boundary info.
+
+                    for (Recognition recognition : updatedRecognitions) {
+                        telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
+                        telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
+                                recognition.getLeft(), recognition.getTop());
+                        telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
+                                recognition.getRight(), recognition.getBottom());
+                        telemetry.update();
+                        i++;
+                    }
+                }
+            }
+            counter++;
+        }
+        return i;
+    }
+
     public void runOpMode() {
 
-   //     if ((Pivot_Arm != null) && (drivetrain != null) && (Intake !=null) && (Sensors != null) && (Turn_Table != null))
-   //     {
-            waitForStart();
-            telemetry.addData("Object", "Passed waitForStart");
-            telemetry.update();
+        //     if ((Pivot_Arm != null) && (drivetrain != null) && (Intake !=null) && (Sensors != null) && (Turn_Table != null))
+        //     {
 
-            Pivot_Arm.SetArmHome(false);
+        initVuforia();
+        initTfod();
 
-            telemetry.addData("Object", "After SetArmHome");
+        if (tfod != null) {
+            tfod.activate();
+            tfod.setZoom(1, 16.0 / 9.0);
+        }
+
+        waitForStart();
+        telemetry.addData("Object", "Passed waitForStart");
+        telemetry.update();
+
+        Pivot_Arm.SetArmHome(false);
+
+        telemetry.addData("Object", "After SetArmHome");
+        telemetry.update();
+        Pivot_Arm.SetArmHome(false);
+        while (Pivot_Arm.GetArmHome() == false) {
+            Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
+        }
+
+        //Pivot_Arm.SetArmHome(true);
+
+        telemetry.addData("Object", "Passed while loop");
+        telemetry.update();
+
+        Intake.Home_TSE();
+
+        drivetrain.Rotate(-45, total_speed);
+        telemetry.addData("Rotation", "Passed rotating to turn table");
+        telemetry.update();
+        Turn_Table.Auto(A, 8000);
+        telemetry.addData("Spin", "Rotated the turn table");
+        telemetry.update();
+        drivetrain.Rotate(45, total_speed);
+        telemetry.addData("Rotate", "Rotated to look forward");
+        telemetry.update();
+        drivetrain.Strafing(-11.5, total_speed);
+        telemetry.addData("Strafe", "Strafed to look at TSE");
+        telemetry.update();
+
+
+
+
+
+        if (reconnition() > 0){
+            telemetry.addData("Recognition", "Saw TSE");
             telemetry.update();
-            Pivot_Arm.SetArmHome(false);
-            while (Pivot_Arm.GetArmHome() == false) {
-                Pivot_Arm.HomeArm(); //Runs the homing sequence for the arm to reset it
+            Pivot_Arm.GotoPosition(-1);
+            drivetrain.Strafing(-32, total_speed);
+        }
+        telemetry.addData("Recognition", "Ran code to see TSE");
+        telemetry.addData("i", i);
+        telemetry.update();
+
+        if (reconnition() == 0){
+            drivetrain.Strafing(-20, total_speed);
+            if (reconnition() > 0){
+                Pivot_Arm.GotoPosition(-3);
+                drivetrain.Strafing(-12, total_speed);
+            }
+            else{
+                Pivot_Arm.GotoPosition(-2);
+                drivetrain.Strafing(-12, total_speed);
             }
 
-            //Pivot_Arm.SetArmHome(true);
+        }
 
-            telemetry.addData("Object", "Passed while loop");
-            telemetry.update();
 
-            Intake.Home_TSE();
 
-            drivetrain.Rotate(-45, total_speed);
-            Turn_Table.Auto(A, 8000);
-            drivetrain.Rotate(-90, total_speed);
-            Pivot_Arm.GotoPosition(1); //Sets the arm to the position of top goal
-            drivetrain.ForwardorBackwards(42.5, total_speed);
-            Intake.Update_outtake(0.5, Pivot_Arm.position);
-            sleep(500);
-            drivetrain.Strafing(35, total_speed);
-            drivetrain.Rotate(30, total_speed);
-            drivetrain.ForwardorBackwards(65, total_speed);
-            Pivot_Arm.GotoPosition(3);
+        drivetrain.ForwardorBackwards(-25, total_speed);
+        Intake.Update_outtake(0.5, 1);
+        sleep(500);
+        drivetrain.ForwardorBackwards(25, total_speed);
+        drivetrain.Strafing(-30, total_speed);
+        /*
+        drivetrain.ForwardorBackwards(42.5, total_speed);
+        Intake.Update_outtake(0.5, Pivot_Arm.position);
+        sleep(500);
+        drivetrain.Strafing(35, total_speed);
+        drivetrain.Rotate(30, total_speed);
+        drivetrain.ForwardorBackwards(65, total_speed);
+        Pivot_Arm.GotoPosition(3);
+
+         */
 
 
             /*
@@ -143,7 +266,7 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
                 Intake.Update_outtake(1, Pivot_Arm.position); //puts the freight on the shipping hub
                 drivetrain.ForwardorBackwards(-35, total_speed); //goes away from the shipping hub
                 drivetrain.Strafing(-62, total_speed); //goes up to the warehouse
-            } else if (A == true && WT == false  && GateFlag == true) { //red and turntable side
+            } else if (A == true && WT == false && GateFlag == true) { //red and turntable side
                 //Need Camera Code //Sees where the duck is
             /*
             if camera == 1: //if the duck is on the first barcode
@@ -182,5 +305,8 @@ public class  FTC_14133_2022_Auto extends LinearOpMode {
                 drivetrain.ForwardorBackwards(-35, total_speed);//backs away from shipping hub
                 drivetrain.Strafing(62, total_speed); //Parks in the storage hub
             }
+        }
+
+
     }
-}
+
